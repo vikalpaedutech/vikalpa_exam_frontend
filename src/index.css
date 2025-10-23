@@ -1,0 +1,375 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+
+.RegistrationFormComponent {
+
+  border: solid;
+  flex-direction: column; /* Arrange children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+   /* Full height of the viewport */
+  text-align: center; /* Center text inside the div */
+  padding: 0px; /* Add some padding */
+  background-color: white; /* Optional background color #f9f9f9 */
+   /* Optional border */
+  border-radius: 8px; /* Optional rounded corners */
+}
+
+#DependentCheckbox {
+  flex-direction: block; /* Arrange children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+   /* Full height of the viewport */
+  text-align: center; /* Center text inside the div */
+  padding: 20px; /* Add some padding */
+ 
+   /* Optional border */
+  border-radius: 8px; /* Optional rounded corners */
+ 
+}
+#DependentLabel {
+  flex-direction: block; /* Arrange children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+   /* Full height of the viewport */
+  text-align: center; /* Center text inside the div */
+  padding: 0px; /* Add some padding */
+
+   /* Optional border */
+  border-radius: 8px; /* Optional rounded corners */
+ 
+}
+
+.userDiv {
+
+  flex-direction: column; /* Arrange children vertically */
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+   /* Full height of the viewport */
+  text-align: center; /* Center text inside the div */
+  padding: 20px; /* Add some padding */
+  background-color: #f9f9f9; /* Optional background color */
+ 
+
+
+}
+
+label{
+  color: black;
+  font-size: 20px ;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ;
+  color: green ;
+}
+
+input {
+  border-radius: 10px;
+  width: 300px;
+  height: 50px;
+  border-width: 3px;
+  text-align: center;
+  border: 3px solid black;
+  padding: 10px;
+  transition: border-color 0.3s;
+  width: 70%;
+  box-sizing: border-box;
+  border-color: grey;
+  
+}
+input:hover {
+  border-color: black;
+  border-radius: 20px;
+
+
+  
+}
+
+
+select {
+  border-radius: 10px;
+  width: 500px; /* Use one width declaration */
+  height: 50px; /* This may be ignored due to padding */
+  border-width: 3px;
+  text-align: center;
+  border: 3px solid black;
+  padding: 0px; /* Adjusted padding for better visibility */
+  transition: border-color 0.3s;
+  width: 70%;
+  box-sizing: border-box;
+  border-color: grey;
+  background-color: white; /* Background color */
+  color: black; /* Text color */
+  
+}
+
+select:hover {
+  border-color: black;
+  border-radius: 20px;
+}
+
+select option {
+  background-color: white; /* Background color for options */
+  color: black; /* Text color for options */
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse; /* Ensures borders are merged */
+  margin: 20px 0; /* Adds margin above and below the table */
+}
+
+/* Header styles */
+.table th {
+  background-color: #f2f2f2; /* Light gray background for header */
+  color: black; /* Text color */
+  padding: 10px; /* Padding around header text */
+  border: 1px solid black; /* Border around header cells */
+  text-align: left; /* Aligns header text to the left */
+}
+
+/* Data cell styles */
+.table td {
+  padding: 8px; /* Padding around data */
+  border: 1px solid black; /* Border around data cells */
+}
+
+/* Optional: Alternate row colors for better readability */
+.table tr:nth-child(even) {
+  background-color: #f9f9f9; /* Light gray background for even rows */
+}
+
+
+.parent {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center items horizontally */
+  justify-content: center; /* Center items vertically */
+  height: 50vh; /* Full viewport height */
+}
+
+
+
+.react-select__control {
+  border-radius: 10px;
+  border: 3px solid grey;
+  height: 50px; /* Match height */
+  box-sizing: border-box;
+  transition: border-color 0.3s;
+  background-color: white; /* Background color */
+}
+
+/* Hover effect for react-select */
+.react-select__control:hover {
+  border-color: black;
+  border-radius: 20px;
+}
+
+
+button{
+
+  background-color: blue; /* Initial color */
+  color: white;           /* Text color */
+  border: solid ;
+  border-radius: 100px;
+  padding: 10px 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+li{
+  padding: 10px;
+  text-align: center;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+
+
+/* 
+modal css */
+
+
+/* .modal {
+  display: flex;
+  position: fixed;
+  z-index: 1000;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+} */
+
+
+
+/* for checkbox */
+.checkbox {
+  display: flex;
+  align-items: center;
+  text-align: center;
+}
+
+.checkbox input[type="checkbox"] {
+  width: 15px; /* Smaller checkbox size */
+  height: 15px;
+  margin-right: 8px; /* Space between checkbox and label */
+  cursor: pointer;
+  text-align: center;
+}
+
+.checkbox label {
+  font-size: 14px; /* Font size for label */
+  cursor: pointer; /* Makes label clickable */
+  color: #333; /* Label text color */
+}
+
+
+
+/* CSS FOR AcknowledgementSlip Modal */
+.modalAck {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  overflow: auto;
+
+}
+
+.modal-contentAck {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 1000px;
+  max-width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: auto;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1001;
+  
+}
+
+
+
+
+/* ackfont css. the <p> tags that are used in Acknowledgement fomr */
+
+.ackfont{
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight: 100;
+}
+
+
+
+
+
+
+@media (max-width: 375px) { /* iPhone SE has a width of 375px */
+  .acknowledgment-header h4 {
+      font-size: 12px; /* Adjust the font size as needed */
+  }
+
+  .acknowledgment-header h5 {
+      font-size: 10px; /* Adjust the font size as needed */
+
+  
+  }
+
+  .acknowledgment-header h6 {
+    font-size: 10px; /* Adjust the font size as needed */
+  }
+
+  
+}
+
+
+
+
+
+/* User Container css for dynamically responsiveness of the view */
+
+
+.blinking-link {
+  font-size: 30px;
+  text-decoration: none;
+  font-weight: bold;
+  animation: blinker 1s linear infinite; /* Adjust duration for blinking speed */
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+
+
+
+
+/* Below css targets the downloadCertificate button, to style it and to show it as a plane text with a blinking effect */
+.blinking-text {
+  background: none;
+  border: none;
+  color: red;
+  font-size: 25px;
+  cursor: pointer;
+  text-decoration: underline;
+  animation: blink-animation 1s infinite;
+  outline: none;
+  
+}
+
+@keyframes blink-animation {
+  0% {
+    color: red;
+  }
+  50% {
+    color: green;
+  }
+  100% {
+    color: red;
+  }
+}
+
+
+

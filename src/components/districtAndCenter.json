@@ -1,0 +1,414 @@
+[
+    {
+      "schoolName": "GMSSSS TOSHAM",
+      "district": "Bhiwani"
+    },
+    {
+      "schoolName": "GSSS NAWADA FATEHPUR",
+      "district": "Gurugram"
+    },
+    {
+      "schoolName": "GGSSS JIND",
+      "district": "Jind"
+    },
+    {
+      "schoolName": "GMSSSS SAFIDON",
+      "district": "Jind"
+    },
+    {
+      "schoolName": "GMSSSS MODEL TOWN",
+      "district": "Karnal"
+    },
+    {
+      "schoolName": "GMSSSS ISRANA",
+      "district": "Panipat"
+    },
+    {
+      "schoolName": "GMSSSS SARASWATI NAGAR",
+      "district": "Yamunanagar"
+    },
+    {
+      "schoolName": "GMSSSS BHIWANI",
+      "district": "Bhiwani"
+    },
+    {
+      "schoolName": "GMSSSS SIWANI MANDI",
+      "district": "Bhiwani"
+    },
+    {
+      "schoolName": "GMSSSS NARNAUND",
+      "district": "Hisar"
+    },
+    {
+      "schoolName": "GMSSSS RAJOUND",
+      "district": "Kaithal"
+    },
+    {
+      "schoolName": "GMSSSS UNIVERSITY GATE- 2",
+      "district": "Kurukshetra"
+    },
+    {
+      "schoolName": "GMSSSS NARNAUL",
+      "district": "Mahendragarh"
+    },
+    {
+      "schoolName": "GMSSSS ATELI",
+      "district": "Mahendragarh"
+    },
+    {
+      "schoolName": "GMSSSS BILASPUR",
+      "district": "Yamunanagar"
+    },
+    {
+      "schoolName": "GMSSSS FATEHABAD",
+      "district": "Fatehabad"
+    },
+    {
+      "schoolName": "GSSS MATANHAIL",
+      "district": "Jhajjar"
+    },
+    {
+      "schoolName": "DIET PANIPAT/GMSSSS GT ROAD, PANIPAT",
+      "district": "Panipat"
+    },
+    {
+      "schoolName": "GMSSSS LAKHAN MAJRA",
+      "district": "Rohtak"
+    },
+    {
+      "schoolName": "GMSSSS BHIWANI ROAD, ROHTAK",
+      "district": "Rohtak"
+    },
+    {
+      "schoolName": "GMSSSS ELLENABAD",
+      "district": "Sirsa"
+    },
+    {
+      "schoolName": "DIET BISWAMEEL/GMSSSS BISWAMEEL",
+      "district": "Sonipat"
+    },
+    {
+      "schoolName": "GMSSSS MODEL TOWN SONIPAT",
+      "district": "Sonipat"
+    },
+    {
+      "schoolName": "GMSSSS BARARA",
+      "district": "Ambala"
+    },
+    {
+      "schoolName": "GMSSSS PATAUDI",
+      "district": "Gurugram"
+    },
+    {
+      "schoolName": "GMSSSS UKLANA",
+      "district": "Hisar"
+    },
+    {
+      "schoolName": "GSSS SEC-6 PANCHKULA",
+      "district": "Panchkula"
+    },
+    {
+      "schoolName": "GSSS MASANI",
+      "district": "Rewari"
+    },
+    {
+      "schoolName": "GMSSSS MANDI DABWALI",
+      "district": "Sirsa"
+    },
+    {
+      "schoolName": "GMSSSS SIRSA",
+      "district": "Sirsa"
+    },
+    {
+      "schoolName": "GSSS BADSHAHPUR",
+      "district": "Gurugram"
+    },
+    {
+      "schoolName": "GMSSSS JHAJJAR",
+      "district": "Jhajjar"
+    },
+    {
+      "schoolName": "GSSS NILOKHERI",
+      "district": "Karnal"
+    },
+    {
+      "schoolName": "GSSS PALWAL",
+      "district": "Palwal"
+    },
+    {
+      "schoolName": "SNRSGMSSS HATHIN",
+      "district": "Palwal"
+    },
+    {
+      "schoolName": "GMSSSS LOHARU",
+      "district": "Bhiwani"
+    },
+    {
+      "schoolName": "GMSSSS CHARKHI DADRI",
+      "district": "Charkhi Dadri"
+    },
+    {
+      "schoolName": "GSSS SARHAUL",
+      "district": "Gurugram"
+    },
+    {
+      "schoolName": "GSSS DUJANA",
+      "district": "Jhajjar"
+    },
+    {
+      "schoolName": "GMSSSS KALAYAT",
+      "district": "Kaithal"
+    },
+    {
+      "schoolName": "GSSS GOHANA",
+      "district": "Sonipat"
+    },
+    {
+      "schoolName": "GMSSSS POLICE LINE",
+      "district": "Ambala"
+    },
+    {
+      "schoolName": "GSSS CHANDAWALI",
+      "district": "Faridabad"
+    },
+    {
+      "schoolName": "GSSS JIND",
+      "district": "Jind"
+    },
+    {
+      "schoolName": "GSSS KOSLI",
+      "district": "Rewari"
+    },
+    {
+      "schoolName": "GMSSSS HANSI",
+      "district": "Hisar"
+    },
+    {
+      "schoolName": "GMSSSS TAURU",
+      "district": "Nuh Mewat"
+    },
+    {
+      "schoolName": "GHS JALAULI BARWALA",
+      "district": "Panchkula"
+    },
+    {
+      "schoolName": "GMSSSS BADHRA",
+      "district": "Charkhi Dadri"
+    },
+    {
+      "schoolName": "GMSSSS SECTOR-55",
+      "district": "Faridabad"
+    },
+    {
+      "schoolName": "GMSSSS NAHAR KOTHI BARWALA",
+      "district": "Hisar"
+    },
+    {
+      "schoolName": "GGSSS JULANA",
+      "district": "Jind"
+    },
+    {
+      "schoolName": "GSSS PEHOWA",
+      "district": "Kurukshetra"
+    },
+    {
+      "schoolName": "GMSSSS NUH",
+      "district": "Nuh Mewat"
+    },
+    {
+      "schoolName": "GSSS KAHNAUR",
+      "district": "Rohtak"
+    },
+    {
+      "schoolName": "SNVGSS MODEL TOWN YAMUNANAGAR",
+      "district": "Yamunanagar"
+    },
+    {
+      "schoolName": "GMSSSS KAIRU",
+      "district": "Bhiwani"
+    },
+    {
+      "schoolName": "GSSS TOHANA",
+      "district": "Fatehabad"
+    },
+    {
+      "schoolName": "GMSSSS RATIA",
+      "district": "Fatehabad"
+    },
+    {
+      "schoolName": "GMSSSS BHATTU KALAN",
+      "district": "Fatehabad"
+    },
+    {
+      "schoolName": "GMSSSS ADAMPUR",
+      "district": "Hisar"
+    },
+    {
+      "schoolName": "GMSSSS JHAJPUL",
+      "district": "Hisar"
+    },
+    {
+      "schoolName": "GSSS NARWANA",
+      "district": "Jind"
+    },
+    {
+      "schoolName": "GMSSSS CHEEKA",
+      "district": "Kaithal"
+    },
+    {
+      "schoolName": "GSSS INDRI",
+      "district": "Karnal"
+    },
+    {
+      "schoolName": "GMSSSS ISMAILABAD",
+      "district": "Kurukshetra"
+    },
+    {
+      "schoolName": "GMSSSS KANINA",
+      "district": "Mahendragarh"
+    },
+    {
+      "schoolName": "GSSS REWARI",
+      "district": "Rewari"
+    },
+    {
+      "schoolName": "GSSS MEHAM",
+      "district": "Rohtak"
+    },
+    {
+      "schoolName": "GMSSSS BAUND KALAN",
+      "district": "Charkhi Dadri"
+    },
+    {
+      "schoolName": "GSSS NIT-5",
+      "district": "Faridabad"
+    },
+    {
+      "schoolName": "GMSSSS BAHADURGARH",
+      "district": "Jhajjar"
+    },
+    {
+      "schoolName": "GMSSSS GHARAUNDA",
+      "district": "Karnal"
+    },
+    {
+      "schoolName": "GMSSSS SEC-20, PANCHKULA",
+      "district": "Panchkula"
+    },
+    {
+      "schoolName": "GMSSSS NATHUSARI CHOPTA",
+      "district": "Sirsa"
+    },
+    {
+      "schoolName": "GSSS ODHAN",
+      "district": "Sirsa"
+    },
+    {
+      "schoolName": "GSSS PRATAP NAGAR (CHHACHROLI)",
+      "district": "Yamunanagar"
+    },
+    {
+      "schoolName": "GSSS BAWAL",
+      "district": "Rewari"
+    },
+    {
+      "schoolName": "GMSSSS SAMPLA",
+      "district": "Rohtak"
+    },
+    {
+      "schoolName": "GSSS BAKRA MARKET",
+      "district": "Ambala"
+    },
+    {
+      "schoolName": "GSSS FARIDPUR",
+      "district": "Faridabad"
+    },
+    {
+      "schoolName": "GMSSS SEC-28",
+      "district": "Faridabad"
+    },
+    {
+      "schoolName": "GMSSSS MAHENDRAGARH",
+      "district": "Mahendragarh"
+    },
+    {
+      "schoolName": "GSSS PINJORE",
+      "district": "Panchkula"
+    },
+    {
+      "schoolName": "GMSSSS FARUKHNAGAR",
+      "district": "Gurugram"
+    },
+    {
+      "schoolName": "GSSS PUNHANA",
+      "district": "Nuh Mewat"
+    },
+    {
+      "schoolName": "GMSSSS RAIPUR RANI",
+      "district": "Panchkula"
+    },
+    {
+      "schoolName": "GMSSSS SAMALKHA",
+      "district": "Panipat"
+    },
+    {
+      "schoolName": "GMSSSS NARAINGARH",
+      "district": "Ambala"
+    },
+    {
+      "schoolName": "GMSSSS PUNDRI",
+      "district": "Kaithal"
+    },
+    {
+      "schoolName": "PM. SHRI GMSSSS ASSANDH",
+      "district": "Karnal"
+    },
+    {
+      "schoolName": "GSSS BAPOLI",
+      "district": "Panipat"
+    },
+    {
+      "schoolName": "GGSSS REWARI",
+      "district": "Rewari"
+    },
+    {
+      "schoolName": "GSSS GANAUR",
+      "district": "Sonipat"
+    },
+    {
+      "schoolName": "GMSSSS SEHZADPUR",
+      "district": "Ambala"
+    },
+    {
+      "schoolName": "GMSSSS BHUNA",
+      "district": "Fatehabad"
+    },
+    {
+      "schoolName": "AMSSS GEONG",
+      "district": "Kaithal"
+    },
+    {
+      "schoolName": "GSSS SHAHBAD",
+      "district": "Kurukshetra"
+    },
+    {
+      "schoolName": "GSSS LADWA",
+      "district": "Kurukshetra"
+    },
+    {
+      "schoolName": "GSSS FIROZPUR JHIRKA",
+      "district": "Nuh Mewat"
+    },
+    {
+      "schoolName": "GMSSSS HODAL",
+      "district": "Palwal"
+    },
+    {
+      "schoolName": "GMSSSS MADLAUDA",
+      "district": "Panipat"
+    },
+    {
+      "schoolName": "GMSSSS RADAUR",
+      "district": "Yamunanagar"
+    }
+  ]

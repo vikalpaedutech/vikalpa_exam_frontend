@@ -1,0 +1,320 @@
+[{
+    "_id": {
+      "$oid": "680e2628ff09583f37de74df"
+    },
+    "roomNo": 202,
+    "gender": "Female",
+    "capacity": 16,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 2,
+    "updatedAt": {
+      "$date": "2025-04-27T20:42:56.500Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e0"
+    },
+    "roomNo": 203,
+    "gender": "Female",
+    "capacity": 16,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 3,
+    "updatedAt": {
+      "$date": "2025-04-27T19:56:14.484Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e1"
+    },
+    "roomNo": 204,
+    "gender": "Female",
+    "capacity": 24,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 4
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e2"
+    },
+    "roomNo": 205,
+    "gender": "Female",
+    "capacity": 24,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 5
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e3"
+    },
+    "roomNo": 206,
+    "gender": "Female",
+    "capacity": 16,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 6
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e4"
+    },
+    "roomNo": 207,
+    "gender": "Female",
+    "capacity": 14,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 7
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e5"
+    },
+    "roomNo": 208,
+    "gender": "Female",
+    "capacity": 24,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 8
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e6"
+    },
+    "roomNo": 209,
+    "gender": "Female",
+    "capacity": 28,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 9
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e7"
+    },
+    "roomNo": 211,
+    "gender": "Female",
+    "capacity": 32,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 10
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e8"
+    },
+    "roomNo": 213,
+    "gender": "Female",
+    "capacity": 24,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 11
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74e9"
+    },
+    "roomNo": 214,
+    "gender": "Female",
+    "capacity": 20,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 12
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74ea"
+    },
+    "roomNo": 215,
+    "gender": "Female",
+    "capacity": 16,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 13
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74eb"
+    },
+    "roomNo": 210,
+    "gender": "Female",
+    "capacity": 10,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 14
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74ec"
+    },
+    "roomNo": 218,
+    "gender": "Male",
+    "capacity": 24,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 1,
+    "updatedAt": {
+      "$date": "2025-04-27T16:31:34.242Z"
+    }
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74ed"
+    },
+    "roomNo": 219,
+    "gender": "Male",
+    "capacity": 16,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 2
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74ee"
+    },
+    "roomNo": 220,
+    "gender": "Male",
+    "capacity": 16,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 3
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74ef"
+    },
+    "roomNo": 221,
+    "gender": "Male",
+    "capacity": 36,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 4
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f0"
+    },
+    "roomNo": 223,
+    "gender": "Male",
+    "capacity": 20,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 5
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f1"
+    },
+    "roomNo": 224,
+    "gender": "Male",
+    "capacity": 18,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 6
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f2"
+    },
+    "roomNo": 225,
+    "gender": "Male",
+    "capacity": 40,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 7
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f3"
+    },
+    "roomNo": 226,
+    "gender": "Male",
+    "capacity": 8,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 8
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f4"
+    },
+    "roomNo": 227,
+    "gender": "Male",
+    "capacity": 12,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 9
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f5"
+    },
+    "roomNo": 228,
+    "gender": "Male",
+    "capacity": 12,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 10
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f6"
+    },
+    "roomNo": 229,
+    "gender": "Male",
+    "capacity": 32,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 11
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f7"
+    },
+    "roomNo": 230,
+    "gender": "Male",
+    "capacity": 24,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 12
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f8"
+    },
+    "roomNo": 231,
+    "gender": "Male",
+    "capacity": 30,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 13
+  },
+  {
+    "_id": {
+      "$oid": "680e2628ff09583f37de74f9"
+    },
+    "roomNo": 222,
+    "gender": "Male",
+    "capacity": 10,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 14
+  },
+  {
+    "_id": {
+      "$oid": "680e4190ff09583f37de750b"
+    },
+    "roomNo": 201,
+    "gender": "Female",
+    "capacity": 32,
+    "occupied": 0,
+    "exhausted": false,
+    "sequenceOfAllocation": 1,
+    "updatedAt": {
+      "$date": "2025-04-27T20:43:05.240Z"
+    }
+  }]

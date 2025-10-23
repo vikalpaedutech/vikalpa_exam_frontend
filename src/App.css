@@ -1,0 +1,312 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*Below is the toggle button css which is used in AttendanceMB.component.jsx*/
+
+/* Container for the toggle button */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* The outer container of the toggle button */
+
+
+/* Container for the toggle button */
+.toggle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* The outer container of the toggle button */
+.toggle-button {
+  width: 80px;
+  height: 30px;
+  background-color: #ccc;
+  border-radius: 20px;
+  position: relative;
+  transition: background-color 0.3s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+/* The circle inside the toggle */
+.circle {
+  width: 26px;
+  height: 26px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  top: 2px;
+  transition: transform 0.3s ease;
+}
+
+/* Text inside the button */
+.toggle-text {
+  font-size: 12px;
+  font-weight: bold;
+  color: white;
+  z-index: 1; /* Ensure the text is above the circle */
+}
+
+/* When the toggle is on (circle moves to the right) */
+.toggle-button.on {
+  background-color: #4caf50;
+}
+
+.circle.move-right {
+  transform: translateX(30px);
+}
+
+/* When the toggle is off (circle moves to the left) */
+.toggle-button.off {
+  background-color: #ccc;
+}
+
+.circle.move-left {
+  transform: translateX(0);
+}
+
+/* Styles for the ON text */
+.toggle-text.on-text {
+  color: white;
+  padding-right: 5px; /* Move the text to the right */
+}
+
+/* Styles for the OFF text */
+.toggle-text.off-text {
+  color: white;
+  padding-left: 5px; /* Move the text to the left */
+}
+
+/*________________________________________________________________________________________________________________*/
+
+
+
+
+/* counselling documentation css */
+
+
+.counselling-doc-main{
+  display: flex;
+  align-items: center;
+  align-content: center;
+flex-direction: column;
+margin-top: 0%;
+}
+
+
+
+
+
+.counselling-wrapper {
+  padding: 2rem;
+}
+
+.select-dropdown {
+  font-size: 16px;
+}
+
+.student-details {
+  background-color: #f9f9f9;
+  padding: 1.5rem;
+  border-radius: 8px;
+  margin-top: 2rem;
+}
+
+.section-title {
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.student-info p {
+  margin: 0.4rem 0;
+}
+
+.center-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.checkbox-item {
+  flex: 1 1 45%;
+}
+
+.submission-card-wrapper {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.submission-card {
+  width: 100%;
+  max-width: 400px;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status-text {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: green;
+}
+
+.no-selection-text {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .checkbox-item {
+    flex: 1 1 100%;
+  }
+}
+
+
+
+.center-checkboxes {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-top: 1rem;
+  padding-left: 0.5rem;
+}
+
+.checkbox-item-vertical {
+  display: flex;
+  align-items: center;
+}
+
+.form-check-label {
+  font-size: 1rem;
+  color: #333;
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.form-check-input {
+  width: 16px;
+  height: 16px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+.doc-distance-input{
+  width: 5rem;
+  height: 1rem;
+}
+
+/* counselling attendance main */
+
+.counselling-attendance-main{
+  display: flex;
+  align-items: center;
+  align-content: center;
+flex-direction: column;
+margin-top: 0%;
+}
+
+.attendance-select{
+  width: 50rem;
+}
+
+
+.counselling-logo{
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 25%;
+
+}
+
+
+@media (max-width: 768px){
+  .counselling-attendance-main{
+    display: flex;
+    align-items: center;
+    align-content: center;
+  flex-direction: column;
+  margin-top: 0%;
+  }
+  
+  .attendance-select{
+    width: 20rem;
+  }
+
+  .counselling-logo{
+    border: solid;
+    display: flex;
+    gap: 12vw;
+  
+  }
+}
+
+
