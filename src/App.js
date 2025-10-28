@@ -64,6 +64,10 @@ import { CounsellingAttendance } from './components/counselling/CounsellingAtten
 import { CounsellingDocumentation } from './components/counselling/CounsellingDocumentation';
 import { CounsellingDash } from './components/counselling/CounsellingDash';
 
+
+import { PrincipalSchoolsAbrcDataCollection } from './components/CallingNDataCollection/PrincipalSchoolsAbrcDataCollection';
+
+
 function App() {
   return (
     <Router>
@@ -74,12 +78,12 @@ function App() {
 
                 <Route path="/" element={<LandingPage />} />  
 
-                <Route path="/srn-deactivated" element={<InputSrn />} />
+                <Route path="/srn" element={<InputSrn />} />
                 <Route path="/srn-100-deactivated" element={<InputSrn />} />
 
 
                 {/* below are the self links */}
-                <Route path="/Registration-form/MB-deactivated" element={<RegistrationFormComponent />} />
+                <Route path="/Registration-form/MB" element={<RegistrationFormComponent />} />
                 <Route path="/Registration-form/put/MB-deactivated" element={<RegistrationFormPutComponent />} />
                 <Route path="/Registration-form/S100-deactivated" element={<RegistrationForm />} />
                 <Route path="/Registration-form/put/S100-deactivated" element={<RegistrationFormPutComponent />} />
@@ -189,6 +193,11 @@ function App() {
                     <Route path='/counselling-attendance' element = {<CounsellingAttendance/>}/>
                     <Route path='/counselling-documentation' element = {<CounsellingDocumentation/>}/>
                     <Route path='/counselling-dashboard' element = {<CounsellingDash/>}/>
+
+
+
+                    {/* PricnipalSchoolsAbrcDataCollerction */}
+                     <Route path='/principal-schools-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
 
             </Routes>
             </StudentProvider>

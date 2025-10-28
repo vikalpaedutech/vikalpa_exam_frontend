@@ -76,9 +76,9 @@ export default function UserSignIn() {
         <Navbar />
 
         <Nav defaultActiveKey="/userprofile" as="ul">
-          <Nav.Item as="li">
+          {/* <Nav.Item as="li">
             <Nav.Link href="/">Go To Main Page</Nav.Link>
-          </Nav.Item>
+          </Nav.Item> */}
         </Nav>
 
         <div

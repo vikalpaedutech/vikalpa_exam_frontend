@@ -43,7 +43,7 @@ try {
         <Col style={{textAlign:'left'}}><img src="/haryana.png" style={{ width: '80px', height: 'auto' }} /></Col>
         <Col style={{textAlign:'center'}}>
         <p>Haryana Pratibha Khoj </p>
-        <p>2025-27</p>
+        <p>2026-28</p>
         </Col>
         <Col style={{textAlign:'right'}}>
         <p >Signed in as: {user.userName  }</p>
@@ -52,9 +52,9 @@ try {
         
         </Row>
         <Nav defaultActiveKey="/userprofile" as="ul">
-        <Nav.Item as="li">
+        {/* <Nav.Item as="li">
         <Nav.Link href="/">Home Page</Nav.Link>
-      </Nav.Item>
+      </Nav.Item> */}
       <Nav.Item as="li">
         <Nav.Link href="/userprofile">Go Back</Nav.Link>
       </Nav.Item>

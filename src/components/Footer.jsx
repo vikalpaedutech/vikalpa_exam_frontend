@@ -22,7 +22,7 @@ export default function Footer() {
           padding: "10px", // Adjust padding as needed
           border: "solid",
           // marginTop:'50vh',
-          height: "25vh",
+          height: "50vh",
         }}
       >
         <Container fluid>

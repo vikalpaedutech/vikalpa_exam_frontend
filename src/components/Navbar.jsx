@@ -59,7 +59,7 @@ export default function Navbar() {
         
           }}
           
-          >Batch 2025-27</h4>
+          >Batch 2026-28</h4>
           </div>
             <img src="/Buniyaad.png" style={{ width: '100px', height: 'auto' }} />
           </nav>

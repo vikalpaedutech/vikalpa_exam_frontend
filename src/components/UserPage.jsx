@@ -94,19 +94,21 @@ export default function UserPage() {
       {/* <Link to={'/userprofile/registration-100'}> <Button style={{width:'300px'}}>Super 100 Registration 10th Class</Button></Link>  */}
       <br></br>
       <br></br>
-      <p style={{fontSize:'25px', color:'red', fontWeight:'bold'}}>Mission Buniyaad Level 2 Result out now. (Click on below button)</p>
-      <hr></hr>
-      <p>Read Following Notes:<br></br>
+      {/* <p style={{fontSize:'25px', color:'red', fontWeight:'bold'}}>Mission Buniyaad Level 2 Result out now. (Click on below button)</p>
+      <hr></hr> */}
+      {/* <p>Read Following Notes:<br></br>
           1 मिशन बुनियाद लेवल 3 एडमिट  डाउनलोड के लिए उपलब्ध है।<br></br>
           2 हरियाणा सुपर 100 लेवल 2 एडमिट  डाउनलोड के लिए जारी किया जाएगा।
-      </p>
+      </p> */}
 
+      <a href="/principal-schools-abrc-data">Click here to Fill Principal, Schools, and ABRC Data</a>
 
       <hr/>
       
       {/* uncomment below link for for user dash */}
 
-      <Link to={'/userprofile/dashboard-mb'}><Button style={{width:'600px'}}>Check Result or Download Admit Cards of students Registered by You.</Button></Link> 
+      {/* <Link to={'/userprofile/dashboard-mb'}><Button style={{width:'600px'}}>Check Result or Download Admit Cards of students Registered by You.</Button></Link> 
+       */}
       </Col>
       
     </Row>
