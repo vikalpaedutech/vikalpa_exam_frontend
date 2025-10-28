@@ -50,10 +50,10 @@ export default function LandingPage() {
             
 
             {/* Commenting below link for deactivating */}
-            <Link  to="/srn" style={{textDecoration:'none', fontSize:'25px'}}>
+            {/* <Link  to="/srn" style={{textDecoration:'none', fontSize:'25px'}}>
             <p><BsArrowRight className="blinking-link" />Mission Buniyaad Level-1 Registration Class 8th. <br/>(मिशन बुनियाद स्तर-1 परीक्षा पंजीकरण के लिए, कक्षा 8वीं के विद्यार्थी यहाँ क्लिक करें।)</p> 
             </Link>
-            <br />
+            <br /> */}
 
 
              {/* <Link  to="" style={{textDecoration:'none', fontSize:'25px', color:'red', fontWeight:'bold'}}>
@@ -112,8 +112,14 @@ export default function LandingPage() {
             
           {/* BELOW LINKS ARE FOR ABRC/SCHOOL/CC LOGIN */}
 
-            <Link to="/user-signin" style={{textDecoration:'none', fontSize:'25px'}}>
+            {/* <Link to="/user-signin" style={{textDecoration:'none', fontSize:'25px'}}>
            <p><BsArrowRight className="blinking-link" />SCHOOL/ABRC/BRP/Officials Login (स्कूल/ABRC/BRP/अन्य अधिकारी यहाँ क्लिक करे)</p>
+            </Link> */}
+
+
+            
+            <Link to="/user-signin" style={{textDecoration:'none', fontSize:'25px'}}>
+           <p><BsArrowRight className="blinking-link" />Click here to login</p>
             </Link>
 
             <br />
