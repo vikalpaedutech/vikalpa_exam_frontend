@@ -66,6 +66,7 @@ import { CounsellingDash } from './components/counselling/CounsellingDash';
 
 
 import { PrincipalSchoolsAbrcDataCollection } from './components/CallingNDataCollection/PrincipalSchoolsAbrcDataCollection';
+import { UpdatePrincipalSchoolsAbrcData } from './components/CallingNDataCollection/UpdatePrincipalSchoolsAbrcDataCollection';
 
 
 function App() {
@@ -198,6 +199,7 @@ function App() {
 
                     {/* PricnipalSchoolsAbrcDataCollerction */}
                      <Route path='/principal-schools-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
+                        <Route path='/update-principal-schools-abrc-data' element = {<UpdatePrincipalSchoolsAbrcData/>}/>
 
             </Routes>
             </StudentProvider>

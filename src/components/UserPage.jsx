@@ -102,6 +102,10 @@ export default function UserPage() {
       </p> */}
 
       <a href="/principal-schools-abrc-data">Click here to Fill Principal, Schools, and ABRC Data</a>
+      <br/>
+      <br/>
+      <a href="/update-principal-schools-abrc-data">View Principal, Schools, and ABRC Data</a>
+
 
       <hr/>
       
