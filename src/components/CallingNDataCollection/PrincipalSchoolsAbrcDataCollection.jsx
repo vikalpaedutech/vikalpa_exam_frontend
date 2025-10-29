@@ -26,6 +26,8 @@ const scholTypeOptions = [
   { value: "Model", label: "Model" },
   { value: "Aarohi", label: "Aarohi" },
   { value: "Senior Secondary", label: "Senior Secondary" },
+  {value: "Govt. Girls", label: "Govt. Girls" },
+   {value: "Govt. Boys", label: "Govt. Boys" },
 ];
 
 const onlyDigitsAndLimit = (raw, limit = 10) => {
