@@ -1,4 +1,4 @@
-// src/components/Dashboards/BlockSchoolDashboard8.jsx
+// src/components/Dashboards/BlockSchoolDashboard10.jsx
 import React, { useEffect, useState, useMemo } from "react";
 import {
   Accordion,
@@ -15,14 +15,14 @@ import {
 import Select from "react-select";
 import { DashboardCounts } from "../../services/DashBoardServices/DashboardService"; // adjust path if needed
 
-export const BlockSchoolDashboard8 = () => {
+export const BlockSchoolDashboard10 = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [dashboard, setDashboard] = useState(null);
 
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [selectedSchool, setSelectedSchool] = useState(null);
-  const [activeKeys, setActiveKeys] = useState([]); // For accordion open/close control
+  const [activeKeys, setActiveKeys] = useState([]); // control accordion open/close
 
   const fetchDashboarcount = async () => {
     setLoading(true);
@@ -43,12 +43,12 @@ export const BlockSchoolDashboard8 = () => {
     fetchDashboarcount();
   }, []);
 
-  // safe getter for class 8 registered from a center's school counts
-  const getSchoolClass8Registered = (schoolCounts) => {
+  // safe getter for class 10 registered from a center's school counts
+  const getSchoolClass10Registered = (schoolCounts) => {
     try {
       if (!schoolCounts) return 0;
       const byClass = schoolCounts.byClass || {};
-      const cls = byClass["8"] || byClass[8] || null;
+      const cls = byClass["10"] || byClass[10] || null;
       if (!cls) return 0;
       return Number(cls.registered || 0);
     } catch {
@@ -88,7 +88,7 @@ export const BlockSchoolDashboard8 = () => {
         c?.dashboardCounts?.school?.meta?.school_name ||
         "";
 
-      const reg8 = getSchoolClass8Registered(c?.dashboardCounts?.school);
+      const reg10 = getSchoolClass10Registered(c?.dashboardCounts?.school);
 
       if (!blockId) continue;
       if (!blocksMap[blockId]) {
@@ -100,7 +100,7 @@ export const BlockSchoolDashboard8 = () => {
         };
       }
 
-      blocksMap[blockId].totalRegistered += reg8;
+      blocksMap[blockId].totalRegistered += reg10;
 
       const effectiveSchoolId =
         schoolId || `unknown-${Math.random().toString(36).slice(2, 8)}`;
@@ -114,7 +114,7 @@ export const BlockSchoolDashboard8 = () => {
         };
       }
 
-      blocksMap[blockId].schools[effectiveSchoolId].registered += reg8;
+      blocksMap[blockId].schools[effectiveSchoolId].registered += reg10;
     }
 
     const blockList = Object.values(blocksMap).sort(
@@ -136,7 +136,7 @@ export const BlockSchoolDashboard8 = () => {
 
   const { blockList } = buildBlocksAndSchoolsFromCenters();
 
-  // calculate total registrations for all blocks (summary)
+  // total registrations (class 10)
   const totalRegistrations = useMemo(
     () => blockList.reduce((sum, b) => sum + (b.totalRegistered || 0), 0),
     [blockList]
@@ -162,7 +162,7 @@ export const BlockSchoolDashboard8 = () => {
     }));
   }, [selectedBlock, blockList]);
 
-  // Filtered data
+  // Filtered data for UI
   const filteredBlocks = useMemo(() => {
     if (!selectedBlock) return blockList;
     const block = blockList.find((b) => b.blockId === selectedBlock.value);
@@ -172,17 +172,15 @@ export const BlockSchoolDashboard8 = () => {
       const filteredSchools = block.schools.filter(
         (s) => s.schoolId === selectedSchool.value
       );
-      return [{ ...block, schools: filteredSchools }];
+      return [{ ...block, schools: filteredSchools, totalRegistered: filteredSchools.reduce((s, x) => s + (x.registered || 0), 0) }];
     }
 
     return [block];
   }, [blockList, selectedBlock, selectedSchool]);
 
-  // Handle accordion control
+  // ensure accordion active keys match filteredBlocks
   useEffect(() => {
-    if (filteredBlocks.length > 0) {
-      setActiveKeys(filteredBlocks.map((_, i) => String(i)));
-    }
+    setActiveKeys(filteredBlocks.map((_, i) => String(i)));
   }, [filteredBlocks]);
 
   const toggleAccordion = () => {
@@ -217,22 +215,22 @@ export const BlockSchoolDashboard8 = () => {
 
   return (
     <Container className="py-3">
-      {/* <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Block & School Dashboard (Class 8)</h3>
-        <Button variant="outline-primary" onClick={toggleAccordion}>
-          {activeKeys.length ? "Collapse All" : "Expand All"}
-        </Button>
-      </div> */}
+      <div className="d-flex justify-content-between align-items-center mb-3">
+        <h3>Block & School Dashboard (Class 10)</h3>
+       
+      </div>
 
       {/* Summary */}
-      <Card className="mb-4 shadow-sm">
+      {/* <Card className="mb-4 shadow-sm">
         <Card.Body className="text-center">
           <h5 className="mb-0">
-            Class 8-Total Registrations :{totalRegistrations}
-            
+            Total Registrations (Class 10):{" "}
+            <Badge bg="success" pill>
+              {totalRegistrations}
+            </Badge>
           </h5>
         </Card.Body>
-      </Card>
+      </Card> */}
 
       {/* Filters */}
       <Row className="mb-3">
@@ -261,9 +259,7 @@ export const BlockSchoolDashboard8 = () => {
       </Row>
 
       {filteredBlocks.length === 0 ? (
-        <Alert variant="info">
-          No data found for selected filters (block/school).
-        </Alert>
+        <Alert variant="info">No data found for selected filters (block/school).</Alert>
       ) : (
         <Accordion activeKey={activeKeys} alwaysOpen>
           {filteredBlocks.map((block, idx) => (
@@ -313,7 +309,7 @@ export const BlockSchoolDashboard8 = () => {
                   </Table>
                 ) : (
                   <Alert variant="light" className="mb-0">
-                    No schools / no Class 8 registrations in this block.
+                    No schools / no Class 10 registrations in this block.
                   </Alert>
                 )}
               </Accordion.Body>

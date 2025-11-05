@@ -10,7 +10,6 @@ import {
   Container,
   Row,
   Col,
-  Button,
 } from "react-bootstrap";
 import Select from "react-select";
 import { DashboardCounts } from "../../services/DashBoardServices/DashboardService"; // adjust path if needed
@@ -22,7 +21,6 @@ export const BlockSchoolDashboard8 = () => {
 
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [selectedSchool, setSelectedSchool] = useState(null);
-  const [activeKeys, setActiveKeys] = useState([]); // For accordion open/close control
 
   const fetchDashboarcount = async () => {
     setLoading(true);
@@ -56,9 +54,11 @@ export const BlockSchoolDashboard8 = () => {
     }
   };
 
-  // Build block list and school aggregation
+  // Build block list and schools aggregation using centers array directly
   const buildBlocksAndSchoolsFromCenters = () => {
-    const result = { blockList: [] };
+    const result = {
+      blockList: [],
+    };
     if (!dashboard?.centers || !Array.isArray(dashboard.centers)) return result;
 
     const centers = dashboard.centers;
@@ -69,9 +69,9 @@ export const BlockSchoolDashboard8 = () => {
       const blockName =
         c?.blockName ||
         c?.block_name ||
-        c?.dashboardCounts?.school?.meta?.blockName ||
+        (c?.dashboardCounts?.school?.meta?.blockName || "") ||
         "";
-
+      // Try to find school id/name from obvious places
       const schoolId =
         String(
           c?.schoolCode ||
@@ -88,9 +88,11 @@ export const BlockSchoolDashboard8 = () => {
         c?.dashboardCounts?.school?.meta?.school_name ||
         "";
 
-      const reg8 = getSchoolClass8Registered(c?.dashboardCounts?.school);
+      const centerSchoolCounts = c?.dashboardCounts?.school || {};
+      const reg8 = getSchoolClass8Registered(centerSchoolCounts);
 
       if (!blockId) continue;
+
       if (!blocksMap[blockId]) {
         blocksMap[blockId] = {
           blockId,
@@ -102,14 +104,13 @@ export const BlockSchoolDashboard8 = () => {
 
       blocksMap[blockId].totalRegistered += reg8;
 
-      const effectiveSchoolId =
-        schoolId || `unknown-${Math.random().toString(36).slice(2, 8)}`;
+      // if no schoolId available, create a synthetic id to keep rows distinct
+      const effectiveSchoolId = schoolId || `unknown-${Math.random().toString(36).slice(2, 8)}`;
 
       if (!blocksMap[blockId].schools[effectiveSchoolId]) {
         blocksMap[blockId].schools[effectiveSchoolId] = {
           schoolId: effectiveSchoolId,
-          schoolName:
-            schoolName || c?.schoolName || `School ${effectiveSchoolId}`,
+          schoolName: schoolName || (c?.schoolName || `School ${effectiveSchoolId}`),
           registered: 0,
         };
       }
@@ -117,18 +118,22 @@ export const BlockSchoolDashboard8 = () => {
       blocksMap[blockId].schools[effectiveSchoolId].registered += reg8;
     }
 
-    const blockList = Object.values(blocksMap).sort(
+    const blockList = Object.values(blocksMap);
+
+    // sort blocks by totalRegistered desc, then name
+    blockList.sort(
       (a, b) =>
         b.totalRegistered - a.totalRegistered ||
         (a.blockName || "").localeCompare(b.blockName || "")
     );
 
+    // convert schools map to sorted array inside each block
     for (const blk of blockList) {
-      blk.schools = Object.values(blk.schools).sort(
-        (a, b) =>
-          b.registered - a.registered ||
-          (a.schoolName || "").localeCompare(b.schoolName || "")
-      );
+      const schoolsArr = Object.values(blk.schools).sort((x, y) => {
+        if (y.registered !== x.registered) return y.registered - x.registered;
+        return (x.schoolName || "").localeCompare(y.schoolName || "");
+      });
+      blk.schools = schoolsArr;
     }
 
     return { blockList };
@@ -136,25 +141,19 @@ export const BlockSchoolDashboard8 = () => {
 
   const { blockList } = buildBlocksAndSchoolsFromCenters();
 
-  // calculate total registrations for all blocks (summary)
-  const totalRegistrations = useMemo(
-    () => blockList.reduce((sum, b) => sum + (b.totalRegistered || 0), 0),
-    [blockList]
-  );
-
-  // Dropdown options
+  // Build dependent dropdown options
   const blockOptions = useMemo(
     () =>
-      blockList.map((b) => ({
-        value: b.blockId,
-        label: b.blockName,
+      blockList.map((d) => ({
+        value: d.blockId,
+        label: d.blockName,
       })),
     [blockList]
   );
 
   const schoolOptions = useMemo(() => {
     if (!selectedBlock) return [];
-    const block = blockList.find((b) => b.blockId === selectedBlock.value);
+    const block = blockList.find((d) => d.blockId === selectedBlock.value);
     if (!block) return [];
     return block.schools.map((s) => ({
       value: s.schoolId,
@@ -162,10 +161,11 @@ export const BlockSchoolDashboard8 = () => {
     }));
   }, [selectedBlock, blockList]);
 
-  // Filtered data
+  // Filtered list based on selected block/school
   const filteredBlocks = useMemo(() => {
     if (!selectedBlock) return blockList;
-    const block = blockList.find((b) => b.blockId === selectedBlock.value);
+
+    const block = blockList.find((d) => d.blockId === selectedBlock.value);
     if (!block) return [];
 
     if (selectedSchool) {
@@ -178,63 +178,42 @@ export const BlockSchoolDashboard8 = () => {
     return [block];
   }, [blockList, selectedBlock, selectedSchool]);
 
-  // Handle accordion control
-  useEffect(() => {
-    if (filteredBlocks.length > 0) {
-      setActiveKeys(filteredBlocks.map((_, i) => String(i)));
-    }
-  }, [filteredBlocks]);
+  const defaultActiveKeys = filteredBlocks.map((_, i) => String(i));
 
-  const toggleAccordion = () => {
-    if (activeKeys.length) {
-      setActiveKeys([]);
-    } else {
-      setActiveKeys(filteredBlocks.map((_, i) => String(i)));
-    }
-  };
-
-  if (loading)
+  if (loading) {
     return (
       <Container className="py-4 text-center">
-        <Spinner animation="border" />
-        <div>Loading dashboard...</div>
+        <Spinner animation="border" role="status" />
+        <div className="mt-2">Loading dashboard...</div>
       </Container>
     );
+  }
 
-  if (error)
+  if (error) {
     return (
       <Container className="py-4">
-        <Alert variant="danger">{error}</Alert>
+        <Alert variant="danger">
+          <strong>Error:</strong> {error}
+        </Alert>
       </Container>
     );
+  }
 
-  if (!dashboard)
+  if (!dashboard) {
     return (
       <Container className="py-4">
         <Alert variant="info">No dashboard data available.</Alert>
       </Container>
     );
+  }
 
   return (
     <Container className="py-3">
-      {/* <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Block & School Dashboard (Class 8)</h3>
-        <Button variant="outline-primary" onClick={toggleAccordion}>
-          {activeKeys.length ? "Collapse All" : "Expand All"}
-        </Button>
-      </div> */}
+      <h3>Block & School Dashboard (Class 8)</h3>
+      <p className="text-muted">Filter by Block or School below.</p>
 
-      {/* Summary */}
-      <Card className="mb-4 shadow-sm">
-        <Card.Body className="text-center">
-          <h5 className="mb-0">
-            Class 8-Total Registrations :{totalRegistrations}
-            
-          </h5>
-        </Card.Body>
-      </Card>
 
-      {/* Filters */}
+      {/* Filter section */}
       <Row className="mb-3">
         <Col md={6} lg={4}>
           <Select
@@ -261,63 +240,81 @@ export const BlockSchoolDashboard8 = () => {
       </Row>
 
       {filteredBlocks.length === 0 ? (
-        <Alert variant="info">
-          No data found for selected filters (block/school).
-        </Alert>
+        <Alert variant="info">No data found for selected filters (block/school).</Alert>
       ) : (
-        <Accordion activeKey={activeKeys} alwaysOpen>
+        <Accordion defaultActiveKey={defaultActiveKeys} alwaysOpen>
           {filteredBlocks.map((block, idx) => (
-            <Accordion.Item eventKey={String(idx)} key={block.blockId}>
-              <Accordion.Header>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    width: "100%",
-                    justifyContent: "space-between",
-                  }}
-                >
-                  <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
-                    <Badge bg="secondary">{idx + 1}</Badge>
-                    <strong>{block.blockName}</strong>
+            <Card key={block.blockId}>
+              <Accordion.Item eventKey={String(idx)}>
+                <Accordion.Header>
+                  <div
+                    style={{
+                      display: "flex",
+                      alignItems: "center",
+                      width: "100%",
+                      justifyContent: "space-between",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "12px",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Badge bg="secondary">{idx + 1}</Badge>
+                      <strong>{block.blockName || `Block ${block.blockId}`}</strong>
+                    </div>
+
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "12px",
+                      }}
+                    >
+                      <div>
+                        <strong style={{ fontSize: "1.05rem" }}>
+                          {block.totalRegistered}
+                        </strong>
+                        <div style={{ fontSize: "0.85rem", color: "#666" }}>
+                          registered
+                        </div>
+                      </div>
+                    </div>
                   </div>
-                  <div>
-                    <strong style={{ fontSize: "1.05rem" }}>
-                      {block.totalRegistered}
-                    </strong>{" "}
-                    <span style={{ color: "#666" }}>registered</span>
-                  </div>
-                </div>
-              </Accordion.Header>
-              <Accordion.Body>
-                {block.schools?.length ? (
-                  <Table bordered hover responsive>
-                    <thead>
-                      <tr>
-                        <th style={{ width: "5%" }}>S.No</th>
-                        <th>School Name</th>
-                        <th style={{ width: "20%", textAlign: "right" }}>
-                          Registered
-                        </th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {block.schools.map((s, i) => (
-                        <tr key={s.schoolId || i}>
-                          <td>{i + 1}</td>
-                          <td>{s.schoolName}</td>
-                          <td style={{ textAlign: "right" }}>{s.registered}</td>
+                </Accordion.Header>
+
+                <Accordion.Body>
+                  {!block.schools || block.schools.length === 0 ? (
+                    <Alert variant="light">
+                      No schools / no Class 8 registrations in this block.
+                    </Alert>
+                  ) : (
+                    <Table bordered hover responsive>
+                      <thead>
+                        <tr>
+                          <th style={{ width: "5%" }}>S.No</th>
+                          <th>School Name</th>
+                          <th style={{ width: "20%", textAlign: "right" }}>
+                            Registered
+                          </th>
                         </tr>
-                      ))}
-                    </tbody>
-                  </Table>
-                ) : (
-                  <Alert variant="light" className="mb-0">
-                    No schools / no Class 8 registrations in this block.
-                  </Alert>
-                )}
-              </Accordion.Body>
-            </Accordion.Item>
+                      </thead>
+                      <tbody>
+                        {block.schools.map((s, i) => (
+                          <tr key={s.schoolId || i}>
+                            <td>{i + 1}</td>
+                            <td>{s.schoolName || `School ${s.schoolId}`}</td>
+                            <td style={{ textAlign: "right" }}>{s.registered}</td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  )}
+                </Accordion.Body>
+              </Accordion.Item>
+            </Card>
           ))}
         </Accordion>
       )}

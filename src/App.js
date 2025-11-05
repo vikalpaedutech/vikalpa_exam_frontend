@@ -105,6 +105,9 @@ import { StudentFormVerification } from './components/UserComponent/StudentFormV
 import { RegisteredStudentsByUsers } from './components/UserComponent/RegisteredStudentsByUsers.jsx';
 import { Districtdashboard, Districtdashboard8 } from './components/Dashboards/DistrictDashboard8.jsx';
 import Districtdashboard10 from './components/Dashboards/DistrictDashboard10.jsx';
+import { BlockSchoolDashboard8 } from './components/Dashboards/BlockDashboard8.jsx';
+import { BlockSchoolDashboard10 } from './components/Dashboards/BlockDashboard10.jsx';
+import { DashboardLandingPage } from './components/Dashboards/DashBoardLandingPage.jsx';
 function App() {
 
 
@@ -323,6 +326,12 @@ function App() {
 
                              <Route path="/district-block-mb" element={<Districtdashboard8 />} />
                             <Route path="/district-block-sh" element={<Districtdashboard10 />} />
+
+                            <Route path="/block-school-mb" element={<BlockSchoolDashboard8 />} />
+
+                            <Route path="/block-school-sh" element={<BlockSchoolDashboard10 />} />
+
+                           <Route path="/exam-dashboard" element={<DashboardLandingPage />} />
 
 
             </Routes>

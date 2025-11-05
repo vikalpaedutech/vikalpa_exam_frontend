@@ -562,7 +562,7 @@ export const AcknowledgementSlipComponent = () => {
       ? "Mission Buniyaad"
       : "Haryana Super 100";
   const examLevelSlip = "Acknowledgement Slip";
-  const examLevelBatch = "Batch 2025-27";
+  const examLevelBatch = "Batch 2026-28";
 
   // ✅ Helper: format date to dd-mm-yyyy
   const formatDateToDDMMYYYY = (dateStr) => {
