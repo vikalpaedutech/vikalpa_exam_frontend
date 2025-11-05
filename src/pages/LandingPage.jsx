@@ -1,6 +1,6 @@
 //For 'Other Schools' where there are school code present in a collections of students registration, those schools will be counted in 'other schols'. According to my logic.
 
-import React, { useState } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { Link } from "react-router-dom";
@@ -10,16 +10,49 @@ import { Nav, Col, Row, Container } from "react-bootstrap";
 import { BsArrowRight } from "react-icons/bs";
 
 
+import { District_block_dependentDropdownMultiSelect, 
+  District_block_school_dependentDropdown, 
+  District_school_dependentDropdown,
+District_block_dependentDropdown,
+Block_school_dependentDropdown, District_dropdown,
+District_block_school_manual_school_name_dependentDropdown } from "../components/DependentDropDowns/District_block_school_dropdowns";
+import { ClassOfStduentDropDowns } from "../components/DependentDropDowns/Student_Class_Related_dropdowns";
+import { FileUpload } from "../components/utils/fileUploadUtils";
+import { DateUtils } from "../components/utils/DateUtils";
+import { UserContext } from "../components/NewContextApis/UserContext";
+import { StudentContext } from "../components/NewContextApis/StudentContextApi";
+import { Admitcardcomponent } from "../components/StudentRegistration/Admitcardcomponent";
+
+
 export default function LandingPage() {
+
+//context apis import
+
+const {userData, setUserData} = useContext(UserContext);
+
+const {studentData, setStudentData} = useContext(StudentContext);
+
+//------------------------------------------------------------
+
   const [ShowStudentSignIn, setShowStudentSignIn] = useState(false);
 
   const handleClickforStudentSignin = () => {
     // setShowStudentSignIn(true);
     // 
   };
+
+
+
+
   return (
     <div>
-      <Navbar /> 
+  
+{/* 
+    <DateUtils/>
+
+    <District_block_school_manual_school_name_dependentDropdown/>
+
+    <FileUpload/> */}
       <br></br>
       {/* <Nav defaultActiveKey="/userprofile" as="ul">
         <Nav.Item as="li">
@@ -50,11 +83,18 @@ export default function LandingPage() {
             
 
             {/* Commenting below link for deactivating */}
-            {/* <Link  to="/srn" style={{textDecoration:'none', fontSize:'25px'}}>
-            <p><BsArrowRight className="blinking-link" />Mission Buniyaad Level-1 Registration Class 8th. <br/>(मिशन बुनियाद स्तर-1 परीक्षा पंजीकरण के लिए, कक्षा 8वीं के विद्यार्थी यहाँ क्लिक करें।)</p> 
+            <Link  to="/exam-student-signin-mb" style={{textDecoration:'none', fontSize:'25px'}}>
+            <p><BsArrowRight className="blinking-link" />Class 8th Registration -  Mission Buniyaad Level-1. <br/>(कक्षा 8वीं पंजीकरण - मिशन बुनियाद स्तर-1।)</p> 
             </Link>
-            <br /> */}
+            <br />
 
+
+
+              <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
+            <p><BsArrowRight className="blinking-link" />Class 10th Registration - Haryana Super 100 Level-1 <br/>(
+                 कक्षा 10वीं पंजीकरण - हरियाणा सुपर 100 स्तर-1।)</p> 
+            </Link>
+            <br />
 
              {/* <Link  to="" style={{textDecoration:'none', fontSize:'25px', color:'red', fontWeight:'bold'}}>
             <p><BsArrowRight className="blinking-link" />Mission Buniyaad Entrance Examination Level-2 Result Coming Soon.<br/>(मिशन बुनियाद प्रवेश परीक्षा लेवल-2 परिणाम जल्द आ रहा है।)</p> 
@@ -112,15 +152,18 @@ export default function LandingPage() {
             
           {/* BELOW LINKS ARE FOR ABRC/SCHOOL/CC LOGIN */}
 
-            {/* <Link to="/user-signin" style={{textDecoration:'none', fontSize:'25px'}}>
-           <p><BsArrowRight className="blinking-link" />SCHOOL/ABRC/BRP/Officials Login (स्कूल/ABRC/BRP/अन्य अधिकारी यहाँ क्लिक करे)</p>
-            </Link> */}
-
-
-            
-            <Link to="/user-signin" style={{textDecoration:'none', fontSize:'25px'}}>
-           <p><BsArrowRight className="blinking-link" />Click here to login</p>
+            <Link to="/exam-user-signin" style={{textDecoration:'none', fontSize:'25px'}}>
+           <p><BsArrowRight className="blinking-link" />Officials Login -
+           <spapn>(Bulk Registrations)</spapn><br></br>
+           <spapn>SCHOOL/ABRC/BRP</spapn>
+           </p>
             </Link>
+
+
+{/*             
+            <Link to="/exam-user-signin" style={{textDecoration:'none', fontSize:'25px'}}>
+           <p><BsArrowRight className="blinking-link" />Click here to login</p>
+            </Link> */}
 
             <br />
 
@@ -134,7 +177,7 @@ export default function LandingPage() {
       </Container>
       <br />
       <br />
-      <Footer />
+   
       {ShowStudentSignIn ? (
         <div>
           <StudentSignIn />

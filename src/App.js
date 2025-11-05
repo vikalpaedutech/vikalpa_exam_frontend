@@ -9,7 +9,7 @@ import UserSignUp from './components/UserSignup'
 import UserSignIn from './components/UserSignIn';
 import UserPage from './components/UserPage';
 import BulkUpload from './components/BulkUpload';
-import UserProvider from './components/ContextApi/UserContextAPI/UserContext';
+// import UserProvider from './components/ContextApi/UserContextAPI/UserContext';
 import RegistrationFormComponent from './components/RegistrationFormComponent';
 import LandingPage from './pages/LandingPage'
 import RegistrationPage from './pages/RegistrationPage';
@@ -69,15 +69,74 @@ import { PrincipalSchoolsAbrcDataCollection } from './components/CallingNDataCol
 import { UpdatePrincipalSchoolsAbrcData } from './components/CallingNDataCollection/UpdatePrincipalSchoolsAbrcDataCollection';
 
 
+
+
+//New imports
+import {
+  DistrictBlockSchoolProvider,
+  BlockProvider,
+  SchoolProvider,
+  ClassOfStudentProvider,
+  DistrictProvider,
+  DistrictBlockSchoolDependentDropDownContext,
+  DistrictBlockSchoolDependentDropDownProvider,
+} from "./components/NewContextApis/District_block_schoolsCotextApi.js";
+
+
+
+import { StudentRegistrationForm } from './components/StudentRegistration/StudentRegistrationForm';
+import { UserSignin } from './components/UserComponent/UserSignin.jsx';
+import { UserCreationForm } from './components/UserComponent/AdminUserCreationForm.jsx';
+import { UserProvider } from './components/NewContextApis/UserContext.js';
+import { UserSignup } from './components/UserComponent/UserSignup.jsx';
+import { StudentProviderV1 } from './components/NewContextApis/StudentContextApi.js';
+import { FileUploadProvider } from './components/NewContextApis/StudentContextApi.js';
+import { StudentSignin } from './components/StudentRegistration/StudentSignin.jsx';
+import { DateContextProvider } from './components/NewContextApis/DateContextApi.js';
+import { AcknowledgementSlipComponent } from './components/StudentRegistration/AcknowledgementSlip.jsx';
+import { UserDashBoard } from './components/UserComponent/UserDash.jsx';
+import { MainNavBar } from './components/NavbarsAndFooters/MainNavBar.jsx';
+import { MainFooter } from './components/NavbarsAndFooters/MainFooter.jsx';
+import { UserLayout } from './components/NavbarsAndFooters/UserNavbarLayout.jsx';
+import { BulkRegistrations } from './components/UserComponent/BulkRegistration.jsx';
+import { StudentLayout } from './components/NavbarsAndFooters/StudentNavbarLayout.jsx';
+import { UserLoginForFormVerification } from './components/UserComponent/UserLoginForFormVerification.jsx';
+import { StudentFormVerification } from './components/UserComponent/StudentFormVerification.jsx';
+import { RegisteredStudentsByUsers } from './components/UserComponent/RegisteredStudentsByUsers.jsx';
+import { Districtdashboard, Districtdashboard8 } from './components/Dashboards/DistrictDashboard8.jsx';
+import Districtdashboard10 from './components/Dashboards/DistrictDashboard10.jsx';
 function App() {
+
+
   return (
+    <div className="app-root">
+
+      
+      
+       
     <Router>
-      <UserProvider>
+ <MainNavBar/>
+ 
+      {/* MainNavbar */}
+      
+
+      <FileUploadProvider>
+      <DistrictBlockSchoolDependentDropDownProvider>
+      <DistrictBlockSchoolProvider>
+            <DistrictProvider>
+            <BlockProvider>
+              <SchoolProvider>
+      
         <StudentProvider>
-        
+          <StudentProviderV1>
+        <UserProvider>
+          <DateContextProvider>
         <Routes>
 
                 <Route path="/" element={<LandingPage />} />  
+
+
+                
 
                 <Route path="/srn" element={<InputSrn />} />
                 <Route path="/srn-100-deactivated" element={<InputSrn />} />
@@ -199,14 +258,94 @@ function App() {
 
                     {/* PricnipalSchoolsAbrcDataCollerction */}
                      <Route path='/principal-schools-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
-                        <Route path='/update-principal-schools-abrc-data' element = {<UpdatePrincipalSchoolsAbrcData/>}/>
+                      <Route path='/update-principal-schools-abrc-data' element = {<UpdatePrincipalSchoolsAbrcData/>}/>
+
+
+
+
+                      {/* newroutes */}
+
+                      {/* user related routes */}
+                      
+                      {/* <Route path='/exam-user-signin' element = {<UserSignin/>}/>
+
+                      <Route path='/exam-user-signup' element = {<UserSignup/>}/>
+
+                      <Route path='/exam-user-dash' element = {<UserDashBoard/>}/> */}
+
+
+                        <Route path="/exam-user-signin" element={<UserSignin />} />
+                          <Route path="/exam-user-signup" element={<UserSignup />} />
+                          <Route element={< UserLayout/>}>
+                          
+                          <Route path="/exam-user-dash" element={<UserDashBoard />} />
+                          <Route path="/user-registration-form-mb" element={<StudentRegistrationForm />} />
+                          <Route path="/user-registration-form-sh" element={<StudentRegistrationForm />} />
+
+                            <Route path="/user-student-signin-mb" element={<StudentSignin />} />
+                            <Route path="/user-student-signin-sh" element={<StudentSignin />} />
+                             <Route path="/user-bulk-registrations" element={<BulkRegistrations />} />
+
+                             <Route path="/user-registered-students-mb" element={<RegisteredStudentsByUsers />} />
+                             <Route path="/user-registered-students-sh" element={<RegisteredStudentsByUsers />} />
+                        </Route>
+
+
+
+
+                      {/* admin related routes */}
+                      <Route path='/admin-user-creation' element = {<UserCreationForm/>}/>
+                      
+
+                      {/* student related registration routes */}
+                      <Route element = {<StudentLayout/>}>
+                        <Route path="/exam-registration-form-mb" element={<StudentRegistrationForm />} />
+                      <Route path="/exam-registration-form-sh" element={<StudentRegistrationForm />} />
+                       <Route path="/exam-student-signin-mb" element={<StudentSignin />} />
+                       <Route path="/exam-student-signin-sh" element={<StudentSignin />} />
+
+                      </Route>
+                  
+                        <Route path="/exam-acknowledgement-slip-mb" element={<AcknowledgementSlipComponent />} />
+                      <Route path="/exam-acknowledgement-slip-sh" element={<AcknowledgementSlipComponent />} />
+
+
+                        {/* Form verification routes */}
+                        <Route path="/verification-signin" element={<UserLoginForFormVerification />} />
+
+                          <Route path="/student-form-verification" element={<StudentFormVerification />} />
+
+
+
+
+
+                            {/* dashboard routes */}
+
+                             <Route path="/district-block-mb" element={<Districtdashboard8 />} />
+                            <Route path="/district-block-sh" element={<Districtdashboard10 />} />
+
 
             </Routes>
+            </DateContextProvider>
+            </UserProvider>
+            </StudentProviderV1>
             </StudentProvider>
             
-            </UserProvider>
+          
+            </SchoolProvider>
+            </BlockProvider>
+            </DistrictProvider>
+          </DistrictBlockSchoolProvider>
+            </DistrictBlockSchoolDependentDropDownProvider>
+
+            </FileUploadProvider>
             
+            <MainFooter/>
         </Router>
+        
+        
+        
+        </div>
   );
 }
 
