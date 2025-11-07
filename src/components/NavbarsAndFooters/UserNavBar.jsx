@@ -23,6 +23,7 @@ export const MainUserNavbar = () => {
           height: "10vh",
         }}
       >
+        <br></br>
         <Container fluid>
           <Row >
             <Col md="auto">

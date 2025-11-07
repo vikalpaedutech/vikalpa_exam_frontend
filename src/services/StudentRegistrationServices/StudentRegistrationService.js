@@ -83,3 +83,26 @@ export const getStudentBySrnNumberOrSlipId = async (rqBody) => {
     throw error;
   }
 };
+
+
+
+
+
+//Admit card downlowded api
+
+
+export const IsAdmitCardDownloaded = async (reqBody) =>{
+
+
+
+
+  try {
+
+     const response = await axios.post(`${API_BASE_URL}/api/admit-card-downloaded`, reqBody);
+
+      return response.data;
+  } catch (error) {
+     console.error("❌ Error updating admit card status:", error);
+    throw error;
+  }
+}

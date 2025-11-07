@@ -1667,10 +1667,11 @@ export const UserSignup = () => {
 
   return (
     <div>
+        <br></br>
       <Container
         fluid
         className="d-flex justify-content-center align-items-center bg-light responsive-container"
-        style={{ height: "100vh" }}
+        
       >
         <Card
           className="p-4 shadow-lg"
@@ -1983,24 +1984,9 @@ export const UserSignup = () => {
           </Modal.Footer>
         </Modal>
 
-        <style>
-          {`
-      @media (max-width: 800px) {
-        .responsive-container {
-          height: 165vh !important;
-        }
-        /* make manual inputs stack nicely on small screens */
-        .responsive-container .form-control {
-          min-width: 0;
-        }
-        .responsive-container .d-flex[style] {
-          flex-direction: column;
-          gap: 8px;
-        }
-      }
-    `}
-        </style>
+        
       </Container>
+      <br></br>
     </div>
   );
 };

@@ -108,6 +108,8 @@ import Districtdashboard10 from './components/Dashboards/DistrictDashboard10.jsx
 import { BlockSchoolDashboard8 } from './components/Dashboards/BlockDashboard8.jsx';
 import { BlockSchoolDashboard10 } from './components/Dashboards/BlockDashboard10.jsx';
 import { DashboardLandingPage } from './components/Dashboards/DashBoardLandingPage.jsx';
+import { StudentDashLevelComponent } from './components/StudentRegistration/StudentDashLevel.jsx';
+import BulkDownloadProvider from './components/ContextApi/BulkDownloadAPI/BulkAdmitCardDownloadContextApi.js';
 function App() {
 
 
@@ -122,7 +124,8 @@ function App() {
  
       {/* MainNavbar */}
       
-
+      
+      <BulkDownloadProvider>
       <FileUploadProvider>
       <DistrictBlockSchoolDependentDropDownProvider>
       <DistrictBlockSchoolProvider>
@@ -307,6 +310,8 @@ function App() {
                        <Route path="/exam-student-signin-mb" element={<StudentSignin />} />
                        <Route path="/exam-student-signin-sh" element={<StudentSignin />} />
 
+                        <Route path='/student-login-dash' element={<StudentDashLevelComponent/>}/>
+
                       </Route>
                   
                         <Route path="/exam-acknowledgement-slip-mb" element={<AcknowledgementSlipComponent />} />
@@ -315,7 +320,6 @@ function App() {
 
                         {/* Form verification routes */}
                         <Route path="/verification-signin" element={<UserLoginForFormVerification />} />
-
                           <Route path="/student-form-verification" element={<StudentFormVerification />} />
 
 
@@ -334,6 +338,12 @@ function App() {
                            <Route path="/exam-dashboard" element={<DashboardLandingPage />} />
 
 
+                            {/* Admit card routes */}
+
+                            {/* <Route path='/admit-card-level-1' element = {}/> */}
+
+
+
             </Routes>
             </DateContextProvider>
             </UserProvider>
@@ -348,7 +358,7 @@ function App() {
             </DistrictBlockSchoolDependentDropDownProvider>
 
             </FileUploadProvider>
-            
+            </BulkDownloadProvider>
             <MainFooter/>
         </Router>
         

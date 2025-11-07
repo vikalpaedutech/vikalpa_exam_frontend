@@ -3451,6 +3451,7 @@ const registrationDate =  new Date();
         //Handling for user and self case
         if(userData){
           
+          console.log('elloo')
           setStudentData({})
          
           if (location.pathname === "/user-registration-form-mb" || 
@@ -3460,14 +3461,13 @@ const registrationDate =  new Date();
              navigate(`/user-student-signin-${location.pathname.slice(-2)}`)
           } 
           
-        } else{
+        } else if (location.pathname === "/exam-registration-form-mb" || 
+            location.pathname === "/exam-registration-form-sh"){
           
-          if (location.pathname === "/exam-registration-form-mb" || 
-            location.pathname === "/exam-registration-form-sh"
-          ) {
+      
           
              navigate(`/exam-acknowledgement-slip-${location.pathname.slice(-2)}`)
-          } 
+        
         }
         
       } else{console.log("jelllo")
@@ -3491,6 +3491,7 @@ const registrationDate =  new Date();
             location.pathname === "/exam-registration-form-sh"
           ) {
           
+
              navigate(`/exam-acknowledgement-slip-${location.pathname.slice(-2)}`)
           } 
       
@@ -3533,7 +3534,7 @@ const registrationDate =  new Date();
       )}
 
       <h1 style={{textAlign:'center', color:'red', fontWeight:'bold'}}>{location.pathname === "/exam-registration-form-mb" ||
-      location.pathname === "/user-registration-form-mb" ? ("Class 8 - Mission Buinyaad Registraiton Form"):("Class 10 - Haryana Super 100 Registraiton Form") }</h1>
+      location.pathname === "/user-registration-form-mb" ? ("Class 8 - Mission Buinyaad Registration Form"):("Class 10 - Haryana Super 100 Registration Form") }</h1>
       <hr></hr>
       <Form onSubmit={handleSubmit} noValidate>
         {/* SRN top bar */}
@@ -3794,9 +3795,9 @@ const registrationDate =  new Date();
             </Card>
 
             <Card className="mb-3">
-              <Card.Header style={{ backgroundColor: "#f7f7f7", fontWeight: 700 }}>
+              {/* <Card.Header style={{ backgroundColor: "#f7f7f7", fontWeight: 700, fontSize:'25px' }}>
                 Upload Your Passport Size Photo (अपनी पासपोर्ट साइज फोटो अपलोड करें)
-              </Card.Header>
+              </Card.Header> */}
               <Card.Body>
                 {renderImagePreview()}
                 <FileUpload />
