@@ -192,7 +192,7 @@ export const Districtdashboard8 = () => {
 
   return (
     <Container className="py-3">
-      <h3>District & Block Dashboard (Class 8)</h3>
+      <h3>District & Block Dashboard (Class 8)- Level 1 Examination</h3>
       <p className="text-muted">
         Filter by District or Block below.
       </p>
@@ -222,7 +222,7 @@ export const Districtdashboard8 = () => {
           />
         </Col>
       </Row>
-
+<hr></hr>
       {filteredDistricts.length === 0 ? (
         <Alert variant="info">
           No data found for selected filters (district/block).
@@ -251,8 +251,14 @@ export const Districtdashboard8 = () => {
                       <Badge bg="secondary">{idx + 1}</Badge>
                       <strong>
                         {district.districtName ||
-                          `District ${district.districtId}`}
+                          `District ${district.districtId}`}:-
                       </strong>
+
+                          <div>
+                        <strong style={{ fontSize: "1.05rem" }}>
+                          {district.totalRegistered}
+                        </strong>
+                      
                     </div>
 
                     <div
@@ -262,13 +268,7 @@ export const Districtdashboard8 = () => {
                         gap: "12px",
                       }}
                     >
-                      <div>
-                        <strong style={{ fontSize: "1.05rem" }}>
-                          {district.totalRegistered}
-                        </strong>
-                        <div style={{ fontSize: "0.85rem", color: "#666" }}>
-                          registered
-                        </div>
+                      
                       </div>
                     </div>
                   </div>

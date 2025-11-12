@@ -113,7 +113,8 @@ export const DashboardLandingPage = () => {
 
   return (
     <Container className="py-4">
-      <h3 className="mb-4 text-center">Dashboard Summary</h3>
+      <h3 className="mb-4 text-center" style={{color:'red', fontSize:'40px', fontWeight:'bold'}}>Dashboards</h3>
+      <hr></hr>
 
       <Row className="g-4">
         {/* optional: Class 8 card (shows only when there's any data for class 8) */}
@@ -122,12 +123,13 @@ export const DashboardLandingPage = () => {
             <Card className="shadow-sm h-100">
               <Card.Body>
                 <h5 className="mb-2 text-primary">Mission Buniyaad Class 8</h5>
-                <p className="text-muted mb-3">Total Registrations for Class 8 (aggregated).</p>
-                <h4>{totalClass8} students registered</h4>
+               
+                <h4 style={{color:'red', fontWeight:'bold'}}>Total Registrations: {totalClass8} </h4>
                 <hr />
                 <ul className="list-unstyled mb-0">
                   <li>🔹 <a href="/district-block-mb"><strong >Click to see District–Block Dashboard</strong></a></li>
-                  <li className="mt-2">🔹<a href="/district-block-sh"> <strong>Click to see Block–School Dashboard</strong></a></li>
+                  <li className="mt-2">🔹<a href="/block-school-mb"> <strong>Click to see Block–School Dashboard</strong></a></li>
+                  <li className="mt-2">🔹<a href="/school-dashboard-mb"> <strong>Click to see School Dashboard</strong></a></li>
                 </ul>
               </Card.Body>
             </Card>
@@ -141,12 +143,12 @@ export const DashboardLandingPage = () => {
           <Card className="shadow-sm h-100">
             <Card.Body>
               <h5 className="mb-2 text-primary">Haryana Super 100 (Class 10)</h5>
-              <p className="text-muted mb-3">Total Registrations under Haryana Super 100 program.</p>
-              <h4>{totalClass10} students registered</h4>
+              <h4 style={{color:'red', fontWeight:'bold'}}>Total Registrations: {totalClass10} </h4>
               <hr />
               <ul className="list-unstyled mb-0">
-                <li>🔹 <a href="//block-school-mb"><strong>Click to see District–Block Dashboard</strong></a></li>
+                <li>🔹 <a href="/district-block-sh"><strong>Click to see District–Block Dashboard</strong></a></li>
                 <li className="mt-2">🔹 <a href="/block-school-sh"><strong>Click to see Block–School Dashboard</strong></a></li>
+                <li className="mt-2">🔹<a href="/school-dashboard-sh"> <strong>Click to see School Dashboard</strong></a></li>
               </ul>
             </Card.Body>
           </Card>

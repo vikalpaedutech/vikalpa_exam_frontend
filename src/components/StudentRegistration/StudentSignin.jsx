@@ -537,9 +537,16 @@ export const StudentSignin = () => {
                             navigate(`/exam-acknowledgement-slip-${location.pathname.slice(-2)}`)
                         } else if (location.pathname === "/user-student-signin-mb" || 
                         location.pathname === "/user-student-signin-sh" ){
-                            alert('This student is already registered! Register another student')
-                            setStudentData({})
-                            navigate(`/user-student-signin-${location.pathname.slice(-2)}`)
+
+                            
+                         navigate(`/user-exam-acknowledgement-slip-${location.pathname.slice(-2)}`)
+
+                           
+                        // alert('This student is already registered! Register another student')
+                        // setStudentData({})
+                        // navigate(`/user-student-signin-${location.pathname.slice(-2)}`)
+                        
+                        
                         }
                  }
 

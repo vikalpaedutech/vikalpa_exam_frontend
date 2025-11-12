@@ -209,7 +209,7 @@ export const BlockSchoolDashboard8 = () => {
 
   return (
     <Container className="py-3">
-      <h3>Block & School Dashboard (Class 8)</h3>
+      <h3>Block & School Dashboard (Class 8)- Level 1 Examination</h3>
       <p className="text-muted">Filter by Block or School below.</p>
 
 
@@ -238,7 +238,7 @@ export const BlockSchoolDashboard8 = () => {
           />
         </Col>
       </Row>
-
+<hr></hr>
       {filteredBlocks.length === 0 ? (
         <Alert variant="info">No data found for selected filters (block/school).</Alert>
       ) : (
@@ -263,7 +263,16 @@ export const BlockSchoolDashboard8 = () => {
                       }}
                     >
                       <Badge bg="secondary">{idx + 1}</Badge>
-                      <strong>{block.blockName || `Block ${block.blockId}`}</strong>
+                      <strong>{block.blockName || `Block ${block.blockId}`}:-</strong>
+
+
+
+                         <div>
+                        <strong style={{ fontSize: "1.05rem" }}>
+                          {block.totalRegistered}
+                        </strong>
+                    
+                      </div>
                     </div>
 
                     <div
@@ -273,14 +282,7 @@ export const BlockSchoolDashboard8 = () => {
                         gap: "12px",
                       }}
                     >
-                      <div>
-                        <strong style={{ fontSize: "1.05rem" }}>
-                          {block.totalRegistered}
-                        </strong>
-                        <div style={{ fontSize: "0.85rem", color: "#666" }}>
-                          registered
-                        </div>
-                      </div>
+                   
                     </div>
                   </div>
                 </Accordion.Header>

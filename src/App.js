@@ -110,6 +110,8 @@ import { BlockSchoolDashboard10 } from './components/Dashboards/BlockDashboard10
 import { DashboardLandingPage } from './components/Dashboards/DashBoardLandingPage.jsx';
 import { StudentDashLevelComponent } from './components/StudentRegistration/StudentDashLevel.jsx';
 import BulkDownloadProvider from './components/ContextApi/BulkDownloadAPI/BulkAdmitCardDownloadContextApi.js';
+import { SchoolDashboard } from './components/Dashboards/SchoolDashboard.jsx';
+import { BLCStudentSignatureForm } from './components/StudentRegistration/BLCStudentSignatureForm.jsx';
 function App() {
 
 
@@ -262,11 +264,6 @@ function App() {
 
 
 
-                    {/* PricnipalSchoolsAbrcDataCollerction */}
-                     <Route path='/principal-schools-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
-                      <Route path='/update-principal-schools-abrc-data' element = {<UpdatePrincipalSchoolsAbrcData/>}/>
-
-
 
 
                       {/* newroutes */}
@@ -278,6 +275,13 @@ function App() {
                       <Route path='/exam-user-signup' element = {<UserSignup/>}/>
 
                       <Route path='/exam-user-dash' element = {<UserDashBoard/>}/> */}
+
+
+                        
+                    {/* PricnipalSchoolsAbrcDataCollerction */}
+                     
+                      <Route path='/update-principal-schools-abrc-data' element = {<UpdatePrincipalSchoolsAbrcData/>}/>
+
 
 
                         <Route path="/exam-user-signin" element={<UserSignin />} />
@@ -294,6 +298,13 @@ function App() {
 
                              <Route path="/user-registered-students-mb" element={<RegisteredStudentsByUsers />} />
                              <Route path="/user-registered-students-sh" element={<RegisteredStudentsByUsers />} />
+
+
+                              <Route path="/user-exam-acknowledgement-slip-mb" element={<AcknowledgementSlipComponent />} />
+                              <Route path="/user-exam-acknowledgement-slip-sh" element={<AcknowledgementSlipComponent />} />
+
+
+                              <Route path='/principal-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
                         </Route>
 
 
@@ -335,6 +346,10 @@ function App() {
 
                             <Route path="/block-school-sh" element={<BlockSchoolDashboard10 />} />
 
+                            <Route path="/school-dashboard-mb" element={<SchoolDashboard />} />
+
+                            <Route path="/school-dashboard-sh" element={<SchoolDashboard />} />
+
                            <Route path="/exam-dashboard" element={<DashboardLandingPage />} />
 
 
@@ -342,7 +357,7 @@ function App() {
 
                             {/* <Route path='/admit-card-level-1' element = {}/> */}
 
-
+                            <Route path='/blc-student-signature-form' element = {<BLCStudentSignatureForm/>}/>
 
             </Routes>
             </DateContextProvider>

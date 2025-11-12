@@ -2334,7 +2334,7 @@ export const RegisteredStudentsByUsers = () => {
             </Col>
             <Col md={6} className="text-end">
               <Badge bg="primary" pill style={{ fontSize: 14 }}>Total: {students.length}</Badge>{" "}
-              <Badge bg="success" pill style={{ fontSize: 14 }}>Showing: {filtered.length}</Badge>
+              {/* <Badge bg="success" pill style={{ fontSize: 14 }}>Showing: {filtered.length}</Badge> */}
             </Col>
           </Row>
         </Card.Body>

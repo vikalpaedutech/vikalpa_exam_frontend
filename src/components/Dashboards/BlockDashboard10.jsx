@@ -216,7 +216,7 @@ export const BlockSchoolDashboard10 = () => {
   return (
     <Container className="py-3">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Block & School Dashboard (Class 10)</h3>
+        <h3>Block & School Dashboard (Class 10)- Level 1 Examination</h3>
        
       </div>
 
@@ -258,6 +258,7 @@ export const BlockSchoolDashboard10 = () => {
         </Col>
       </Row>
 
+<hr></hr>
       {filteredBlocks.length === 0 ? (
         <Alert variant="info">No data found for selected filters (block/school).</Alert>
       ) : (
@@ -275,14 +276,18 @@ export const BlockSchoolDashboard10 = () => {
                 >
                   <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
                     <Badge bg="secondary">{idx + 1}</Badge>
-                    <strong>{block.blockName}</strong>
-                  </div>
-                  <div>
+                    <strong>{block.blockName}:-</strong>
+
+
+
+                        <div>
                     <strong style={{ fontSize: "1.05rem" }}>
                       {block.totalRegistered}
                     </strong>{" "}
-                    <span style={{ color: "#666" }}>registered</span>
+             
                   </div>
+                  </div>
+              
                 </div>
               </Accordion.Header>
               <Accordion.Body>

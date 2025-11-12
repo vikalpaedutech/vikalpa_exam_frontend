@@ -3670,6 +3670,8 @@ export const BulkRegistrations = () => {
                     // Academic data
                     formData.append("previousClassAnnualExamPercentage", trim(row.previousClassAnnualExamPercentage || ""));
                     formData.append("classOfStudent", trim(selectedClass));
+                    formData.append("isVerified", trim("Verified"));
+                    formData.append("verifiedBy", trim("Bulk-Upload"));
 
                     // Create student
                     const response = await createStudent(formData);

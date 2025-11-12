@@ -3452,13 +3452,16 @@ const registrationDate =  new Date();
         if(userData){
           
           console.log('elloo')
-          setStudentData({})
+          // setStudentData({})
          
           if (location.pathname === "/user-registration-form-mb" || 
             location.pathname === "/user-registration-form-sh"
           ) {
           
-             navigate(`/user-student-signin-${location.pathname.slice(-2)}`)
+            //  navigate(`/user-student-signin-${location.pathname.slice(-2)}`)
+
+
+              navigate(`/user-exam-acknowledgement-slip-${location.pathname.slice(-2)}`)
           } 
           
         } else if (location.pathname === "/exam-registration-form-mb" || 
@@ -3474,15 +3477,15 @@ const registrationDate =  new Date();
         console.log(studentData)
     //Handling for user and self case
         if(userData){
-        setStudentData({})
+        // setStudentData({})
 
-          setStudentData({})
+        //   setStudentData({})
          
           if (location.pathname === "/user-registration-form-mb" || 
             location.pathname === "/user-registration-form-sh"
           ) {
-            
-             navigate(`/user-student-signin-${location.pathname.slice(-2)}`)
+             navigate(`/user-exam-acknowledgement-slip-${location.pathname.slice(-2)}`)
+            //  navigate(`/user-student-signin-${location.pathname.slice(-2)}`)
           } 
           
         } else{

@@ -188,6 +188,7 @@ export const UserDashBoard = () =>{
   const { userData, setUserData } = useContext(UserContext); // ✅ use context
   const navigate = useNavigate();
 
+
   // Small helpers / placeholders — you can replace with real data later
   const [search, setSearch] = useState("");
   const recentRegs = userData?.recentRegistrations || []; // optional array if you populate it
@@ -354,9 +355,27 @@ export const UserDashBoard = () =>{
               लेवल 1 परीक्षा पंजीकरण करने के लिए फ़ॉर्म खोलें।)
             </a>
           </div>
+
+      
         </ListGroup.Item>
 
       </ListGroup>
+<hr></hr>
+
+{userData?.user?.designation === "Center Coordinator" ? (<>
+ <a 
+          onClick={() => navigate("/user-student-signin-sh")}
+              className="blink-link"
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                fontWeight: "bold",
+                display: "inline-block",
+                  fontSize:'25px'
+              }}
+          href="/principal-abrc-data">➩ Update Principal/ABRC Data</a>
+</>):(null)}
+         
     </Card.Body>
 
     <Card.Footer className="bg-white">
@@ -365,6 +384,8 @@ export const UserDashBoard = () =>{
       </small>
     </Card.Footer>
   </Card>
+
+
 
   <style>{`
     @keyframes blinkColor {

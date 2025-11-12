@@ -67,3 +67,26 @@ export const GetStudentsRegisteredByUser = async (rqBody) => {
     throw error;
   }
 };
+
+
+
+
+
+
+
+
+
+
+export const GetRegisteredStudentsDataBySchoolAndClass = async (rqBody) => {
+  try {
+    console.log("📤  reqbody API:", rqBody);
+
+    const response = await axios.post(`${API_BASE_URL}/api/get-registered-students-data-by-class`, rqBody);
+
+ 
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching data:", error);
+    throw error;
+  }
+};

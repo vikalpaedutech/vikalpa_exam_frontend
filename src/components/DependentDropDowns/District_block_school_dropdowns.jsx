@@ -339,7 +339,7 @@ export const District_block_school_dependentDropdown = () => {
   const { districtBlockSchoolData = [], loadingDBS, dbsError } =
     useDistrictBlockSchool();
 
-  console.log("hello world from dependent", districtBlockSchoolData);
+  // console.log("hello world from dependent", districtBlockSchoolData);
 
   // --- Selected values stored in {value,label} format (single select)
   // initialize from context when available

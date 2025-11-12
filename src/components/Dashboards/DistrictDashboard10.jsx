@@ -192,7 +192,7 @@ export const Districtdashboard10 = () => {
 
   return (
     <Container className="py-3">
-      <h3>District & Block Dashboard (Class 10)</h3>
+      <h3>District & Block Dashboard (Class 10)- Level 1 Examination</h3>
       <p className="text-muted">Filter by District or Block below.</p>
 
       {/* Filter section */}
@@ -220,6 +220,7 @@ export const Districtdashboard10 = () => {
           />
         </Col>
       </Row>
+      <hr></hr>
 
       {filteredDistricts.length === 0 ? (
         <Alert variant="info">
@@ -249,8 +250,15 @@ export const Districtdashboard10 = () => {
                       <Badge bg="secondary">{idx + 1}</Badge>
                       <strong>
                         {district.districtName ||
-                          `District ${district.districtId}`}
+                          `District ${district.districtId}`}:-
                       </strong>
+
+                      <div>
+                        <strong style={{ fontSize: "1.05rem" }}>
+                          {district.totalRegistered}
+                        </strong>
+                     
+                      </div>
                     </div>
 
                     <div
@@ -260,14 +268,7 @@ export const Districtdashboard10 = () => {
                         gap: "12px",
                       }}
                     >
-                      <div>
-                        <strong style={{ fontSize: "1.05rem" }}>
-                          {district.totalRegistered}
-                        </strong>
-                        <div style={{ fontSize: "0.85rem", color: "#666" }}>
-                          registered
-                        </div>
-                      </div>
+                      
                     </div>
                   </div>
                 </Accordion.Header>
