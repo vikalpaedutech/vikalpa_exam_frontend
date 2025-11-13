@@ -14,16 +14,10 @@ export const MainUserNavbar = () => {
   return (
     <div style={{ textAlign: "center" }}>
       <footer
-        style={{
-          background: "white",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          padding: "10px",
-          height: "10vh",
-        }}
+   
       >
         <br></br>
+      
         <Container fluid>
           <Row >
             <Col md="auto">
@@ -48,7 +42,7 @@ export const MainUserNavbar = () => {
       </footer>
 
 
-      <style>
+      {/* <style>
         {`
           @media (max-width: 600px) {
             footer {
@@ -63,7 +57,18 @@ export const MainUserNavbar = () => {
             }
           }
         `}
-      </style>
+      </style> */}
     </div>
   );
 };
+
+
+
+    //  style={{
+    //       background: "white",
+    //       display: "flex",
+    //       alignItems: "center",
+    //       justifyContent: "center",
+    //       padding: "10px",
+    //       height: "10vh",
+    //     }}

@@ -517,11 +517,15 @@ export const StudentSignin = () => {
                     res.student.isRegisteredBy === null ||
                     res.student.isRegisteredBy === undefined
                 ) {
-         
+                   
                     //If student is not registered then, show prefilled form
                     if (location.pathname === "/exam-student-signin-mb" || 
-                        location.pathname === "/exam-student-signin-sh" ){
-                            navigate(`/exam-registration-form-${location.pathname.slice(-2)}`)
+                       location.pathname === "/exam-student-signin-sh" ){
+
+
+
+
+                        navigate(`/exam-registration-form-${location.pathname.slice(-2)}`)
                         } else if (location.pathname === "/user-student-signin-mb" || 
                         location.pathname === "/user-student-signin-sh" ){
                             navigate(`/user-registration-form-${location.pathname.slice(-2)}`)

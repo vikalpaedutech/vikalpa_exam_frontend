@@ -3424,6 +3424,10 @@ const registrationDate =  new Date();
       setImage(null);
       setImageUrl("");
 
+      setDistrictContext("");
+      setBlockContext("");
+      setSchoolContext("")
+
       // reset loaded student reference so future edits seed correctly
       loadedStudentIdRef.current = null;
 
