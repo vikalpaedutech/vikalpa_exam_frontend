@@ -150,3 +150,49 @@ export const changePasswordUsingMobile = async (reqBody) =>{
         console.log("Errror changing password", error)
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Calling service
+
+
+
+
+export const CreateCallLogs = async (reqBody) =>{
+
+    try {
+        const response = await axios.post(
+      `${API_BASE_URL}/api/create-call-logs`,
+      reqBody,
+    );
+    return response.data;
+    } catch (error) {
+        console.log("Errror changing password", error)
+    }
+}
+
+
+
+export const GetCallLogsCurrentData = async (reqBody) =>{
+
+    try {
+        const response = await axios.post(
+      `${API_BASE_URL}/api/fetch-calllogs-by-callerid`,
+      reqBody,
+    );
+    return response.data;
+    } catch (error) {
+        console.log("Errror changing password", error)
+    }
+}

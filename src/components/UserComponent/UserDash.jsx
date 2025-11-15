@@ -364,7 +364,7 @@ export const UserDashBoard = () =>{
 
 {userData?.user?.designation === "Center Coordinator" ? (<>
  <a 
-          onClick={() => navigate("/user-student-signin-sh")}
+          
               className="blink-link"
               style={{
                 cursor: "pointer",
@@ -374,6 +374,23 @@ export const UserDashBoard = () =>{
                   fontSize:'25px'
               }}
           href="/principal-abrc-data">➩ Update Principal/ABRC Data</a>
+
+
+              <br></br>
+                 <br></br>
+
+
+           <a 
+      
+              className="blink-link"
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                fontWeight: "bold",
+                display: "inline-block",
+                  fontSize:'25px'
+              }}
+          href="/callings">➩ Callings</a>
 </>):(null)}
          
     </Card.Body>

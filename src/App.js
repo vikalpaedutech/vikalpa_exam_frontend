@@ -112,6 +112,7 @@ import { StudentDashLevelComponent } from './components/StudentRegistration/Stud
 import BulkDownloadProvider from './components/ContextApi/BulkDownloadAPI/BulkAdmitCardDownloadContextApi.js';
 import { SchoolDashboard } from './components/Dashboards/SchoolDashboard.jsx';
 import { BLCStudentSignatureForm } from './components/StudentRegistration/BLCStudentSignatureForm.jsx';
+import { PrincipalAbrcBeoDeoCalling } from './components/UserComponent/PrincipalAbrcBeoDeoCallings.jsx';
 function App() {
 
 
@@ -305,6 +306,13 @@ function App() {
 
 
                               <Route path='/principal-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
+
+
+                                {/*  callings routes */}
+
+                         <Route path='/callings' element = {<PrincipalAbrcBeoDeoCalling/>}/>
+
+
                         </Route>
 
 
@@ -358,6 +366,8 @@ function App() {
                             {/* <Route path='/admit-card-level-1' element = {}/> */}
 
                             <Route path='/blc-student-signature-form' element = {<BLCStudentSignatureForm/>}/>
+
+                          
 
             </Routes>
             </DateContextProvider>
