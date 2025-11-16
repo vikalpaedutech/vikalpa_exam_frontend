@@ -113,6 +113,7 @@ import BulkDownloadProvider from './components/ContextApi/BulkDownloadAPI/BulkAd
 import { SchoolDashboard } from './components/Dashboards/SchoolDashboard.jsx';
 import { BLCStudentSignatureForm } from './components/StudentRegistration/BLCStudentSignatureForm.jsx';
 import { PrincipalAbrcBeoDeoCalling } from './components/UserComponent/PrincipalAbrcBeoDeoCallings.jsx';
+import {PrincipalCallings} from './components/UserComponent/PrincipalCallings.jsx';
 function App() {
 
 
@@ -310,7 +311,14 @@ function App() {
 
                                 {/*  callings routes */}
 
+
+
+
                          <Route path='/callings' element = {<PrincipalAbrcBeoDeoCalling/>}/>
+
+
+
+                         <Route path='/callings-principals' element = {<PrincipalCallings/>}/>
 
 
                         </Route>

@@ -101,8 +101,6 @@
 
 
 
-
-
 // src/components/Dashboards/BlockSchoolDashboard8.jsx
 import React, { useEffect, useState, useMemo, useContext } from "react";
 import {
@@ -130,7 +128,6 @@ export const SchoolDashboard = () => {
 
   const location = useLocation();
 
-
   let filteredClass;
   if (location.pathname === "/school-dashboard-mb"){
     filteredClass = "8"
@@ -139,7 +136,7 @@ export const SchoolDashboard = () => {
   }
 
   //Context api
- const context = useContext(DistrictBlockSchoolDependentDropDownContext);
+  const context = useContext(DistrictBlockSchoolDependentDropDownContext);
   const {
     districtContext,
     setDistrictContext,
@@ -149,16 +146,11 @@ export const SchoolDashboard = () => {
     setSchoolContext,
   } = context || {};
 
-  
-
   //---------------------------------------------------------------------------
-
-  //context api
 
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState(null)
-
   const [selectedClass, setSelectedClass] = useState("")
 
   const fetchStudentData = async () => {
@@ -184,10 +176,12 @@ export const SchoolDashboard = () => {
     }
   }
 
-
   useEffect(()=>{
 
-    fetchStudentData();
+    if(schoolContext?.value){  // fetch only if school is selected
+      fetchStudentData();
+    }
+
   }, [schoolContext])
 
   // helper to create initials avatar as SVG data URL when no image is uploaded
@@ -218,107 +212,110 @@ export const SchoolDashboard = () => {
         <Row className="mb-3">
           <Col md={8}>
             <h4>School Dashboard - (Class {filteredClass})</h4>
-        
-            {/* <div className="text-muted">School: {schoolContext?.label || "—"}</div> */}
-            {/* <div className="text-muted">Class (filtered): {filteredClass || "—"}</div> */}
 
             <div>
               <div style={{fontSize: 14}} className="text-muted">Total Registration: {loading ? <Spinner animation="border" size="sm" /> : totalCount}</div>
-
             </div>
-                <hr></hr>
+            <hr></hr>
           </Col>
           <Col md={4} className="d-flex align-items-center justify-content-end">
-            
           </Col>
         </Row>
 
         <Row>
           <Col>
-            {error && (
-              <Alert variant="danger">
-                Error fetching student data. {String(error?.message || "")}
+            {!schoolContext?.value && (
+              <Alert variant="info">
+                Please filter your district, block, and school to see your students' registrations.
               </Alert>
             )}
 
-            <Card>
-              <Card.Body style={{ padding: 0 }}>
-                <Table responsive bordered hover className="mb-0">
-                  <thead>
-                    <tr>
-                      <th style={{width: "60px"}}>#</th>
-                      <th>SRN</th>
-                      <th>Name</th>
-                      <th>Father</th>
-                      <th>Gender</th>
-                      <th style={{width: "120px"}}>Photo</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {loading && (
-                      <tr>
-                        <td colSpan={5} className="text-center py-4">
-                          <Spinner animation="border" /> Loading students...
-                        </td>
-                      </tr>
-                    )}
+            {schoolContext?.value && (
+              <>
+                {error && (
+                  <Alert variant="danger">
+                    Error fetching student data. {String(error?.message || "")}
+                  </Alert>
+                )}
 
-                    {!loading && data && data.length === 0 && (
-                      <tr>
-                        <td colSpan={5} className="text-center py-4 text-muted">
-                          No students found for this school/class.
-                        </td>
-                      </tr>
-                    )}
+                <Card>
+                  <Card.Body style={{ padding: 0 }}>
+                    <Table responsive bordered hover className="mb-0">
+                      <thead>
+                        <tr>
+                          <th style={{width: "60px"}}>#</th>
+                          <th>SRN</th>
+                          <th>Name</th>
+                          <th>Father</th>
+                          <th>Gender</th>
+                          <th style={{width: "120px"}}>Photo</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {loading && (
+                          <tr>
+                            <td colSpan={6} className="text-center py-4">
+                              <Spinner animation="border" /> Loading students...
+                            </td>
+                          </tr>
+                        )}
 
-                    {!loading && data && data.length > 0 && data.map((stu, idx) => (
-                      <tr key={stu._id || idx}>
-                        <td>{idx + 1}</td>
-                        <td>{stu.srn}</td>
-                        <td>
-                          <div style={{fontWeight:600}}>{stu.name || "—"}</div>
-                          {/* <div style={{fontSize:12}} className="text-muted">SRN: {stu.srn || "—"}</div> */}
-                        </td>
-                        <td>{stu.father || "—"}</td>
-                        <td>{stu.gender || "—"}</td>
-                        <td>
-                          {stu.imageUrl && stu.imageUrl !== "Not uploaded" ? (
-                            // imageUrl might be relative or absolute — leave as-is
-                            <img
-                              src={stu.imageUrl}
-                              alt={stu.name}
-                              style={{
-                                width: 80,
-                                height: 80,
-                                objectFit: "cover",
-                                borderRadius: 6,
-                                border: "1px solid #ddd"
-                              }}
-                            />
-                          ) : (
-                            <img
-                              src={initialsAvatar(stu.imageUrl)}
-                              alt={stu.name}
-                              style={{
-                                width: 80,
-                                height: 80,
-                                objectFit: "cover",
-                                borderRadius: 6,
-                                border: "1px solid #ddd"
-                              }}
-                            />
-                          )}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </Table>
-              </Card.Body>
-            </Card>
+                        {!loading && data && data.length === 0 && (
+                          <tr>
+                            <td colSpan={6} className="text-center py-4 text-muted">
+                              No students found for this school/class.
+                            </td>
+                          </tr>
+                        )}
+
+                        {!loading && data && data.length > 0 && data.map((stu, idx) => (
+                          <tr key={stu._id || idx}>
+                            <td>{idx + 1}</td>
+                            <td>{stu.srn}</td>
+                            <td>
+                              <div style={{fontWeight:600}}>{stu.name || "—"}</div>
+                            </td>
+                            <td>{stu.father || "—"}</td>
+                            <td>{stu.gender || "—"}</td>
+                            <td>
+                              {stu.imageUrl && stu.imageUrl !== "Not uploaded" ? (
+                                <img
+                                  src={stu.imageUrl}
+                                  alt={stu.name}
+                                  style={{
+                                    width: 80,
+                                    height: 80,
+                                    objectFit: "cover",
+                                    borderRadius: 6,
+                                    border: "1px solid #ddd"
+                                  }}
+                                />
+                              ) : (
+                                <img
+                                  src={initialsAvatar(stu.imageUrl)}
+                                  alt={stu.name}
+                                  style={{
+                                    width: 80,
+                                    height: 80,
+                                    objectFit: "cover",
+                                    borderRadius: 6,
+                                    border: "1px solid #ddd"
+                                  }}
+                                />
+                              )}
+                            </td>
+                          </tr>
+                        ))}
+                      </tbody>
+                    </Table>
+                  </Card.Body>
+                </Card>
+              </>
+            )}
           </Col>
         </Row>
 
-<br></br>
+        <br></br>
 
       </Container>
 

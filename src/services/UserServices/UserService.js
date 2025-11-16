@@ -196,3 +196,42 @@ export const GetCallLogsCurrentData = async (reqBody) =>{
         console.log("Errror changing password", error)
     }
 }
+
+
+
+
+
+
+
+export const GetCallLeadsByUserObjectId = async (reqBody) =>{
+
+    try {
+        const response = await axios.post(
+      `${API_BASE_URL}/api/get-call-leads`,
+      reqBody,
+    );
+    return response.data;
+    } catch (error) {
+        console.log("Errror", error)
+    }
+}
+
+
+
+
+
+
+
+
+export const UpdateCallLeads = async (reqBody) =>{
+
+    try {
+        const response = await axios.post(
+      `${API_BASE_URL}/api/update-call-leads`,
+      reqBody,
+    );
+    return response.data;
+    } catch (error) {
+        console.log("Errror", error)
+    }
+}

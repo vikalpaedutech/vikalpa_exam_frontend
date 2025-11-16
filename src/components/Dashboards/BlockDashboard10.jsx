@@ -216,7 +216,7 @@ export const BlockSchoolDashboard10 = () => {
   return (
     <Container className="py-3">
       <div className="d-flex justify-content-between align-items-center mb-3">
-        <h3>Block & School Dashboard (Class 10)- Level 1 Examination</h3>
+        <h3>Block - School Dashboard (Class 10)- Level 1 Examination</h3>
        
       </div>
 
@@ -246,7 +246,7 @@ export const BlockSchoolDashboard10 = () => {
             isClearable
           />
         </Col>
-        <Col md={6} lg={4}>
+        {/* <Col md={6} lg={4}>
           <Select
             options={schoolOptions}
             value={selectedSchool}
@@ -255,7 +255,7 @@ export const BlockSchoolDashboard10 = () => {
             isClearable
             isDisabled={!selectedBlock}
           />
-        </Col>
+        </Col> */}
       </Row>
 
 <hr></hr>

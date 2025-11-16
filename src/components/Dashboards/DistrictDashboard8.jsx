@@ -192,7 +192,7 @@ export const Districtdashboard8 = () => {
 
   return (
     <Container className="py-3">
-      <h3>District & Block Dashboard (Class 8)- Level 1 Examination</h3>
+      <h3>District - Block Dashboard (Class 8)- Level 1 Examination</h3>
       <p className="text-muted">
         Filter by District or Block below.
       </p>

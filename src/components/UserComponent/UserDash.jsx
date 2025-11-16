@@ -391,6 +391,25 @@ export const UserDashBoard = () =>{
                   fontSize:'25px'
               }}
           href="/callings">➩ Callings</a>
+
+
+
+
+          <br></br>
+                 <br></br>
+
+
+           <a 
+      
+              className="blink-link"
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                fontWeight: "bold",
+                display: "inline-block",
+                  fontSize:'25px'
+              }}
+          href="/callings-principals">➩ Principal Callings</a>
 </>):(null)}
          
     </Card.Body>

@@ -209,7 +209,7 @@ export const BlockSchoolDashboard8 = () => {
 
   return (
     <Container className="py-3">
-      <h3>Block & School Dashboard (Class 8)- Level 1 Examination</h3>
+      <h3>Block-School Dashboard (Class 8)- Level 1 Examination</h3>
       <p className="text-muted">Filter by Block or School below.</p>
 
 
@@ -227,7 +227,7 @@ export const BlockSchoolDashboard8 = () => {
             isClearable
           />
         </Col>
-        <Col md={6} lg={4}>
+        {/* <Col md={6} lg={4}>
           <Select
             options={schoolOptions}
             value={selectedSchool}
@@ -236,7 +236,7 @@ export const BlockSchoolDashboard8 = () => {
             isClearable
             isDisabled={!selectedBlock}
           />
-        </Col>
+        </Col> */}
       </Row>
 <hr></hr>
       {filteredBlocks.length === 0 ? (

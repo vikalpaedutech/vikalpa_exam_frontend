@@ -19,6 +19,8 @@ export const DashboardLandingPage = () => {
       const data = resp?.data || resp;
       setDashboard(data);
 
+      console.log(data)
+
       console.log("Dashboard response:", resp);
 
       const centersArr = data?.centers || data?.data?.centers || [];
@@ -94,6 +96,9 @@ export const DashboardLandingPage = () => {
   const totalClass9 = useMemo(() => Number(totals["9"] || 0), [totals]);
   const totalClass10 = useMemo(() => Number(totals["10"] || 0), [totals]);
 
+  // compute total sum of 8 and 10 for display
+  const totalSum8and10 = useMemo(() => totalClass8 + totalClass10, [totalClass8, totalClass10]);
+
   if (loading)
     return (
       <Container className="py-5 text-center">
@@ -113,8 +118,12 @@ export const DashboardLandingPage = () => {
 
   return (
     <Container className="py-4">
-      <h3 className="mb-4 text-center" style={{color:'red', fontSize:'40px', fontWeight:'bold'}}>Dashboards</h3>
+      <h3 className="mb-4 text-center" style={{color:'red', fontSize:'40px', fontWeight:'bold'}}>
+        Dashboards: 
+      </h3>
       <hr></hr>
+
+      {/* {totalSum8and10} */}
 
       <Row className="g-4">
         {/* optional: Class 8 card (shows only when there's any data for class 8) */}
@@ -122,7 +131,7 @@ export const DashboardLandingPage = () => {
           <Col md={6}>
             <Card className="shadow-sm h-100">
               <Card.Body>
-                <h5 className="mb-2 text-primary">Mission Buniyaad Class 8</h5>
+                <h5 className="mb-2 text-primary">Mission Buniyaad (Class 8)</h5>
                
                 <h4 style={{color:'red', fontWeight:'bold'}}>Total Registrations: {totalClass8} </h4>
                 <hr />
@@ -135,8 +144,6 @@ export const DashboardLandingPage = () => {
             </Card>
           </Col>
         )}
-
-      
 
         {/* Haryana Super 100 (Class 10) */}
         <Col md={6}>
