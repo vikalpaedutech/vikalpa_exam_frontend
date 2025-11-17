@@ -2,6 +2,7 @@
 import React, { useEffect, useState, useMemo } from "react";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import { DashboardCounts } from "../../services/DashBoardServices/DashboardService";
+import { MainDashBoard } from "../../services/DashBoardServices/DashboardService";
 
 export const DashboardLandingPage = () => {
   const [loading, setLoading] = useState(false);
@@ -10,6 +11,37 @@ export const DashboardLandingPage = () => {
 
   // generic totals map (string keys like "8","9","10" => numeric totals)
   const [totals, setTotals] = useState({});
+  const [mainDashboardData, setMainDashboardData] = useState([]);
+
+  const fetchMainDashboardCount = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await MainDashBoard();
+      setMainDashboardData(response.data);
+      
+      // Calculate totals from mainDashboardData
+      const accum = {};
+      
+      for (const school of response.data || []) {
+        const class8 = Number(school?.registrationCount8 || 0);
+        const class10 = Number(school?.registrationCount10 || 0);
+        
+        accum["8"] = (accum["8"] || 0) + class8;
+        accum["10"] = (accum["10"] || 0) + class10;
+      }
+      
+      setTotals(accum);
+      console.debug("Computed totals by class:", accum);
+      
+    } catch (error) {
+      console.error("Error", error);
+      setError(error?.message || "Failed to fetch dashboard data");
+    } finally {
+      setLoading(false);
+    }
+  }
 
   const fetchDashboardCounts = async () => {
     setLoading(true);
@@ -87,7 +119,7 @@ export const DashboardLandingPage = () => {
   };
 
   useEffect(() => {
-    fetchDashboardCounts();
+    fetchMainDashboardCount();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 

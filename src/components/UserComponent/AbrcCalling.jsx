@@ -19,8 +19,10 @@ import Select from 'react-select';
 import { GetCallLeadsByUserObjectId, UpdateCallLeads } from "../../services/UserServices/UserService";
 import { DashboardCounts } from "../../services/DashBoardServices/DashboardService";
 import { MainDashBoard } from "../../services/DashBoardServices/DashboardService";
+import { GetDistrictBlockSchoolsByContact } from "../../services/UserServices/UserService";
 
-export const PrincipalCallings = () => {
+
+export const AbrcCallings = () => {
   const { userData } = useContext(UserContext);
   const { districtBlockSchoolData = [] } = useDistrictBlockSchool() || {};
 
@@ -71,6 +73,9 @@ export const PrincipalCallings = () => {
     fetchMainDashboardCount();
   }, []);
 
+
+
+
   const navigate = useNavigate();
   const [groups, setGroups] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -107,10 +112,10 @@ export const PrincipalCallings = () => {
     setLoading(true);
     setError(null);
     try {
-      const reqBody = { objectIdOfCaller: userData?.user?._id, callMadeTo: "Principal" };
+      const reqBody = { objectIdOfCaller: userData?.user?._id, callMadeTo: "ABRC" };
       const response = await GetCallLeadsByUserObjectId(reqBody);
       const data = response?.data ?? [];
-
+console.log(data)
       const map = new Map();
       for (const item of data) {
         const callerId = item.callerUser?._id ?? "nullcaller";
@@ -139,12 +144,13 @@ export const PrincipalCallings = () => {
             },
             calledPerson: current.calledPerson || {
               centerName: current.centerName || "Unknown School",
-              principal: current.principal || "N/A",
-              princiaplContact: current.princiaplContact || null,
+              abrc: current.abrc || "N/A",
+              abrcContact: current.abrcContact || null,
               districtName: current.districtName || null,
               blockName: current.blockName || null
             },
-            _submitted: todayStatus
+            _submitted: todayStatus,
+            calledPersonRegion: current.calledPersonRegion || []
           },
           history
         });
@@ -218,7 +224,7 @@ export const PrincipalCallings = () => {
 
   return (
     <Container className="py-3">
-      <h3 className="mb-3">Principal Callings</h3>
+      <h3 className="mb-3">ABRC Callings</h3>
 
       {loading && <div className="mb-3"><Spinner animation="border" size="sm" /> Loading leads...</div>}
       {error && <Alert variant="danger">{error}</Alert>}
@@ -245,12 +251,11 @@ export const PrincipalCallings = () => {
               <Card className={submitted ? "border-success" : ""} style={submitted ? { backgroundColor: "#d4edda" } : {}}>
                 <Card.Header className="d-flex justify-content-between align-items-start">
                   <div>
-                    <strong>{lead.calledPerson?.centerName}</strong>
+                    <div style={{ fontSize: "1.5rem", fontWeight: "bold" }}>{lead.calledPerson?.abrc}</div>
                     <div className="small text-muted">{lead.calledPerson?.districtName} — {lead.calledPerson?.blockName}</div>
-                    <div className="small">Principal: {lead.calledPerson?.principal}</div>
                     {snippets.length > 0 && <div className="small text-muted mt-1">{snippets.join(" · ")}</div>}
-                    {lead.calledPerson?.princiaplContact
-                      ? <div className="small mt-1">Contact: <a href={`tel:${lead.calledPerson.princiaplContact}`}>{lead.calledPerson.princiaplContact}</a></div>
+                    {lead.calledPerson?.abrcContact
+                      ? <div className="small mt-1">Contact: <a href={`tel:${lead.calledPerson.abrcContact}`}>{lead.calledPerson.abrcContact}</a></div>
                       : <div className="small mt-1">Contact: N/A</div>}
                   </div>
                   <div className="text-end">
@@ -262,6 +267,53 @@ export const PrincipalCallings = () => {
                 </Card.Header>
 
                 <Card.Body style={{ padding: "0.5rem" }}>
+
+                  {/* ABRC Schools Registration Table */}
+                  {lead.calledPersonRegion && lead.calledPersonRegion.length > 0 && (
+                    <Card className="mb-2">
+                      <Card.Header><strong>ABRC Schools Registration Summary</strong></Card.Header>
+                      <Card.Body style={{ padding: 0 }}>
+                        <Table striped bordered hover responsive className="mb-0">
+                          <thead>
+                            <tr>
+                              <th style={{ width: "5%" }}>#</th>
+                              <th>District</th>
+                              <th>Block</th>
+                              <th>School Name</th>
+                              <th style={{ textAlign: "center" }}>Class 8</th>
+                              <th style={{ textAlign: "center" }}>Class 10</th>
+                              <th style={{ textAlign: "center" }}>Total</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {lead.calledPersonRegion.map((school, index) => {
+                              const mainData = mainDashboardData.find(item => 
+                                item.centerId && school.centerId && 
+                                String(item.centerId) === String(school.centerId)
+                              );
+                              const count8 = mainData ? Number(mainData.registrationCount8 || 0) : 0;
+                              const count10 = mainData ? Number(mainData.registrationCount10 || 0) : 0;
+                              
+                              return (
+                                <tr key={school._id || index}>
+                                  <td>{index + 1}</td>
+                                  <td>{school.districtName}</td>
+                                  <td>{school.blockName}</td>
+                                  <td>{school.centerName}</td>
+                                  <td style={{ textAlign: "center" }}>{count8}</td>
+                                  <td style={{ textAlign: "center" }}>{count10}</td>
+                                  <td style={{ textAlign: "center", fontWeight: "bold" }}>
+                                    {count8 + count10}
+                                  </td>
+                                </tr>
+                              );
+                            })}
+                          </tbody>
+                        </Table>
+                      </Card.Body>
+                    </Card>
+                  )}
+
                   <Card className="mb-2">
                     <Card.Header><strong>Calling History</strong></Card.Header>
                     <Card.Body style={{ padding: 0 }}>
@@ -362,4 +414,4 @@ export const PrincipalCallings = () => {
       </Row>
     </Container>
   );
-}
+};

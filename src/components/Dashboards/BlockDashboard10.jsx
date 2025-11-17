@@ -14,6 +14,7 @@ import {
 } from "react-bootstrap";
 import Select from "react-select";
 import { DashboardCounts } from "../../services/DashBoardServices/DashboardService"; // adjust path if needed
+import { MainDashBoard } from "../../services/DashBoardServices/DashboardService";
 
 export const BlockSchoolDashboard10 = () => {
   const [loading, setLoading] = useState(false);
@@ -23,6 +24,27 @@ export const BlockSchoolDashboard10 = () => {
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [selectedSchool, setSelectedSchool] = useState(null);
   const [activeKeys, setActiveKeys] = useState([]); // control accordion open/close
+
+  const [mainDashboardData, setMainDashboardData] = useState([]);
+
+  const fetchMainDashboardCount = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await MainDashBoard();
+      setMainDashboardData(response.data);
+    } catch (error) {
+      console.error("Error", error);
+      setError(error?.message || "Failed to fetch dashboard data");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchMainDashboardCount();
+  }, []);
 
   const fetchDashboarcount = async () => {
     setLoading(true);
@@ -43,52 +65,19 @@ export const BlockSchoolDashboard10 = () => {
     fetchDashboarcount();
   }, []);
 
-  // safe getter for class 10 registered from a center's school counts
-  const getSchoolClass10Registered = (schoolCounts) => {
-    try {
-      if (!schoolCounts) return 0;
-      const byClass = schoolCounts.byClass || {};
-      const cls = byClass["10"] || byClass[10] || null;
-      if (!cls) return 0;
-      return Number(cls.registered || 0);
-    } catch {
-      return 0;
-    }
-  };
-
-  // Build block list and school aggregation
-  const buildBlocksAndSchoolsFromCenters = () => {
+  // Build block list and school aggregation using mainDashboardData
+  const buildBlocksAndSchoolsFromMainData = () => {
     const result = { blockList: [] };
-    if (!dashboard?.centers || !Array.isArray(dashboard.centers)) return result;
+    if (!mainDashboardData || !Array.isArray(mainDashboardData)) return result;
 
-    const centers = dashboard.centers;
     const blocksMap = {};
 
-    for (const c of centers) {
-      const blockId = String(c?.blockId || c?.block_id || "").trim();
-      const blockName =
-        c?.blockName ||
-        c?.block_name ||
-        c?.dashboardCounts?.school?.meta?.blockName ||
-        "";
-
-      const schoolId =
-        String(
-          c?.schoolCode ||
-            c?.schoolId ||
-            c?.school_id ||
-            c?.dashboardCounts?.school?.meta?.schoolCode ||
-            c?.dashboardCounts?.school?.meta?.schoolId ||
-            ""
-        ).trim();
-      const schoolName =
-        c?.schoolName ||
-        c?.school_name ||
-        c?.dashboardCounts?.school?.meta?.schoolName ||
-        c?.dashboardCounts?.school?.meta?.school_name ||
-        "";
-
-      const reg10 = getSchoolClass10Registered(c?.dashboardCounts?.school);
+    for (const school of mainDashboardData) {
+      const blockId = String(school?.blockId || "").trim();
+      const blockName = school?.blockName || "";
+      const schoolId = String(school?.centerId || "").trim();
+      const schoolName = school?.centerName || "";
+      const reg10 = Number(school?.registrationCount10 || 0);
 
       if (!blockId) continue;
       if (!blocksMap[blockId]) {
@@ -102,19 +91,15 @@ export const BlockSchoolDashboard10 = () => {
 
       blocksMap[blockId].totalRegistered += reg10;
 
-      const effectiveSchoolId =
-        schoolId || `unknown-${Math.random().toString(36).slice(2, 8)}`;
-
-      if (!blocksMap[blockId].schools[effectiveSchoolId]) {
-        blocksMap[blockId].schools[effectiveSchoolId] = {
-          schoolId: effectiveSchoolId,
-          schoolName:
-            schoolName || c?.schoolName || `School ${effectiveSchoolId}`,
+      if (!blocksMap[blockId].schools[schoolId]) {
+        blocksMap[blockId].schools[schoolId] = {
+          schoolId: schoolId,
+          schoolName: schoolName || `School ${schoolId}`,
           registered: 0,
         };
       }
 
-      blocksMap[blockId].schools[effectiveSchoolId].registered += reg10;
+      blocksMap[blockId].schools[schoolId].registered += reg10;
     }
 
     const blockList = Object.values(blocksMap).sort(
@@ -134,7 +119,7 @@ export const BlockSchoolDashboard10 = () => {
     return { blockList };
   };
 
-  const { blockList } = buildBlocksAndSchoolsFromCenters();
+  const { blockList } = buildBlocksAndSchoolsFromMainData();
 
   // total registrations (class 10)
   const totalRegistrations = useMemo(
@@ -206,7 +191,7 @@ export const BlockSchoolDashboard10 = () => {
       </Container>
     );
 
-  if (!dashboard)
+  if (!mainDashboardData || mainDashboardData.length === 0)
     return (
       <Container className="py-4">
         <Alert variant="info">No dashboard data available.</Alert>

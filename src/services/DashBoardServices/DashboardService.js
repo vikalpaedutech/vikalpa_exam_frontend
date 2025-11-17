@@ -90,3 +90,20 @@ export const GetRegisteredStudentsDataBySchoolAndClass = async (rqBody) => {
     throw error;
   }
 };
+
+
+
+
+
+export const MainDashBoard = async () => {
+  try {
+
+    const response = await axios.post(`${API_BASE_URL}/api/main-dashboard`);
+
+ 
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching data:", error);
+    throw error;
+  }
+};

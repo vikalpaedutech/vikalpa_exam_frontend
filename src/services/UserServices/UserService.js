@@ -235,3 +235,21 @@ export const UpdateCallLeads = async (reqBody) =>{
         console.log("Errror", error)
     }
 }
+
+
+
+
+
+export const GetDistrictBlockSchoolsByContact = async (reqBody) =>{
+
+    try {
+        const response = await axios.post(
+      `${API_BASE_URL}/api/get-district-block-schools-by-contact`,
+      reqBody,
+    );
+    return response.data;
+    } catch (error) {
+        console.log("Errror", error)
+    }
+}
+

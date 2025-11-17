@@ -13,7 +13,7 @@ import {
 } from "react-bootstrap";
 import Select from "react-select";
 import { DashboardCounts } from "../../services/DashBoardServices/DashboardService"; // adjust path if needed
-
+import { MainDashBoard } from "../../services/DashBoardServices/DashboardService";
 export const Districtdashboard8 = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
@@ -21,6 +21,31 @@ export const Districtdashboard8 = () => {
 
   const [selectedDistrict, setSelectedDistrict] = useState(null);
   const [selectedBlock, setSelectedBlock] = useState(null);
+
+  const [mainDashboardData, setMainDashboardData] = useState([]);
+
+
+
+
+const fetchMainDashboardCount = async () =>{
+  setLoading(true);
+  setError(null);
+
+  try {
+    const response = await MainDashBoard();
+    setMainDashboardData(response.data);
+  } catch (error) {
+    console.error("Error", error);
+    setError(error?.message || "Failed to fetch dashboard data");
+  } finally {
+    setLoading(false);
+  }
+}
+
+
+useEffect(()=>{
+  fetchMainDashboardCount();
+}, [])
 
   const fetchDashboarcount = async () => {
     setLoading(true);
@@ -41,39 +66,21 @@ export const Districtdashboard8 = () => {
     fetchDashboarcount();
   }, []);
 
-  // safe getter for class 8 registered from a center's school counts
-  const getSchoolClass8Registered = (schoolCounts) => {
-    try {
-      if (!schoolCounts) return 0;
-      const byClass = schoolCounts.byClass || {};
-      const cls = byClass["8"] || byClass[8] || null;
-      if (!cls) return 0;
-      return Number(cls.registered || 0);
-    } catch {
-      return 0;
-    }
-  };
-
-  // Build district list and block aggregation using centers array directly
-  const buildDistrictsAndBlocksFromCenters = () => {
+  // Build district list and block aggregation using mainDashboardData
+  const buildDistrictsAndBlocksFromMainData = () => {
     const result = {
       districtList: [],
     };
-    if (!dashboard?.centers || !Array.isArray(dashboard.centers)) return result;
+    if (!mainDashboardData || !Array.isArray(mainDashboardData)) return result;
 
-    const centers = dashboard.centers;
     const districtsMap = {};
 
-    for (const c of centers) {
-      const districtId = String(c?.districtId || "").trim();
-      const districtName =
-        c?.districtName ||
-        (c?.dashboardCounts?.school?.meta?.districtName || "") ||
-        "";
-      const blockId = String(c?.blockId || "").trim();
-      const blockName = c?.blockName || "";
-      const centerSchoolCounts = c?.dashboardCounts?.school || {};
-      const reg8 = getSchoolClass8Registered(centerSchoolCounts);
+    for (const school of mainDashboardData) {
+      const districtId = String(school?.districtId || "").trim();
+      const districtName = school?.districtName || "";
+      const blockId = String(school?.blockId || "").trim();
+      const blockName = school?.blockName || "";
+      const reg8 = Number(school?.registrationCount8 || 0);
 
       if (!districtId) continue;
 
@@ -118,7 +125,7 @@ export const Districtdashboard8 = () => {
     return { districtList };
   };
 
-  const { districtList } = buildDistrictsAndBlocksFromCenters();
+  const { districtList } = buildDistrictsAndBlocksFromMainData();
 
   // Build dependent dropdown options
   const districtOptions = useMemo(
@@ -182,7 +189,7 @@ export const Districtdashboard8 = () => {
     );
   }
 
-  if (!dashboard) {
+  if (!mainDashboardData || mainDashboardData.length === 0) {
     return (
       <Container className="py-4">
         <Alert variant="info">No dashboard data available.</Alert>
@@ -312,4 +319,3 @@ export const Districtdashboard8 = () => {
     </Container>
   );
 };
-

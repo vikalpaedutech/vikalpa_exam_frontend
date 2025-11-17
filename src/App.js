@@ -114,6 +114,7 @@ import { SchoolDashboard } from './components/Dashboards/SchoolDashboard.jsx';
 import { BLCStudentSignatureForm } from './components/StudentRegistration/BLCStudentSignatureForm.jsx';
 import { PrincipalAbrcBeoDeoCalling } from './components/UserComponent/PrincipalAbrcBeoDeoCallings.jsx';
 import {PrincipalCallings} from './components/UserComponent/PrincipalCallings.jsx';
+import { AbrcCallings } from './components/UserComponent/AbrcCalling.jsx';
 function App() {
 
 
@@ -319,6 +320,9 @@ function App() {
 
 
                          <Route path='/callings-principals' element = {<PrincipalCallings/>}/>
+
+                        
+                         <Route path='/callings-abrc' element = {<AbrcCallings/>}/>
 
 
                         </Route>

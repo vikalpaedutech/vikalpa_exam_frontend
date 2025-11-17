@@ -13,6 +13,7 @@ import {
 } from "react-bootstrap";
 import Select from "react-select";
 import { DashboardCounts } from "../../services/DashBoardServices/DashboardService"; // adjust path if needed
+import { MainDashBoard } from "../../services/DashBoardServices/DashboardService";
 
 export const BlockSchoolDashboard8 = () => {
   const [loading, setLoading] = useState(false);
@@ -21,6 +22,27 @@ export const BlockSchoolDashboard8 = () => {
 
   const [selectedBlock, setSelectedBlock] = useState(null);
   const [selectedSchool, setSelectedSchool] = useState(null);
+
+  const [mainDashboardData, setMainDashboardData] = useState([]);
+
+  const fetchMainDashboardCount = async () => {
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await MainDashBoard();
+      setMainDashboardData(response.data);
+    } catch (error) {
+      console.error("Error", error);
+      setError(error?.message || "Failed to fetch dashboard data");
+    } finally {
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchMainDashboardCount();
+  }, []);
 
   const fetchDashboarcount = async () => {
     setLoading(true);
@@ -41,55 +63,21 @@ export const BlockSchoolDashboard8 = () => {
     fetchDashboarcount();
   }, []);
 
-  // safe getter for class 8 registered from a center's school counts
-  const getSchoolClass8Registered = (schoolCounts) => {
-    try {
-      if (!schoolCounts) return 0;
-      const byClass = schoolCounts.byClass || {};
-      const cls = byClass["8"] || byClass[8] || null;
-      if (!cls) return 0;
-      return Number(cls.registered || 0);
-    } catch {
-      return 0;
-    }
-  };
-
-  // Build block list and schools aggregation using centers array directly
-  const buildBlocksAndSchoolsFromCenters = () => {
+  // Build block list and schools aggregation using mainDashboardData
+  const buildBlocksAndSchoolsFromMainData = () => {
     const result = {
       blockList: [],
     };
-    if (!dashboard?.centers || !Array.isArray(dashboard.centers)) return result;
+    if (!mainDashboardData || !Array.isArray(mainDashboardData)) return result;
 
-    const centers = dashboard.centers;
     const blocksMap = {};
 
-    for (const c of centers) {
-      const blockId = String(c?.blockId || c?.block_id || "").trim();
-      const blockName =
-        c?.blockName ||
-        c?.block_name ||
-        (c?.dashboardCounts?.school?.meta?.blockName || "") ||
-        "";
-      // Try to find school id/name from obvious places
-      const schoolId =
-        String(
-          c?.schoolCode ||
-            c?.schoolId ||
-            c?.school_id ||
-            c?.dashboardCounts?.school?.meta?.schoolCode ||
-            c?.dashboardCounts?.school?.meta?.schoolId ||
-            ""
-        ).trim();
-      const schoolName =
-        c?.schoolName ||
-        c?.school_name ||
-        c?.dashboardCounts?.school?.meta?.schoolName ||
-        c?.dashboardCounts?.school?.meta?.school_name ||
-        "";
-
-      const centerSchoolCounts = c?.dashboardCounts?.school || {};
-      const reg8 = getSchoolClass8Registered(centerSchoolCounts);
+    for (const school of mainDashboardData) {
+      const blockId = String(school?.blockId || "").trim();
+      const blockName = school?.blockName || "";
+      const schoolId = String(school?.centerId || "").trim();
+      const schoolName = school?.centerName || "";
+      const reg8 = Number(school?.registrationCount8 || 0);
 
       if (!blockId) continue;
 
@@ -104,18 +92,15 @@ export const BlockSchoolDashboard8 = () => {
 
       blocksMap[blockId].totalRegistered += reg8;
 
-      // if no schoolId available, create a synthetic id to keep rows distinct
-      const effectiveSchoolId = schoolId || `unknown-${Math.random().toString(36).slice(2, 8)}`;
-
-      if (!blocksMap[blockId].schools[effectiveSchoolId]) {
-        blocksMap[blockId].schools[effectiveSchoolId] = {
-          schoolId: effectiveSchoolId,
-          schoolName: schoolName || (c?.schoolName || `School ${effectiveSchoolId}`),
+      if (!blocksMap[blockId].schools[schoolId]) {
+        blocksMap[blockId].schools[schoolId] = {
+          schoolId: schoolId,
+          schoolName: schoolName || `School ${schoolId}`,
           registered: 0,
         };
       }
 
-      blocksMap[blockId].schools[effectiveSchoolId].registered += reg8;
+      blocksMap[blockId].schools[schoolId].registered += reg8;
     }
 
     const blockList = Object.values(blocksMap);
@@ -139,7 +124,7 @@ export const BlockSchoolDashboard8 = () => {
     return { blockList };
   };
 
-  const { blockList } = buildBlocksAndSchoolsFromCenters();
+  const { blockList } = buildBlocksAndSchoolsFromMainData();
 
   // Build dependent dropdown options
   const blockOptions = useMemo(
@@ -199,7 +184,7 @@ export const BlockSchoolDashboard8 = () => {
     );
   }
 
-  if (!dashboard) {
+  if (!mainDashboardData || mainDashboardData.length === 0) {
     return (
       <Container className="py-4">
         <Alert variant="info">No dashboard data available.</Alert>
