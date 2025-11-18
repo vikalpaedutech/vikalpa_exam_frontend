@@ -115,6 +115,9 @@ import { BLCStudentSignatureForm } from './components/StudentRegistration/BLCStu
 import { PrincipalAbrcBeoDeoCalling } from './components/UserComponent/PrincipalAbrcBeoDeoCallings.jsx';
 import {PrincipalCallings} from './components/UserComponent/PrincipalCallings.jsx';
 import { AbrcCallings } from './components/UserComponent/AbrcCalling.jsx';
+import { BeoCallings } from './components/UserComponent/BeoCalling.jsx';
+import { DeoCallings } from './components/UserComponent/DeoCalling.jsx';
+import { AdminDash } from './components/UserComponent/AdminDash.jsx';
 function App() {
 
 
@@ -325,13 +328,26 @@ function App() {
                          <Route path='/callings-abrc' element = {<AbrcCallings/>}/>
 
 
+                          <Route path='/callings-beo' element = {<BeoCallings/>}/>
+
+
+                           <Route path='/callings-deo' element = {<DeoCallings/>}/>
+
+
+
+
                         </Route>
 
 
 
 
-                      {/* admin related routes */}
+                      {/* admin related routes */}    {/* Admin routes */}
                       <Route path='/admin-user-creation' element = {<UserCreationForm/>}/>
+
+
+                      
+                      
+                            <Route path='/admin' element = {<AdminDash/>}/>
                       
 
                       {/* student related registration routes */}
@@ -380,6 +396,12 @@ function App() {
                             <Route path='/blc-student-signature-form' element = {<BLCStudentSignatureForm/>}/>
 
                           
+
+
+
+
+                          
+
 
             </Routes>
             </DateContextProvider>
