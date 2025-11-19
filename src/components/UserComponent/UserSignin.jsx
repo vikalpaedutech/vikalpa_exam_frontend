@@ -80,13 +80,15 @@ export const UserSignin = () => {
         console.log("🧠 Context set with user:", combinedUserData);
 
 
-        if (userData?.user?.designation === "Admin"){
-
-          navigate('/admin')
-        } else {
 
             navigate('/exam-user-dash')
-        }
+        // if (userData?.user?.designation === "Admin"){
+
+        //   navigate('/admin')
+        // } else {
+
+        
+        // }
 
         
       } else {

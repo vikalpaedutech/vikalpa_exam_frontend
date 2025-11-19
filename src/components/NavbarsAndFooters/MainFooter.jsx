@@ -45,7 +45,7 @@ export const MainFooter =() => {
              
               <h6 style={{ color: "#F2FFD7", fontWeight: "bold",  }}>
                 
-                Note: Helpline Number (संपर्क करने का समय सुबह 09 बजे से शाम 5 बजे तक रहेगा।): 7982109054, 7982109215, 7982108494
+                Note: Helpline Number (संपर्क करने का समय सुबह 09 बजे से शाम 5 बजे तक रहेगा।): 7982109215, 7982108494, 7982109054
               </h6> 
               {/* 7982109215 ripudaman, 7982108494 Khushi */}
             

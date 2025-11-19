@@ -216,9 +216,56 @@
 //     }
 //   };
 
+//   // Calculate call statistics
+//   const callStats = useMemo(() => {
+//     const totalCalls = groups.length;
+//     const completedCalls = groups.filter(g => g.current._submitted).length;
+//     const pendingCalls = totalCalls - completedCalls;
+    
+//     return {
+//       totalCalls,
+//       completedCalls,
+//       pendingCalls
+//     };
+//   }, [groups]);
+
 //   return (
 //     <Container className="py-3">
 //       <h3 className="mb-3">Principal Callings</h3>
+
+//       {/* Call Summary Statistics */}
+//       <Row className="mb-3">
+//         <Col md={4}>
+//           <Card className="text-center">
+//             <Card.Body>
+//               <Card.Title style={{ fontSize: "2rem", fontWeight: "bold", color: "#007bff" }}>
+//                 {callStats.totalCalls}
+//               </Card.Title>
+//               <Card.Text>Total Calls</Card.Text>
+//             </Card.Body>
+//           </Card>
+//         </Col>
+//         <Col md={4}>
+//           <Card className="text-center">
+//             <Card.Body>
+//               <Card.Title style={{ fontSize: "2rem", fontWeight: "bold", color: "#28a745" }}>
+//                 {callStats.completedCalls}
+//               </Card.Title>
+//               <Card.Text>Completed Calls</Card.Text>
+//             </Card.Body>
+//           </Card>
+//         </Col>
+//         <Col md={4}>
+//           <Card className="text-center">
+//             <Card.Body>
+//               <Card.Title style={{ fontSize: "2rem", fontWeight: "bold", color: "#dc3545" }}>
+//                 {callStats.pendingCalls}
+//               </Card.Title>
+//               <Card.Text>Pending Calls</Card.Text>
+//             </Card.Body>
+//           </Card>
+//         </Col>
+//       </Row>
 
 //       {loading && <div className="mb-3"><Spinner animation="border" size="sm" /> Loading leads...</div>}
 //       {error && <Alert variant="danger">{error}</Alert>}
@@ -363,17 +410,6 @@
 //     </Container>
 //   );
 // }
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -565,6 +601,19 @@ export const PrincipalCallings = () => {
   const updateLead = async (group) => {
     setError(null);
     setSuccessMsg(null);
+    
+    // Check if calling status is selected
+    if (!group.current._edit.callingStatus) {
+      setError("Please select Calling Status");
+      return;
+    }
+    
+    // Check if calling remark is selected
+    if (!group.current._edit.callingRemark1) {
+      setError("Please select Calling Remark");
+      return;
+    }
+
     const id = group.current._id;
     setSavingIds(s => new Set(s).add(id));
 
@@ -723,7 +772,7 @@ export const PrincipalCallings = () => {
                   <Row className="mb-2">
                     <Col xs={6}>
                       <Form.Group>
-                        <Form.Label className="small">Calling Status</Form.Label>
+                        <Form.Label className="small">Calling Status *</Form.Label>
                         <Select
                           value={CALL_STATUS.find(o => o.value === edit.callingStatus) || null}
                           onChange={sel => handleFieldChange(g.key, "callingStatus", sel ? sel.value : null)}
@@ -737,7 +786,7 @@ export const PrincipalCallings = () => {
 
                     <Col xs={6}>
                       <Form.Group>
-                        <Form.Label className="small">Calling Remark</Form.Label>
+                        <Form.Label className="small">Calling Remark *</Form.Label>
                         <Select
                           value={callingRemarkOptions.find(o => o.value === edit.callingRemark1) || null}
                           onChange={sel => handleFieldChange(g.key, "callingRemark1", sel ? sel.value : null)}
