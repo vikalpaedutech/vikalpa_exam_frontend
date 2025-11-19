@@ -3002,6 +3002,7 @@ export const StudentRegistrationForm = () => {
 
   const categoryOptions = [
     { value: "BCA", label: "BCA" },
+    { value: "BCB", label: "BCB" },
     { value: "GEN", label: "GEN" },
     { value: "SC", label: "SC" },
     { value: "ST", label: "ST" },
