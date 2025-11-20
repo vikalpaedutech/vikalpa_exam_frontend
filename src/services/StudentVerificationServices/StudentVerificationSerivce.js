@@ -53,3 +53,26 @@ export const UpdateStudentVerification = async (rqBody) => {
   }
 };
 
+
+
+
+
+
+
+
+
+
+export const BulkUploadVerification = async (rqBody) => {
+  try {
+    console.log("📤 Sending Student Data to API:", rqBody);
+
+    const response = await axios.post(`${API_BASE_URL}/api/get-bulk-verification-data`, rqBody);
+
+    console.log("✅ Students fetched successfully:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching student data for verification:", error);
+    throw error;
+  }
+};
+

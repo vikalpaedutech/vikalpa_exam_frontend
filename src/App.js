@@ -118,6 +118,7 @@ import { AbrcCallings } from './components/UserComponent/AbrcCalling.jsx';
 import { BeoCallings } from './components/UserComponent/BeoCalling.jsx';
 import { DeoCallings } from './components/UserComponent/DeoCalling.jsx';
 import { AdminDash } from './components/UserComponent/AdminDash.jsx';
+import { BulkStudentFormVerification } from './components/UserComponent/BulkStudentFromVerification.jsx';
 function App() {
 
 
@@ -344,9 +345,6 @@ function App() {
                       {/* admin related routes */}    {/* Admin routes */}
                       <Route path='/admin-user-creation' element = {<UserCreationForm/>}/>
 
-
-                      
-                      
                             <Route path='/admin' element = {<AdminDash/>}/>
                       
 
@@ -368,6 +366,8 @@ function App() {
                         {/* Form verification routes */}
                         <Route path="/verification-signin" element={<UserLoginForFormVerification />} />
                           <Route path="/student-form-verification" element={<StudentFormVerification />} />
+
+                          <Route path="/Bulk-student-form-verification" element={<BulkStudentFormVerification />} />
 
 
 
