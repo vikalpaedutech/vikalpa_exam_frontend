@@ -81,7 +81,16 @@ export const UserSignin = () => {
 
 
 
+            if(userData?.user?.designation === "Verification Team"){
+              
+              navigate("/student-form-verification")
+            } else {
+
             navigate('/exam-user-dash')
+            }
+
+        
+
         // if (userData?.user?.designation === "Admin"){
 
         //   navigate('/admin')

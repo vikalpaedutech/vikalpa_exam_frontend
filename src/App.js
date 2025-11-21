@@ -119,6 +119,7 @@ import { BeoCallings } from './components/UserComponent/BeoCalling.jsx';
 import { DeoCallings } from './components/UserComponent/DeoCalling.jsx';
 import { AdminDash } from './components/UserComponent/AdminDash.jsx';
 import { BulkStudentFormVerification } from './components/UserComponent/BulkStudentFromVerification.jsx';
+import { DownloadDashboardReports } from './components/Dashboards/DownloadReports.jsx';
 function App() {
 
 
@@ -387,6 +388,10 @@ function App() {
                             <Route path="/school-dashboard-sh" element={<SchoolDashboard />} />
 
                            <Route path="/exam-dashboard" element={<DashboardLandingPage />} />
+
+                          <Route path="/download-dashboard-reports" element={<DownloadDashboardReports />} />
+
+
 
 
                             {/* Admit card routes */}
