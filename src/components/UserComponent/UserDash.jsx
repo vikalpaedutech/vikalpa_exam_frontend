@@ -443,7 +443,7 @@ export const UserDashBoard = () =>{
                  <br></br>
 
 
-           <a 
+           {/* <a 
       
               className="blink-link"
               style={{
@@ -453,7 +453,7 @@ export const UserDashBoard = () =>{
                 display: "inline-block",
                   fontSize:'25px'
               }}
-          href="/callings-deo">➩ DEO Callings</a>
+          href="/callings-deo">➩ DEO Callings</a> */}
 </>):(null)}
          
     </Card.Body>
