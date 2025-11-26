@@ -95,6 +95,9 @@ export const GetRegisteredStudentsDataBySchoolAndClass = async (rqBody) => {
 
 
 
+
+
+
 export const MainDashBoard = async () => {
   try {
 
@@ -107,3 +110,23 @@ export const MainDashBoard = async () => {
     throw error;
   }
 };
+
+
+
+
+//Calling summary dashboard
+
+export const getCallSummary = async (reqBody) => {
+  try {
+
+    const response = await axios.post(`${API_BASE_URL}/api/calling-dashboard`, reqBody);
+
+ 
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching data:", error);
+    throw error;
+  }
+};
+
+

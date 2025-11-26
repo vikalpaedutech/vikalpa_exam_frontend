@@ -120,6 +120,7 @@ import { DeoCallings } from './components/UserComponent/DeoCalling.jsx';
 import { AdminDash } from './components/UserComponent/AdminDash.jsx';
 import { BulkStudentFormVerification } from './components/UserComponent/BulkStudentFromVerification.jsx';
 import { DownloadDashboardReports } from './components/Dashboards/DownloadReports.jsx';
+import { GetCallSummary } from './components/Dashboards/DownloadCallingSummary.jsx';
 function App() {
 
 
@@ -390,6 +391,8 @@ function App() {
                            <Route path="/exam-dashboard" element={<DashboardLandingPage />} />
 
                           <Route path="/download-dashboard-reports" element={<DownloadDashboardReports />} />
+
+                          <Route path="/calling-summaries" element={<GetCallSummary />} />
 
 
 
