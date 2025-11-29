@@ -121,6 +121,7 @@ import { AdminDash } from './components/UserComponent/AdminDash.jsx';
 import { BulkStudentFormVerification } from './components/UserComponent/BulkStudentFromVerification.jsx';
 import { DownloadDashboardReports } from './components/Dashboards/DownloadReports.jsx';
 import { GetCallSummary } from './components/Dashboards/DownloadCallingSummary.jsx';
+import { VerificationSummary } from './components/Dashboards/VerificationDashboard.jsx';
 function App() {
 
 
@@ -393,6 +394,8 @@ function App() {
                           <Route path="/download-dashboard-reports" element={<DownloadDashboardReports />} />
 
                           <Route path="/calling-summaries" element={<GetCallSummary />} />
+
+                          <Route path="/verification-summary" element={<VerificationSummary />} />
 
 
 

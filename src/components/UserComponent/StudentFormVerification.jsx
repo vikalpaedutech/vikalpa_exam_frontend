@@ -1724,11 +1724,15 @@ console.log(districtIds)
     const reqBody = {
       schoolDistrictCode: districtIds,
       isVerified: isVerifiedFilter,
-      isRegisteredBy: "Self",
+      // isRegisteredBy: "Self",
+      isBulkRegistered: false,
       page: page,
       limit: 100
     };
 
+
+      console.log(reqBody)
+      
     console.log("📤 Request body for fetching students:", reqBody);
     setLoadingFetch(true);
     try {
