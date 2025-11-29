@@ -1656,6 +1656,14 @@ export const StudentFormVerification = () => {
       r.blockIds?.map((b) => b.blockId)
     ) || [];
 
+
+
+const districtIds = [
+  ...(userData?.userAccess?.region?.map((r) => r.districtId) || []),
+];
+
+console.log(districtIds)
+
   // Calculate summary statistics from rows
   const calculateSummaryStats = (students) => {
     const stats = {
@@ -1714,7 +1722,7 @@ export const StudentFormVerification = () => {
     }
 
     const reqBody = {
-      schoolBlockCode: blockIds,
+      schoolDistrictCode: districtIds,
       isVerified: isVerifiedFilter,
       isRegisteredBy: "Self",
       page: page,

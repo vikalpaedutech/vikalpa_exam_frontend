@@ -38,6 +38,7 @@ export const DashboardCounts = async () => {
     const response = await axios.get(`${API_BASE_URL}/api/l1-dashboard-counts`);
 
  
+
     return response.data;
   } catch (error) {
     console.error("❌ Error fetching data:", error);
@@ -98,6 +99,9 @@ export const GetRegisteredStudentsDataBySchoolAndClass = async (rqBody) => {
 
 
 
+
+
+
 export const MainDashBoard = async () => {
   try {
 
@@ -110,6 +114,10 @@ export const MainDashBoard = async () => {
     throw error;
   }
 };
+
+
+
+
 
 
 
