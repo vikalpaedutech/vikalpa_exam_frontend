@@ -1371,7 +1371,10 @@ export const StudentRegistrationForm = () => {
       newErrors.whatsapp = "WhatsApp must be 10 digits.";
     }
 
+
+    
     if (aadhar && !/^\d{12}$/.test(aadhar)) {
+     
       newErrors.aadhar = "Aadhar must be exactly 12 digits.";
     }
 
@@ -1408,6 +1411,8 @@ export const StudentRegistrationForm = () => {
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
+
+
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -1475,6 +1480,10 @@ const registrationDate =  new Date();
       formData.append("dob", trim(dob));
       formData.append("gender", trim(gender).toUpperCase());
       formData.append("category", trim(category).toUpperCase());
+      
+
+
+      
       formData.append("aadhar", trim(aadhar));
       formData.append("mobile", trim(mobile));
       formData.append("whatsapp", trim(whatsapp));

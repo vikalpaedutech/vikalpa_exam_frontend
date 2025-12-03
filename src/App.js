@@ -122,6 +122,7 @@ import { BulkStudentFormVerification } from './components/UserComponent/BulkStud
 import { DownloadDashboardReports } from './components/Dashboards/DownloadReports.jsx';
 import { GetCallSummary } from './components/Dashboards/DownloadCallingSummary.jsx';
 import { VerificationSummary } from './components/Dashboards/VerificationDashboard.jsx';
+import { ManualEntryForm } from './components/StudentRegistration/ManualFormEntry.jsx';
 function App() {
 
 
@@ -315,6 +316,9 @@ function App() {
 
 
                               <Route path='/principal-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
+
+
+                              <Route path='/Manual-Form-Entries' element = {<ManualEntryForm/>}/>
 
 
                                 {/*  callings routes */}

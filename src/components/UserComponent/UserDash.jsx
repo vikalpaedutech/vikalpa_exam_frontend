@@ -455,6 +455,25 @@ export const UserDashBoard = () =>{
               }}
           href="/callings-deo">➩ DEO Callings</a> */}
 </>):(null)}
+
+
+<hr></hr>
+<br></br>
+
+           <a 
+      
+              className="blink-link"
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                fontWeight: "bold",
+                display: "inline-block",
+                  fontSize:'25px'
+              }}
+          href="/Manual-Form-Entries">➩ Manual-Form-Entries</a>
+
+          
+<br></br>
          
     </Card.Body>
 
