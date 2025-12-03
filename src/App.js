@@ -123,6 +123,8 @@ import { DownloadDashboardReports } from './components/Dashboards/DownloadReport
 import { GetCallSummary } from './components/Dashboards/DownloadCallingSummary.jsx';
 import { VerificationSummary } from './components/Dashboards/VerificationDashboard.jsx';
 import { ManualEntryForm } from './components/StudentRegistration/ManualFormEntry.jsx';
+import { EditStudentRegistrationForm } from './components/StudentRegistration/EditStudentRegistrationForm.jsx';
+import { EditStudentSignin } from './components/StudentRegistration/EditInputSrn.jsx';
 function App() {
 
 
@@ -319,6 +321,10 @@ function App() {
 
 
                               <Route path='/Manual-Form-Entries' element = {<ManualEntryForm/>}/>
+
+                              <Route path='/edit-student-registration-form' element = {<EditStudentRegistrationForm/>}/>
+
+                              <Route path='/edit-student-signin' element = {<EditStudentSignin/>}/>
 
 
                                 {/*  callings routes */}

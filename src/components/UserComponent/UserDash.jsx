@@ -472,6 +472,24 @@ export const UserDashBoard = () =>{
               }}
           href="/Manual-Form-Entries">➩ Manual-Form-Entries</a>
 
+
+
+
+          <br></br>
+
+           <a 
+      
+              className="blink-link"
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                fontWeight: "bold",
+                display: "inline-block",
+                  fontSize:'25px'
+              }}
+          href="/edit-student-signin">➩ Edit Students</a>
+
+
           
 <br></br>
          
