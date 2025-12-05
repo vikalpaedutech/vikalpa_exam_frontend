@@ -125,6 +125,7 @@ import { VerificationSummary } from './components/Dashboards/VerificationDashboa
 import { ManualEntryForm } from './components/StudentRegistration/ManualFormEntry.jsx';
 import { EditStudentRegistrationForm } from './components/StudentRegistration/EditStudentRegistrationForm.jsx';
 import { EditStudentSignin } from './components/StudentRegistration/EditInputSrn.jsx';
+import { StudentAadharCorrecition } from './components/UserComponent/AadharCorrectionCalling.jsx';
 function App() {
 
 
@@ -380,6 +381,8 @@ function App() {
                         <Route path="/verification-signin" element={<UserLoginForFormVerification />} />
                           <Route path="/student-form-verification" element={<StudentFormVerification />} />
 
+                          <Route path="/student-aadhar-correction" element={<StudentAadharCorrecition />} />
+                          
                           <Route path="/Bulk-student-form-verification" element={<BulkStudentFormVerification />} />
 
 

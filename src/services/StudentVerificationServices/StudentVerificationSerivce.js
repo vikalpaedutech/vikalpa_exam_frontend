@@ -31,6 +31,12 @@ export const GetStudentdsDataForVerification = async (rqBody) => {
 
 
 
+
+
+
+
+
+
 //Updating verification data
 
 
@@ -52,6 +58,34 @@ export const UpdateStudentVerification = async (rqBody) => {
     throw error;
   }
 };
+
+
+
+
+
+
+
+
+
+// Patch student verification (use PATCH)
+export const GetWrongAadharData = async (rqBody) => {
+  try {
+    console.log("📤 Sending Student update to API:", rqBody);
+
+    // Use PATCH since we're updating partial resource
+    const response = await axios.post(
+      `${API_BASE_URL}/api/aadhar-correction-data`,
+      rqBody
+    );
+
+    console.log("✅ Update response:", response.data);
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error updating student verification:", error);
+    throw error;
+  }
+};
+
 
 
 

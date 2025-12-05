@@ -1999,6 +1999,11 @@ console.log(districtIds)
     <Container fluid className="mt-4">
       <h3 className="mb-3">Student Verification Panel</h3>
 
+      <hr></hr>
+
+    <a href="/student-aadhar-correction">Click here to see aadhar correction callings</a>
+      <hr></hr>
+
       {/* Single Summary Card based on current filter */}
       <Card className="p-3 mb-3 bg-light">
         <Row>
