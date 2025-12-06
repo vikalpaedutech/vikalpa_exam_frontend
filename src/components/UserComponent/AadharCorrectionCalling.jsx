@@ -567,6 +567,7 @@ export const StudentAadharCorrecition = () => {
                     <th style={{ whiteSpace: "nowrap" }}>SRN</th>
                     <th style={{ whiteSpace: "nowrap" }}>Name</th>
                     <th style={{ whiteSpace: "nowrap" }}>Father</th>
+                    <th style={{ whiteSpace: "nowrap" }}>School</th>
                     <th style={{ whiteSpace: "nowrap" }}>Mobile</th>
                     <th style={{ whiteSpace: "nowrap" }}>WhatsApp</th>
                     <th style={{ width: 220, whiteSpace: "nowrap" }}>Aadhaar Number (Editable)</th>
@@ -606,6 +607,16 @@ export const StudentAadharCorrecition = () => {
                         <td style={{ verticalAlign: "middle", whiteSpace: "nowrap" }}>{row.srn}</td>
                         <td style={{ verticalAlign: "middle", whiteSpace: "nowrap" }}>{row.name}</td>
                         <td style={{ verticalAlign: "middle", whiteSpace: "nowrap" }}>{row.father}</td>
+                             <td
+                          style={{
+                            verticalAlign: "middle",
+                            maxWidth: "150px",      // limit width
+                            whiteSpace: "normal",   // allow wrapping
+                            overflowWrap: "break-word" // wrap long words
+                          }}
+                        >
+                          {row.school}
+                        </td>
                         <td style={{ verticalAlign: "middle", whiteSpace: "nowrap" }}>
                           {mobileNumber ? (
                             <a 
