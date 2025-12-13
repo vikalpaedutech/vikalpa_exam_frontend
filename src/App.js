@@ -126,6 +126,9 @@ import { ManualEntryForm } from './components/StudentRegistration/ManualFormEntr
 import { EditStudentRegistrationForm } from './components/StudentRegistration/EditStudentRegistrationForm.jsx';
 import { EditStudentSignin } from './components/StudentRegistration/EditInputSrn.jsx';
 import { StudentAadharCorrecition } from './components/UserComponent/AadharCorrectionCalling.jsx';
+import { Level1AdmitCard } from './components/StudentRegistration/Level1AdmitCard.jsx';
+import { AdmitCardStudentSignin } from './components/StudentRegistration/AdmitCardLogin.jsx';
+import { StudentsCenterPreferenceForm } from './components/StudentRegistration/StudentCenterPreferenceForm.jsx';
 function App() {
 
 
@@ -302,6 +305,9 @@ function App() {
                           <Route path="/exam-user-signup" element={<UserSignup />} />
                           <Route element={< UserLayout/>}>
                           
+                              <Route path='/student-center-preference-form' element = {<StudentsCenterPreferenceForm/>}/>
+                          
+
                           <Route path="/exam-user-dash" element={<UserDashBoard />} />
                           <Route path="/user-registration-form-mb" element={<StudentRegistrationForm />} />
                           <Route path="/user-registration-form-sh" element={<StudentRegistrationForm />} />
@@ -371,8 +377,13 @@ function App() {
 
                         <Route path='/student-login-dash' element={<StudentDashLevelComponent/>}/>
 
+
+                         <Route path='/mb-level1-admit-card' element={<Level1AdmitCard/>}/>
+
                       </Route>
-                  
+                        
+                        <Route path='/mb-l1-admit-card' element = {<AdmitCardStudentSignin/>}/>
+                        
                         <Route path="/exam-acknowledgement-slip-mb" element={<AcknowledgementSlipComponent />} />
                       <Route path="/exam-acknowledgement-slip-sh" element={<AcknowledgementSlipComponent />} />
 
@@ -418,7 +429,7 @@ function App() {
                             {/* <Route path='/admit-card-level-1' element = {}/> */}
 
                             <Route path='/blc-student-signature-form' element = {<BLCStudentSignatureForm/>}/>
-
+                            <Route path='/student-center-preference-form' element = {<StudentsCenterPreferenceForm/>}/>
                           
 
 

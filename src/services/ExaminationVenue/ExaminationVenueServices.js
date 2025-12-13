@@ -11,11 +11,11 @@ const API_BASE_URL = process.env.REACT_APP_API_BASE_URL;
 //Get all students data.
 //Below calls the api from backend.
 // Create Student API (POST)
-export const updateAbrcPrincipal = async (rqBody) => {
+export const GetCentersDataByExaminationAndExamType = async () => {
   try {
    
 
-    const response = await axios.post(`${API_BASE_URL}/api/update-abrc-principal`, rqBody);
+    const response = await axios.post(`${API_BASE_URL}/api/get-examination-centers`);
 
     return response.data;
   } catch (error) {
@@ -25,19 +25,3 @@ export const updateAbrcPrincipal = async (rqBody) => {
 };
 
 
-
-
-
-
-export const updateSchoolCenterPreferences = async (rqBody) => {
-  try {
-   
-
-    const response = await axios.post(`${API_BASE_URL}/api/update-school-prefrences`, rqBody);
-
-    return response.data;
-  } catch (error) {
-    console.error("❌ Error fetching data:", error);
-    throw error;
-  }
-};

@@ -492,6 +492,26 @@ export const UserDashBoard = () =>{
 
           
 <br></br>
+
+
+
+<br></br>
+
+           <a 
+      
+              className="blink-link"
+              style={{
+                cursor: "pointer",
+                textDecoration: "none",
+                fontWeight: "bold",
+                display: "inline-block",
+                  fontSize:'25px'
+              }}
+          href="/student-center-preference-form">➩ Student Center Preference</a>
+
+
+          
+<br></br>
          
     </Card.Body>
 
