@@ -305,7 +305,7 @@ function App() {
                           <Route path="/exam-user-signup" element={<UserSignup />} />
                           <Route element={< UserLayout/>}>
                           
-                              <Route path='/student-center-preference-form' element = {<StudentsCenterPreferenceForm/>}/>
+                              <Route path='/student-center-preference-form-deactivatedddd' element = {<StudentsCenterPreferenceForm/>}/>
                           
 
                           <Route path="/exam-user-dash" element={<UserDashBoard />} />

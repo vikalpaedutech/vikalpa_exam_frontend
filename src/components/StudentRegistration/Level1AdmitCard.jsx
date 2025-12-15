@@ -123,8 +123,8 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
       }
     } else {
       doc.rect(150, 40, 50, 50);
-      doc.text("Paste your passport-size,", 155, 60);
-      doc.text("photo attested by,", 155, 65);
+      doc.text("Paste your passport-size photograph ", 155, 60);
+      doc.text("duly attested by", 155, 65);
       doc.text("the school principal.", 155, 70);
     }
 
