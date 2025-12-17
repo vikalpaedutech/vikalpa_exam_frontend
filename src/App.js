@@ -129,6 +129,7 @@ import { StudentAadharCorrecition } from './components/UserComponent/AadharCorre
 import { Level1AdmitCard } from './components/StudentRegistration/Level1AdmitCard.jsx';
 import { AdmitCardStudentSignin } from './components/StudentRegistration/AdmitCardLogin.jsx';
 import { StudentsCenterPreferenceForm } from './components/StudentRegistration/StudentCenterPreferenceForm.jsx';
+import { CenterAllocation } from './components/Admin/CenterAllocation.jsx';
 function App() {
 
 
@@ -312,9 +313,9 @@ function App() {
                           <Route path="/user-registration-form-mb" element={<StudentRegistrationForm />} />
                           <Route path="/user-registration-form-sh" element={<StudentRegistrationForm />} />
 
-                            <Route path="/user-student-signin-mb" element={<StudentSignin />} />
+                            <Route path="/user-student-signin-mb-deactivatedddddd" element={<StudentSignin />} />
                             <Route path="/user-student-signin-sh" element={<StudentSignin />} />
-                             <Route path="/user-bulk-registrations" element={<BulkRegistrations />} />
+                             <Route path="/user-bulk-registrations-deactivatedddddd" element={<BulkRegistrations />} />
 
                              <Route path="/user-registered-students-mb" element={<RegisteredStudentsByUsers />} />
                              <Route path="/user-registered-students-sh" element={<RegisteredStudentsByUsers />} />
@@ -327,11 +328,11 @@ function App() {
                               <Route path='/principal-abrc-data' element = {<PrincipalSchoolsAbrcDataCollection/>}/>
 
 
-                              <Route path='/Manual-Form-Entries' element = {<ManualEntryForm/>}/>
+                              <Route path='/Manual-Form-Entries-deactivatedddd' element = {<ManualEntryForm/>}/>
 
                               <Route path='/edit-student-registration-form' element = {<EditStudentRegistrationForm/>}/>
 
-                              <Route path='/edit-student-signin' element = {<EditStudentSignin/>}/>
+                              <Route path='/edit-student-signin-deactivatedddd' element = {<EditStudentSignin/>}/>
 
 
                                 {/*  callings routes */}
@@ -430,7 +431,9 @@ function App() {
 
                             <Route path='/blc-student-signature-form' element = {<BLCStudentSignatureForm/>}/>
                             <Route path='/student-center-preference-form' element = {<StudentsCenterPreferenceForm/>}/>
-                          
+
+                            {/* center allocation */}
+                            <Route path='/center-allocation' element = {<CenterAllocation/>}/>
 
 
 

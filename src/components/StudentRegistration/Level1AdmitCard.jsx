@@ -11,6 +11,10 @@ import { BulkDownloadContext } from "../ContextApi/BulkDownloadAPI/BulkAdmitCard
 
 import { IsAdmitCardDownloaded } from "../../services/StudentRegistrationServices/StudentRegistrationService.js";
 
+
+import { useNavigate } from "react-router-dom";
+
+
 const logo = "/haryana.png";
 const logo2 = "/admitBuniyaLogo.png";
 const level1admitinstructions = "/level1adimitcardinstructions.png";
@@ -32,6 +36,9 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
   const [busy, setBusy] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [error, setError] = useState(null);
+
+
+  const navigate = useNavigate();
 
   // Decide what students to process:
   // Priority: bulkDownload prop > contextBulkDownload > singleStudent > studentData
@@ -86,8 +93,15 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
     doc.text(`${examLevel} Level 1 Exam (2026-28)`, pageWidth / 2, 15, { align: "center" });
     doc.setFontSize(12);
     doc.text("E – Admit Card", pageWidth / 2, 22, { align: "center" });
-    doc.setFontSize(10);
-    doc.text("Examination Date: 24th December", pageWidth / 2, 27, { align: "center" });
+    // doc.setFontSize(10);
+    // doc.text(`Examination Date: 26th December, Friday`, pageWidth / 2, 27, { align: "center" });
+
+
+    doc.setFont("helvetica", "bold");
+doc.setFontSize(10);
+doc.text("Examination Date: 26th December, Friday", pageWidth / 2, 27, { align: "center" });
+
+doc.setFontSize(10);
     doc.text("Reporting Time: 11:30 AM, Exam Time: 12:30 PM to 2:30 PM", pageWidth / 2, 32, { align: "center" });
 
     const dataForPdf = [
@@ -99,8 +113,13 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
       ["Exam Roll Number", student.rollNumber ?? "-"],
       ["Aadhar Number", student.aadhar ?? "-"],
       ["Mobile Number", student.mobile ?? "-"],
-      ["District", (student.schoolDistrict ?? "-") + (student.schoolDistrictCode ? ` (${student.schoolDistrictCode})` : "")],
-      ["Block", (student.schoolBlock ?? "-") + (student.schoolBlockCode ? ` (${student.schoolBlockCode})` : "")],
+      
+      // ["District", (student.schoolDistrict ?? "-") + (student.schoolDistrictCode ? ` (${student.schoolDistrictCode})` : "")],
+      // ["Block", (student.schoolBlock ?? "-") + (student.schoolBlockCode ? ` (${student.schoolBlockCode})` : "")],
+
+
+        ["District", (student.L1ExaminationDistrict )],
+      ["Block", (student.L1ExaminationBlock)],
       ["Examination Center", student.L1ExaminationCenter ?? "-"]
     ];
 
@@ -119,13 +138,15 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
         doc.addImage(student.imageUrl, "PNG", 150, 40, 50, 50);
       } catch (e) {
         doc.rect(150, 40, 50, 50);
-        doc.text("Photo unavailable", 153, 65);
+        doc.text("Paste your passport-size", 155, 60);
+        doc.text("photograph duly attested", 155, 65);
+        doc.text("by the school principal.", 155, 70);
       }
     } else {
       doc.rect(150, 40, 50, 50);
-      doc.text("Paste your passport-size photograph ", 155, 60);
-      doc.text("duly attested by", 155, 65);
-      doc.text("the school principal.", 155, 70);
+      doc.text("Paste your passport-size", 155, 60);
+      doc.text("photograph duly attested", 155, 65);
+      doc.text("by the school principal.", 155, 70);
     }
 
     // dividing line and instructions
@@ -312,7 +333,7 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
         <Card className="shadow-sm" style={cardStyle}>
           <Card.Header className="bg-white text-center border-0 py-2">
             <div style={{ textAlign: "center" }}>
-              <div style={{ fontSize: 16, fontWeight: 700 }}>General Details</div>
+              <div style={{ fontSize: 16, fontWeight: 700 }}>General Details (सामान्य जानकारी)</div>
             </div>
           </Card.Header>
 
@@ -341,7 +362,9 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
 
           
 
+          <hr></hr>
 
+<br></br>
              <div className="d-flex align-items-center justify-content-center mb-3">
           <div style={{ textAlign: "center" }}>
             <a
@@ -366,13 +389,24 @@ export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
 
         <Modal show={showModal} onHide={() => { if (!busy) setShowModal(false); }} centered>
           <Modal.Header closeButton>
-            <Modal.Title>{busy ? "Generating PDF..." : error ? "Error" : "Status"}</Modal.Title>
+            <Modal.Title>{busy ? "Generating PDF..." : error ? "Error" : "Admit Card Status!"}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            {busy ? <div className="text-center"><Spinner animation="border" /> <div className="mt-2">Preparing PDF — please wait.</div></div> : (error ? <div className="text-danger">{error}</div> : <div>Admit Card Downloaded.</div>)}
+            {busy ? <div className="text-center"><Spinner animation="border" /> <div className="mt-2">Preparing PDF — please wait.</div></div> : (error ? <div className="text-danger">{error}</div> : <div>Congratulations! You have successfully downloaded your admit card. (बधाई हो! आपने अपना प्रवेश पत्र सफलतापूर्वक डाउनलोड कर लिया है।)</div>)}
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={() => setShowModal(false)} disabled={busy}>Close</Button>
+            {/* <Button variant="secondary" onClick={() => setShowModal(false)} disabled={busy}>Close</Button>
+             */}
+
+
+
+             <Button
+  variant="secondary"
+  onClick={() => navigate("/")}
+  disabled={busy}
+>
+  Close
+</Button>
           </Modal.Footer>
         </Modal>
       </Container>

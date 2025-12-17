@@ -83,8 +83,15 @@ const {studentData, setStudentData} = useContext(StudentContext);
             
 
             {/* Commenting below link for deactivating */}
-            <Link  to="/exam-student-signin-mb" style={{textDecoration:'none', fontSize:'25px'}}>
+            {/* <Link  to="/exam-student-signin-mb" style={{textDecoration:'none', fontSize:'25px'}}>
             <p><BsArrowRight className="blinking-link" />Class 8th Registration -  Mission Buniyaad Level-1. <br/>(कक्षा 8वीं पंजीकरण - मिशन बुनियाद स्तर-1।)</p> 
+            </Link>
+            <br /> */}
+
+
+
+              <Link  to="/mb-l1-admit-card" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
+            <p><BsArrowRight className="blinking-link" />Class 8th Admit Card -  Mission Buniyaad Level-1. <br/>(कक्षा 8वीं का प्रवेश पत्र – मिशन बुनियाद स्तर-1।)</p> 
             </Link>
             <br />
 
