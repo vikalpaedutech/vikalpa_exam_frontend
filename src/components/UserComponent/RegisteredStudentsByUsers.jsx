@@ -662,7 +662,9 @@ export const RegisteredStudentsByUsers = () => {
         <Col xs="auto" className="d-flex gap-2">
           <Button variant="outline-secondary" size="sm" onClick={fetchRegisteredStudentsData}>Refresh</Button>
 
-          {/* <Button
+
+          {location.pathname === "/user-registered-students-mb" ? (
+            <Button
             variant="success"
             size="sm"
             onClick={handleBulkAdmitClick}
@@ -670,9 +672,8 @@ export const RegisteredStudentsByUsers = () => {
             title="Download selected students' admit cards as ZIP"
           >
             {selectedIds.size === 0 ? "Bulk Admit" : `Bulk Admit (${selectedIds.size})`}
-          </Button> */}
-
-          <Button
+          </Button>
+          ):(<Button
             variant="info"
             size="sm"
             onClick={handleBulkAckClick}
@@ -680,7 +681,11 @@ export const RegisteredStudentsByUsers = () => {
             title="Download selected students' acknowledgement slips as ZIP"
           >
             {selectedIds.size === 0 ? "Bulk Ack" : `Bulk Ack (${selectedIds.size})`}
-          </Button>
+          </Button>)}
+
+          
+
+          
 
           {/* <Button
             variant="primary"
@@ -743,8 +748,19 @@ export const RegisteredStudentsByUsers = () => {
                   <th style={{ minWidth: 220 }}>School</th>
                   <th style={{ width: 90 }}>Verified</th>
                   <th style={{ width: 100 }}>Photo</th>
-                  {/* <th style={{ width: 150 }}>Admit Card</th> */}
-                  <th style={{ width: 160 }}>Acknowledgement Slip</th>
+
+                     {location.pathname === "/user-registered-students-mb" ? (
+                      <th style={{ width: 150 }}>Admit Card</th>
+                     ):(<th style={{ width: 160 }}>Acknowledgement Slip</th> )}
+
+                  
+
+
+                 
+
+                 
+
+
                   <th style={{ width: 90, textAlign: "center" }}>
                     <Button size="sm" variant="outline-primary" onClick={toggleRightHeaderSelectAll}>
                       {rightSelectAllToggle || (filtered.length > 0 && selectedIds.size === filtered.length) ? "Deselect" : "Select All"}
@@ -788,13 +804,19 @@ export const RegisteredStudentsByUsers = () => {
                       )}
                     </td>
 
-                    {/* <td>
-                      <Button size="sm" variant="primary" onClick={() => startSingleAdmitDownload(s)}>Download Admit Card</Button>
-                    </td> */}
 
+                     {location.pathname === "/user-registered-students-mb" ? (
+                      
                     <td>
-                      <Button size="sm" variant="info" onClick={() => startSingleAckDownload(s)}>Download Acknowledgement</Button>
+                      <Button size="sm" variant="primary" onClick={() => startSingleAdmitDownload(s)}>Download Admit Card</Button>
                     </td>
+                     ):( <td>
+                      <Button size="sm" variant="info" onClick={() => startSingleAckDownload(s)}>Download Acknowledgement</Button>
+                    </td>)}
+
+
+
+                   
 
                     <td style={{ textAlign: "center" }}>
                       <input
