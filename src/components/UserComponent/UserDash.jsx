@@ -474,8 +474,14 @@ export const UserDashBoard = () =>{
 
 
 
+<br></br>
 
-          <br></br>
+
+{userData?.user?.mobile === "8191839118" && userData?.user?.userName === "Admin" ? (
+
+
+
+
 
            <a 
       
@@ -489,6 +495,9 @@ export const UserDashBoard = () =>{
               }}
           href="/edit-student-signin">➩ Edit Students</a>
 
+
+          
+):(null)}
 
           
 <br></br>

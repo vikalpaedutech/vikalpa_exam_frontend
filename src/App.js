@@ -332,7 +332,7 @@ function App() {
 
                               <Route path='/edit-student-registration-form' element = {<EditStudentRegistrationForm/>}/>
 
-                              <Route path='/edit-student-signin-deactivatedddd' element = {<EditStudentSignin/>}/>
+                              <Route path='/edit-student-signin' element = {<EditStudentSignin/>}/>
 
 
                                 {/*  callings routes */}
