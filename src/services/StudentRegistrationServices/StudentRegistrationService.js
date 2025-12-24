@@ -46,6 +46,12 @@ export const createStudent = async (rqBody) => {
 
 
 
+
+
+
+
+
+
 export const updateStudent = async (rqBody) => {
   try {
     console.log("Updating Student Data to API:", rqBody);
@@ -131,3 +137,25 @@ export const updateStudentAadhar = async (reqBody) =>{
   }
 }
 
+
+
+
+
+//Attendance sheet api
+
+export const GetAttendanceSheetData = async (rqBody) => {
+  try {
+    console.log(rqBody);
+
+    const response = await axios.post(`${API_BASE_URL}/api/get-attendance-sheet-data`, rqBody);
+
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+
+    console.error("Error fetching data", error);
+
+    throw error;
+  }
+};

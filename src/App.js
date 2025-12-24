@@ -130,6 +130,7 @@ import { Level1AdmitCard } from './components/StudentRegistration/Level1AdmitCar
 import { AdmitCardStudentSignin } from './components/StudentRegistration/AdmitCardLogin.jsx';
 import { StudentsCenterPreferenceForm } from './components/StudentRegistration/StudentCenterPreferenceForm.jsx';
 import { CenterAllocation } from './components/Admin/CenterAllocation.jsx';
+import { AttendanceSheet } from './components/Dashboards/AttendanceSheet.jsx';
 function App() {
 
 
@@ -435,6 +436,9 @@ function App() {
                             {/* center allocation */}
                             <Route path='/center-allocation' element = {<CenterAllocation/>}/>
 
+                            {/* Attendance Sheet */}
+
+                            <Route path='/mb-l1-attendance-pdf' element = {<AttendanceSheet/>}/>
 
 
 
