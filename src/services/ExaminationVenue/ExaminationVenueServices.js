@@ -25,3 +25,23 @@ export const GetCentersDataByExaminationAndExamType = async () => {
 };
 
 
+
+
+
+export const updateExaminationCentersAndCapacity = async (reqBody) => {
+  try {
+   
+
+    const response = await axios.post(`${API_BASE_URL}/api/update-center-attendance`, reqBody);
+
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error updating data:", error);
+    throw error;
+  }
+
+
+};
+
+
+

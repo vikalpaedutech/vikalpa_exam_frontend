@@ -131,6 +131,7 @@ import { AdmitCardStudentSignin } from './components/StudentRegistration/AdmitCa
 import { StudentsCenterPreferenceForm } from './components/StudentRegistration/StudentCenterPreferenceForm.jsx';
 import { CenterAllocation } from './components/Admin/CenterAllocation.jsx';
 import { AttendanceSheet } from './components/Dashboards/AttendanceSheet.jsx';
+import { UpdateCenterAttendanceCount } from './components/Attendance/UpdateExaminationVenueAndCenterCapcity.jsx';
 function App() {
 
 
@@ -440,7 +441,10 @@ function App() {
 
                             <Route path='/mb-l1-attendance-pdf' element = {<AttendanceSheet/>}/>
 
+                            
+                            <Route path='/update-examination-center-and-capacities' element = {<UpdateCenterAttendanceCount/>}/>
 
+                            
 
                           
 

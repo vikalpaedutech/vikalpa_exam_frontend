@@ -716,6 +716,9 @@ import "jspdf-autotable";
 import { FaDownload, FaFileExcel, FaInfoCircle, FaFilter } from "react-icons/fa";
 import { GetCentersDataByExaminationAndExamType } from "../../services/ExaminationVenue/ExaminationVenueServices";
 import { GetAttendanceSheetData } from "../../services/StudentRegistrationServices/StudentRegistrationService";
+import { updateExaminationCentersAndCapacity } from "../../services/ExaminationVenue/ExaminationVenueServices";
+
+
 
 /* ---------------- IMAGE LOADER ---------------- */
 const loadImage = (url) =>
@@ -1096,6 +1099,106 @@ export const AttendanceSheet = () => {
     }
   };
 
+
+
+//blank pdf format
+
+
+
+/* ---------------- DOWNLOAD BLANK ATTENDANCE TEMPLATE ---------------- */
+const downloadBlankAttendanceTemplate = async () => {
+  try {
+    const pdf = new jsPDF("l", "mm", "a4");
+    const w = pdf.internal.pageSize.getWidth();
+
+    // Logos
+    if (logo) {
+      try {
+        pdf.addImage(logo, "PNG", 10, 8, 20, 20);
+      } catch {}
+    }
+
+    if (logo2) {
+      try {
+        pdf.addImage(logo2, "PNG", w - 30, 8, 20, 20);
+      } catch {}
+    }
+
+    // Header
+    pdf.setFontSize(16);
+    pdf.setFont("helvetica", "bold");
+    pdf.text(
+      "MISSION BUNIYAAD ENTRANCE EXAMINATION LEVEL-1 (2026-28)",
+      w / 2,
+      18,
+      { align: "center" }
+    );
+
+    pdf.text("Attendance Sheet", w / 2, 26, { align: "center" });
+
+    pdf.setFontSize(11);
+    pdf.setFont("helvetica", "normal");
+    pdf.text(
+      "Center: ________________________________",
+      w / 2,
+      34,
+      { align: "center" }
+    );
+
+    // Blank rows (NO serial numbers)
+    const blankRows = Array.from({ length: studentsPerRoom }).map(() => [
+      "", // S.No (manual)
+      "", // SRN
+      "", // Name
+      "", // Father
+      "", // Gender
+      "", // School
+      "", // Photo
+      "", // Paper Code
+      "", // Signature
+    ]);
+
+    pdf.autoTable({
+      startY: 45,
+      head: [[
+        "S.No",
+        "SRN",
+        "Name",
+        "Father Name",
+        "Gender",
+        "School",
+        "Photo",
+        "Paper Code",
+        "Signature",
+      ]],
+      body: blankRows,
+      theme: "grid",
+      styles: {
+        fontSize: 9,
+        cellPadding: 4,
+        minCellHeight: 18,
+      },
+      columnStyles: {
+        0: { cellWidth: 15 },
+        1: { cellWidth: 28 },
+        2: { cellWidth: 38 },
+        3: { cellWidth: 38 },
+        4: { cellWidth: 20 },
+        5: { cellWidth: 60 },
+        6: { cellWidth: 25 },
+        7: { cellWidth: 30 },
+        8: { cellWidth: 35 },
+      },
+    });
+
+    pdf.save("Attendance_Blank_Template.pdf");
+  } catch (err) {
+    console.error("Blank template generation failed", err);
+  }
+};
+
+
+
   /* ---------------- UI ---------------- */
   return (
     <Container fluid className="py-4">
@@ -1326,6 +1429,16 @@ export const AttendanceSheet = () => {
                   <FaFileExcel className="me-2" />
                   {loading ? "Generating..." : "Download Preview PDF"}
                 </Button> */}
+
+                  <Button
+  onClick={downloadBlankAttendanceTemplate}
+  variant="outline-secondary"
+  className="d-flex align-items-center"
+>
+  <FaDownload className="me-2" />
+  Download Blank Format
+</Button>
+
 
                 <Button 
                   onClick={generateAttendancePDFs} 

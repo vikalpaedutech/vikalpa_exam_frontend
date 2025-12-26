@@ -1482,8 +1482,6 @@ const registrationDate =  new Date();
       formData.append("category", trim(category).toUpperCase());
       
 
-
-      
       formData.append("aadhar", trim(aadhar));
       formData.append("mobile", trim(mobile));
       formData.append("whatsapp", trim(whatsapp));
@@ -1943,3 +1941,4 @@ const registrationDate =  new Date();
     </Container>
   );
 };
+
