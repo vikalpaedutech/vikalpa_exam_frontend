@@ -397,37 +397,10 @@ export const DashboardLandingPage = () => {
       <hr></hr>
 
       <Row className="g-4">
-        {/* optional: Class 8 card (shows only when there's any data for class 8) */}
-        {typeof totals["8"] !== "undefined" && (
-          <Col md={6}>
-            <Card className="shadow-sm h-100">
-              <Card.Body>
-                <h5 className="mb-2 text-primary">Mission Buniyaad (Class 8)</h5>
-               
-                <h4 style={{color:'red', fontWeight:'bold'}}>Total Registrations: {totalClass8} </h4>
-                
-                {/* Admit Card Count for Class 8 */}
-                <div className="mt-3" style={{ backgroundColor: '#f8f9fa', padding: '10px', borderRadius: '5px' }}>
-                  <h5 style={{ color: '#28a745', fontWeight: 'bold', marginBottom: '5px' }}>
-                    Admit Card Downloaded: {totalAdmitCard8}
-                  </h5>
-                  {/* {totalClass8 > 0 && (
-                    <div style={{ fontSize: '0.9rem', color: '#6c757d' }}>
-                      {Math.round((totalAdmitCard8 / totalClass8) * 100)}% of students
-                    </div>
-                  )} */}
-                </div>
-                
-                <hr />
-                <ul className="list-unstyled mb-0">
-                  <li>🔹 <a href="/district-block-mb"><strong >Click to see District–Block Dashboard</strong></a></li>
-                  <li className="mt-2">🔹<a href="/block-school-mb"> <strong>Click to see Block–School Dashboard</strong></a></li>
-                  <li className="mt-2">🔹<a href="/school-dashboard-mb"> <strong>Click to see School Dashboard</strong></a></li>
-                </ul>
-              </Card.Body>
-            </Card>
-          </Col>
-        )}
+        
+
+
+
 
         {/* Haryana Super 100 (Class 10) */}
         <Col md={6}>
@@ -461,3 +434,40 @@ export const DashboardLandingPage = () => {
     </Container>
   );
 };
+
+
+
+
+//MB DASH BLOCK
+
+// optional: Class 8 card (shows only when there's any data for class 8)
+//         {typeof totals["8"] !== "undefined" && (
+//           <Col md={6}>
+//             <Card className="shadow-sm h-100">
+//               <Card.Body>
+//                 <h5 className="mb-2 text-primary">Mission Buniyaad (Class 8)</h5>
+               
+//                 <h4 style={{color:'red', fontWeight:'bold'}}>Total Registrations: {totalClass8} </h4>
+                
+//                 {/* Admit Card Count for Class 8 */}
+//                 <div className="mt-3" style={{ backgroundColor: '#f8f9fa', padding: '10px', borderRadius: '5px' }}>
+//                   <h5 style={{ color: '#28a745', fontWeight: 'bold', marginBottom: '5px' }}>
+//                     Admit Card Downloaded: {totalAdmitCard8}
+//                   </h5>
+//                   {/* {totalClass8 > 0 && (
+//                     <div style={{ fontSize: '0.9rem', color: '#6c757d' }}>
+//                       {Math.round((totalAdmitCard8 / totalClass8) * 100)}% of students
+//                     </div>
+//                   )} */}
+//                 </div>
+                
+//                 <hr />
+//                 <ul className="list-unstyled mb-0">
+//                   <li>🔹 <a href="/district-block-mb"><strong >Click to see District–Block Dashboard</strong></a></li>
+//                   <li className="mt-2">🔹<a href="/block-school-mb"> <strong>Click to see Block–School Dashboard</strong></a></li>
+//                   <li className="mt-2">🔹<a href="/school-dashboard-mb"> <strong>Click to see School Dashboard</strong></a></li>
+//                 </ul>
+//               </Card.Body>
+//             </Card>
+//           </Col>
+//         )}

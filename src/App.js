@@ -385,7 +385,7 @@ function App() {
 
                       </Route>
                         
-                        <Route path='/mb-l1-admit-card' element = {<AdmitCardStudentSignin/>}/>
+                        <Route path='/mb-l1-admit-card-deactivateddddddddddddddddddddd' element = {<AdmitCardStudentSignin/>}/>
                         
                         <Route path="/exam-acknowledgement-slip-mb" element={<AcknowledgementSlipComponent />} />
                       <Route path="/exam-acknowledgement-slip-sh" element={<AcknowledgementSlipComponent />} />
