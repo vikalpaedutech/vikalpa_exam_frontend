@@ -132,6 +132,8 @@ import { StudentsCenterPreferenceForm } from './components/StudentRegistration/S
 import { CenterAllocation } from './components/Admin/CenterAllocation.jsx';
 import { AttendanceSheet } from './components/Dashboards/AttendanceSheet.jsx';
 import { UpdateCenterAttendanceCount } from './components/Attendance/UpdateExaminationVenueAndCenterCapcity.jsx';
+import { AdmitCardStudentSigninLevel2 } from './components/StudentRegistration/AdmitCardLoginLevel2.jsx';
+import { Level2AdmitCard } from './components/StudentRegistration/Level2AdmitCard.jsx';
 function App() {
 
 
@@ -383,10 +385,17 @@ function App() {
 
                          <Route path='/mb-level1-admit-card' element={<Level1AdmitCard/>}/>
 
+
+                         <Route path='/mb-level2-admit-card' element={<Level2AdmitCard/>}/>
+
                       </Route>
                         
                         <Route path='/mb-l1-admit-card-deactivateddddddddddddddddddddd' element = {<AdmitCardStudentSignin/>}/>
-                        
+
+                        <Route path='/mb-l2-admit-card' element = {<AdmitCardStudentSigninLevel2/>}/>
+                       
+
+
                         <Route path="/exam-acknowledgement-slip-mb" element={<AcknowledgementSlipComponent />} />
                       <Route path="/exam-acknowledgement-slip-sh" element={<AcknowledgementSlipComponent />} />
 
