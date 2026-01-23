@@ -134,6 +134,7 @@ import { AttendanceSheet } from './components/Dashboards/AttendanceSheet.jsx';
 import { UpdateCenterAttendanceCount } from './components/Attendance/UpdateExaminationVenueAndCenterCapcity.jsx';
 import { AdmitCardStudentSigninLevel2 } from './components/StudentRegistration/AdmitCardLoginLevel2.jsx';
 import { Level2AdmitCard } from './components/StudentRegistration/Level2AdmitCard.jsx';
+import { CallingsMB2 } from './components/UserComponent/CallingsMBL2.jsx';
 function App() {
 
 
@@ -452,6 +453,9 @@ function App() {
 
                             
                             <Route path='/update-examination-center-and-capacities' element = {<UpdateCenterAttendanceCount/>}/>
+
+                            
+                            <Route path='/mb-l2-calling' element = {<CallingsMB2/>}/>
 
                             
 
