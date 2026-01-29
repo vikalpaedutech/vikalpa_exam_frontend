@@ -135,6 +135,9 @@ import { UpdateCenterAttendanceCount } from './components/Attendance/UpdateExami
 import { AdmitCardStudentSigninLevel2 } from './components/StudentRegistration/AdmitCardLoginLevel2.jsx';
 import { Level2AdmitCard } from './components/StudentRegistration/Level2AdmitCard.jsx';
 import { CallingsMB2 } from './components/UserComponent/CallingsMBL2.jsx';
+
+import { StudentNotFound } from './components/StudentRegistration/NotQualified.jsx';
+
 function App() {
 
 
@@ -460,7 +463,7 @@ function App() {
                             <Route path='/mb-l2-calling' element = {<CallingsMB2/>}/>
 
                             
-
+                            <Route path='/mb-l1-result' element = {<StudentNotFound/>}/>
                           
 
 

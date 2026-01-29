@@ -408,11 +408,13 @@ export const AdmitCardStudentSigninLevel2 = () => {
                     if (student?.classOfStudent === "8") {
 
 
-                        openModal(
-                            "MB Level-1 Result Status",
-                            `Dear Student, You were absent in the Mission Buniyaad Level-1 Entrance Examination.
-(प्रिय विद्यार्थी, आप मिशन बुनियाद लेवल-1 प्रवेश परीक्षा में अनुपस्थित थे।)`
-                        );
+//                         openModal(
+//                             "MB Level-1 Result Status",
+//                             `Dear Student, You were absent in the Mission Buniyaad Level-1 Entrance Examination.
+// (प्रिय विद्यार्थी, आप मिशन बुनियाद लेवल-1 प्रवेश परीक्षा में अनुपस्थित थे।)`
+//                         );
+
+                        navigate('/mb-l1-result')
                         return;
                     }
 
@@ -439,11 +441,14 @@ export const AdmitCardStudentSigninLevel2 = () => {
                 );
             }
         } catch (err) {
-            openModal(
-                "Admit Card Status",
-                `Your result cannot be downloaded because you have not registered for the Mission Buinyaad Level 1 Examination.
-(आप अपना परीक्षा परिणाम डाउनलोड नहीं कर सकते हैं क्योंकि आपने मिशन बुनियाद लेवल 1 परीक्षा के लिए पंजीकरण नहीं किया है।)`
-            );
+//             openModal(
+//                 "Admit Card Status",
+//                 `Your result cannot be downloaded because you have not registered for the Mission Buinyaad Level 1 Examination.
+// (आप अपना परीक्षा परिणाम डाउनलोड नहीं कर सकते हैं क्योंकि आपने मिशन बुनियाद लेवल 1 परीक्षा के लिए पंजीकरण नहीं किया है।)`
+//             );
+
+
+            navigate('/mb-l1-result')
         } finally {
             setLoading(false);
         }
