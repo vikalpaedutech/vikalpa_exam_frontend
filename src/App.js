@@ -449,7 +449,9 @@ function App() {
 
                             {/* Attendance Sheet */}
 
-                            <Route path='/mb-l1-attendance-pdf' element = {<AttendanceSheet/>}/>
+                            {/* <Route path='/mb-l1-attendance-pdf' element = {<AttendanceSheet/>}/> */}
+
+                            <Route path='/mb-l2-attendance-pdf' element = {<AttendanceSheet/>}/>
 
                             
                             <Route path='/update-examination-center-and-capacities' element = {<UpdateCenterAttendanceCount/>}/>
