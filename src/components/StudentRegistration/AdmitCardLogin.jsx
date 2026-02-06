@@ -427,7 +427,13 @@ export const AdmitCardStudentSignin = () => {
           }
         } else {
               // ✅ All good → navigate
-        navigate("/mb-level1-admit-card");
+
+              if(student?.classOfStudent === "10"){
+                 navigate("/s100-level1-admit-card");
+              } else{
+                navigate("/mb-level1-admit-card");
+              }
+       
         }
 
       

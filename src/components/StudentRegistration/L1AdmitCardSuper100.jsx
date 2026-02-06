@@ -16,10 +16,8 @@ import { useNavigate } from "react-router-dom";
 
 
 const logo = "/haryana.png";
-
-
 const logo2 = "/vikalpalogonotitle.png";
-// const logo2 = "/admitBuniyaLogo.png";
+const logo3 = "/admitBuniyaLogo.png";
 const level1admitinstructions = "/level1adimitcardinstructions.png";
 
 const arrayBufferToBase64 = (buffer) => {
@@ -29,7 +27,7 @@ const arrayBufferToBase64 = (buffer) => {
   return btoa(binary);
 };
 
-export const Level1AdmitCard = ({ singleStudent = null, bulkDownload = null, onDone = () => {} }) => {
+export const Level1AdmitCardS100 = ({ singleStudent = null, bulkDownload = null, onDone = () => {} }) => {
   // contexts
   const { studentData } = useContext(StudentContext);
   const { userData } = useContext(UserContext);

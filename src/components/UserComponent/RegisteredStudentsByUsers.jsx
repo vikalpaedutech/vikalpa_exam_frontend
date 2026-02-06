@@ -463,6 +463,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { GetStudentsRegisteredByUser } from "../../services/DashBoardServices/DashboardService";
 import { BulkDownloadContext } from "../ContextApi/BulkDownloadAPI/BulkAdmitCardDownloadContextApi";
 import { Level1AdmitCard } from "../StudentRegistration/Level1AdmitCard";
+import { Level1AdmitCardS100 } from "../StudentRegistration/L1AdmitCardSuper100";
 import { AcknowledgementSlipComponent } from "../StudentRegistration/AcknowledgementSlip";
 
 // NEW: Image upload util (renamed from ImageUploadDirectPatch)
@@ -655,7 +656,7 @@ export const RegisteredStudentsByUsers = () => {
       <Row className="align-items-center mb-3">
         <Col>
           <h4 style={{ margin: 0 }}>{studentClass ? `Class ${studentClass} Data` : "Registered Students"}</h4>
-          <small className="text-muted">List of registered students you created</small>
+          <small className="text-muted">List of registered students you created </small>
         </Col>
 
         {/* Top controls: Refresh + Bulk Downloads */}
@@ -673,7 +674,10 @@ export const RegisteredStudentsByUsers = () => {
           >
             {selectedIds.size === 0 ? "Bulk Admit" : `Bulk Admit (${selectedIds.size})`}
           </Button>
-          ):(<Button
+          ):(
+          
+            <>
+             {/* <Button
             variant="info"
             size="sm"
             onClick={handleBulkAckClick}
@@ -681,7 +685,34 @@ export const RegisteredStudentsByUsers = () => {
             title="Download selected students' acknowledgement slips as ZIP"
           >
             {selectedIds.size === 0 ? "Bulk Ack" : `Bulk Ack (${selectedIds.size})`}
-          </Button>)}
+          </Button> */}
+
+
+   <Button
+            variant="info"
+            size="sm"
+            onClick={handleBulkAdmitClick}
+            disabled={selectedIds.size === 0}
+            title="Download selected students' acknowledgement slips as ZIP"
+          >
+            {selectedIds.size === 0 ? "Bulk Admit" : `Bulk Admit (${selectedIds.size})`}
+          </Button>
+
+
+
+
+            </>
+
+         
+          
+        
+        
+        )
+          
+          
+          
+
+          }
 
           
 
@@ -751,7 +782,7 @@ export const RegisteredStudentsByUsers = () => {
 
                      {location.pathname === "/user-registered-students-mb" ? (
                       <th style={{ width: 150 }}>Admit Card</th>
-                     ):(<th style={{ width: 160 }}>Acknowledgement Slip</th> )}
+                     ):(<th style={{ width: 160 }}>Admit Card</th> )}
 
                   
 
@@ -811,7 +842,10 @@ export const RegisteredStudentsByUsers = () => {
                       <Button size="sm" variant="primary" onClick={() => startSingleAdmitDownload(s)}>Download Admit Card</Button>
                     </td>
                      ):( <td>
-                      <Button size="sm" variant="info" onClick={() => startSingleAckDownload(s)}>Download Acknowledgement</Button>
+                      {/* <Button size="sm" variant="info" onClick={() => startSingleAckDownload(s)}>Download Acknowledgement</Button> */}
+
+
+                       <Button size="sm" variant="info" onClick={() => startSingleAdmitDownload(s)}>Download Admit</Button>
                     </td>)}
 
 

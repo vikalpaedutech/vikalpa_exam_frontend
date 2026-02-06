@@ -137,6 +137,7 @@ import { Level2AdmitCard } from './components/StudentRegistration/Level2AdmitCar
 import { CallingsMB2 } from './components/UserComponent/CallingsMBL2.jsx';
 
 import { StudentNotFound } from './components/StudentRegistration/NotQualified.jsx';
+import { Level1AdmitCardS100 } from './components/StudentRegistration/L1AdmitCardSuper100.jsx';
 
 function App() {
 
@@ -397,7 +398,13 @@ function App() {
                         <Route path='/mb-l1-admit-card-deactivateddddddddddddddddddddd' element = {<AdmitCardStudentSignin/>}/>
 
                         <Route path='/mb-l2-admit-card' element = {<AdmitCardStudentSigninLevel2/>}/>
-                       
+
+
+                          
+                        <Route path='/s100-l1-admit-card' element = {<AdmitCardStudentSignin/>}/>
+
+                          <Route path='/s100-level1-admit-card' element={<Level1AdmitCardS100/>}/>
+
 
 
                         <Route path="/exam-acknowledgement-slip-mb" element={<AcknowledgementSlipComponent />} />
