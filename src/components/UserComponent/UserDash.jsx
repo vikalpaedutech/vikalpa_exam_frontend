@@ -515,7 +515,7 @@ export const UserDashBoard = () =>{
                 display: "inline-block",
                   fontSize:'25px'
               }}
-          href="/mb-l2-calling">➩ MB Level 2 Callings</a>
+          href="/mb-l2-calling">➩ SUPER 100 Level 1 Callings</a>
 
 
 

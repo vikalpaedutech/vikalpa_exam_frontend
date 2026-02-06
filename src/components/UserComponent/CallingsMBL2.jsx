@@ -613,11 +613,11 @@ export const CallingsMB2 = () => {
   // Remark options for dropdown
   const remarkOptions = [
     { value: "Teacher's Number", label: "Teacher's Number" },
-    { value: "MB Level 2 Admit Card Downlaod", label: "MB Level 2 Admit Card Downlaod" },
+    { value: "MB Level 1 Admit Card Downlaod", label: "MB Level 1 Admit Card Downlaod" },
     { value: "Parent's denied for exam", label: "Parent's denied for exam" },
     { value: "School denied for exam", label: "School denied for exam" },
     { value: "Not interested", label: "Not interested" },
-    { value: "MB Level 1 exam not given", label: "MB Level 1 exam not given" },
+    // { value: "MB Level 1 exam not given", label: "MB Level 1 exam not given" },
   ];
   
   // Function to make phone call
