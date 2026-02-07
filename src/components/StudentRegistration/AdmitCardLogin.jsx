@@ -457,8 +457,8 @@ export const AdmitCardStudentSignin = () => {
     } catch (err) {
       openModal(
         "Admit Card Status",
-        `Your admit card cannot be downloaded because you have not registered for the Mission Buinyaad Level 1 Examination.
-(आपका प्रवेश पत्र डाउनलोड नहीं किया जा सकता क्योंकि आपने मिशन बुनियाद स्तर 1 परीक्षा के लिए पंजीकरण नहीं किया है।)`
+        `Your admit card cannot be downloaded because you have not registered for the Haryana Super 100 Level 1 Examination.
+(आपका प्रवेश पत्र डाउनलोड नहीं किया जा सकता क्योंकि आपने हरियाणा सुपर 100 स्तर 1 परीक्षा के लिए पंजीकरण नहीं किया है।)`
       );
     } finally {
       setLoading(false);
