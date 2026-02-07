@@ -1031,7 +1031,7 @@ export const CallingsMB2 = () => {
                   
                   {/* Level 2 Exam Info */}
                   <div className="mb-3">
-                    <h6>Level 2 Examination Details</h6>
+                    <h6>Level 1 Examination Details</h6>
                     <p className="mb-1">
                       <strong>District:</strong> {student.L2ExaminationDistrict || "N/A"}
                     </p>
