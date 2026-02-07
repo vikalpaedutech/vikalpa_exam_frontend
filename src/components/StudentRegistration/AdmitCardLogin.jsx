@@ -408,7 +408,7 @@ export const AdmitCardStudentSignin = () => {
           
           if (student?.classOfStudent === "8") {
 
-            
+            return;
             openModal(
              "Admit Card Status",
           `Dear Students! Your admit card for the Level 1 Examination will be available for download within the next 24 hours.
@@ -419,9 +419,9 @@ export const AdmitCardStudentSignin = () => {
 
           if (student?.classOfStudent === "10") {
             openModal(
-              "Admit Card Coming Soon",
-              `Haryana Super 100 admit card will be live soon.
-(हरियाणा सुपर 100 का प्रवेश पत्र जल्द ही जारी किया जाएगा।)`
+              "Admit Card Status",
+          `Dear Students! Your admit card for the Level 1 Examination will be available for download within the next 24 hours.
+(प्रिय विद्यार्थी, स्तर 1 परीक्षा के लिए आपका प्रवेश पत्र अगले 24 घंटों के भीतर डाउनलोड के लिए उपलब्ध होगा।)`
             );
             return;
           }
@@ -431,7 +431,16 @@ export const AdmitCardStudentSignin = () => {
               if(student?.classOfStudent === "10"){
                  navigate("/s100-level1-admit-card");
               } else{
-                navigate("/mb-level1-admit-card");
+                  openModal(
+              "Admit Card Status",
+          `Dear Student,
+              The admit card cannot be downloaded as your registration has been done for Class 8.
+              (प्रिय छात्र/छात्रा,
+आपका पंजीकरण कक्षा 8 के लिए होने के कारण प्रवेश पत्र डाउनलोड करना संभव नहीं है।)`
+            );
+
+
+                // navigate("/mb-level1-admit-card");
               }
        
         }
