@@ -112,11 +112,11 @@ const {studentData, setStudentData} = useContext(StudentContext);
             <br />
 
 
-              <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
+              {/* <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
             <p><BsArrowRight className="blinking-link" />Class 10th Registration - Haryana Super 100 Level-1 <br/>(
                  कक्षा 10वीं पंजीकरण - हरियाणा सुपर 100 स्तर-1।)</p> 
             </Link>
-            <br />
+            <br /> */}
 
              {/* <Link  to="" style={{textDecoration:'none', fontSize:'25px', color:'red', fontWeight:'bold'}}>
             <p><BsArrowRight className="blinking-link" />Mission Buniyaad Entrance Examination Level-2 Result Coming Soon.<br/>(मिशन बुनियाद प्रवेश परीक्षा लेवल-2 परिणाम जल्द आ रहा है।)</p> 

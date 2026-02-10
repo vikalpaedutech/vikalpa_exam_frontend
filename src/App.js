@@ -383,7 +383,7 @@ function App() {
                         <Route path="/exam-registration-form-mb" element={<StudentRegistrationForm />} />
                       <Route path="/exam-registration-form-sh" element={<StudentRegistrationForm />} />
                        <Route path="/exam-student-signin-mb" element={<StudentSignin />} />
-                       <Route path="/exam-student-signin-sh" element={<StudentSignin />} />
+                       <Route path="/exam-student-signin-sh-deactivatedddd" element={<StudentSignin />} />
 
                         <Route path='/student-login-dash' element={<StudentDashLevelComponent/>}/>
 
@@ -462,6 +462,9 @@ function App() {
                             {/* <Route path='/mb-l1-attendance-pdf' element = {<AttendanceSheet/>}/> */}
 
                             <Route path='/mb-l2-attendance-pdf' element = {<AttendanceSheet/>}/>
+
+
+                              <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/>
 
                             
                             <Route path='/update-examination-center-and-capacities' element = {<UpdateCenterAttendanceCount/>}/>

@@ -1592,6 +1592,7 @@ export const AttendanceSheet = () => {
 
   const logo = "/haryana.png";
   const logo2 = "/admitBuniyaLogo.png";
+  const logo3 = "/vikalpalogonotitle.png";
 
   /* ---------------- FETCH CENTERS ---------------- */
   useEffect(() => {
@@ -1626,7 +1627,7 @@ export const AttendanceSheet = () => {
     setError(null);
     try {
       const res = await GetAttendanceSheetData({
-        L2ExaminationCenter: selectedCenter.label,
+        L1ExaminationCenter: selectedCenter.label,
       });
 
       const sorted = (res.data || []).sort((a, b) =>
@@ -1797,9 +1798,9 @@ export const AttendanceSheet = () => {
           }
         }
 
-        if (logo2) {
+        if (logo3) {
           try {
-            pdf.addImage(logo2, "PNG", w - 30, 8, 20, 20);
+            pdf.addImage(logo3, "PNG", w - 30, 8, 20, 20);
           } catch (e) {
             console.warn("Could not load secondary logo");
           }
@@ -1809,7 +1810,7 @@ export const AttendanceSheet = () => {
 
          pdf.setFontSize(16);
         pdf.setFont("helvetica", "bold");
-        pdf.text("MISSION BUNIYAAD ENTRANCE EXAMINATION LEVEL-2 (2026-28)", w / 2, 18, { align: "center" });
+        pdf.text("HARAYANA SUPER 100 ENTRANCE EXAMINATION LEVEL-1 (2026-28)", w / 2, 18, { align: "center" });
         
         
 
@@ -1875,9 +1876,9 @@ export const AttendanceSheet = () => {
         }
       }
 
-      if (logo2) {
+      if (logo3) {
         try {
-          pdf.addImage(logo2, "PNG", w - 30, 8, 20, 20);
+          pdf.addImage(logo3, "PNG", w - 30, 8, 20, 20);
         } catch (e) {
           console.warn("Could not load secondary logo");
         }
@@ -1933,9 +1934,9 @@ const downloadBlankAttendanceTemplate = async () => {
       } catch {}
     }
 
-    if (logo2) {
+    if (logo3) {
       try {
-        pdf.addImage(logo2, "PNG", w - 30, 8, 20, 20);
+        pdf.addImage(logo3, "PNG", w - 30, 8, 20, 20);
       } catch {}
     }
 
@@ -1943,7 +1944,7 @@ const downloadBlankAttendanceTemplate = async () => {
     pdf.setFontSize(16);
     pdf.setFont("helvetica", "bold");
     pdf.text(
-      "MISSION BUNIYAAD ENTRANCE EXAMINATION LEVEL-2 (2026-28)",
+      "HARYANA SUPER 100 ENTRANCE EXAMINATION LEVEL-1 (2026-28)",
       w / 2,
       18,
       { align: "center" }
@@ -2020,7 +2021,7 @@ const downloadBlankAttendanceTemplate = async () => {
       <Card className="shadow">
         <Card.Header className="bg-primary text-white d-flex align-items-center">
           <FaFilter className="me-2" /> 
-          <h5 className="mb-0">MB L-2 ATTENDANCE SHEETS</h5>
+          <h5 className="mb-0"> HS100 L-1 ATTENDANCE SHEETS</h5>
         </Card.Header>
 
         <Card.Body>
