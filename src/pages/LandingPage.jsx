@@ -105,11 +105,19 @@ const {studentData, setStudentData} = useContext(StudentContext);
 
 
 
+              {/* <Link  to="/mb-l2-result" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
+            <p><BsArrowRight className="blinking-link" />Class 8th Result -  Mission Buniyaad Level-2. <br/>(कक्षा 8वीं का परिणाम – मिशन बुनियाद स्तर-2।)</p> 
+            </Link>
+            <br /> 
+ */}
 
+
+
+{/* 
                  <Link  to="/s100-l1-admit-card" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
             <p><BsArrowRight className="blinking-link" />Class 10th Admit Card -  Haryana Super 100 Level-1. <br/>(कक्षा 10वीं का प्रवेश पत्र – हरियाणा सुपर 100 स्तर-1।)</p> 
             </Link>
-            <br />
+            <br /> */}
 
 
               {/* <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>

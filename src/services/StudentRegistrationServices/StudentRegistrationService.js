@@ -36,22 +36,6 @@ export const createStudent = async (rqBody) => {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 export const updateStudent = async (rqBody) => {
   try {
     console.log("Updating Student Data to API:", rqBody);
@@ -89,7 +73,6 @@ export const getStudentBySrnNumberOrSlipId = async (rqBody) => {
     throw error;
   }
 };
-
 
 
 
@@ -159,3 +142,5 @@ export const GetAttendanceSheetData = async (rqBody) => {
     throw error;
   }
 };
+
+

@@ -1,69 +1,88 @@
 import './App.css';
+
 import RegistrationForm from './components/RegistrationFormComponent';
 import InputSrn from './components/InputSrn'
+
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import RegistrationFormPutComponent from './components/RegistrationFormPutComponent';
+
 import DependentDropComponent from './components/DependentDropComponent';
 import SearchableDropdown from './components/custdrop';
+
 import UserSignUp from './components/UserSignup'
 import UserSignIn from './components/UserSignIn';
+
 import UserPage from './components/UserPage';
 import BulkUpload from './components/BulkUpload';
+
 // import UserProvider from './components/ContextApi/UserContextAPI/UserContext';
+
 import RegistrationFormComponent from './components/RegistrationFormComponent';
 import LandingPage from './pages/LandingPage'
+
 import RegistrationPage from './pages/RegistrationPage';
 import BulkUploadWithDistBC from './components/BulkUploadWithDistBC';
+
 import StudentProvider from './components/ContextApi/StudentContextAPI/StudentContext';
 import AcknowledgementSlip from './components/AcknowledgementSlip';
+
 import StudentSignIn from './components/StudentSignIn';
 import StudentPage from './components/StudentPage';
+
 import RegistrationDashComponent from './components/RegistrationDashComponent';
 import UserRegistrationPageMB from './pages/UserRegistrationPageMB';
+
 import UserRegistrationPage100 from './pages/UserRegistrationPage100';
 import UserDash from './components/UserDash'
+
 import UserDash8 from './components/UserDash';
 import DistrictBlockDash8 from './components/DistrictBlockDash8';
+
 import DistrictBlockDash10 from './components/DistrictBlockDash10';
 import BlockSchoolDash8 from './components/BlockSchoolDash8';
+
 import BlockSchoolDash10 from './components/BlockSchoolDash10';
 import SchoolDash8 from './components/SchoolDash8';
+
 import SchoolDash10 from './components/SchoolDash10';
 import DashBoardPage from './pages/DashBoardPage';
+
 import Verification from './components/Verification';
 import Attendance10 from './components/Attendance10';
 
 //Manual entry route
-import Manualentry from './components/Manualentry';
 
+import Manualentry from './components/Manualentry';
 import ManualFormEntry from './components/ManualFormEntry';
+
 import ManualEntryInputSrn from './components/ManualEntryInputSrn';
 
 //Admit card
 import AdmitCard from './components/AdmitCard';
-
 import DistrictDash8 from './components/DistrictDash8';
 
 //Attendance sheet
 import Attendance8 from './components/Attendance8';
-
 import { MBL3Attendance } from './components/Attendance/MBL3Attendance';
+
 import { Super100L2Attendance } from './components/Attendance/Super100Attendance';
 import { Super100L2AttendanceFemale } from './components/Attendance/Super100AttendanceFemale';
-
 
 //For anual merit
 import StudentSignInAME from './components/StudentSigninAME';
 import StudentPageAme from "./components/StudentPageAme";
+
 import AttendanceAME from './components/AttendanceAME';
 import { AMEL3Attendance } from './components/Attendance/AMEL3Attendance';
+
 import IdCardS100 from "./components/Super100/IdCard";
 import IdCardS100SelectAndDownload from './components/Super100/SelectAndDownloadIdCard';
+
 import { Mbprecounselling } from './components/counselling/Mbprecounselling';
 import { CounsellingAttendance } from './components/counselling/CounsellingAttendance';
+
 import { CounsellingDocumentation } from './components/counselling/CounsellingDocumentation';
 import { CounsellingDash } from './components/counselling/CounsellingDash';
-
 
 import { PrincipalSchoolsAbrcDataCollection } from './components/CallingNDataCollection/PrincipalSchoolsAbrcDataCollection';
 import { UpdatePrincipalSchoolsAbrcData } from './components/CallingNDataCollection/UpdatePrincipalSchoolsAbrcDataCollection';
@@ -86,58 +105,84 @@ import {
 
 import { StudentRegistrationForm } from './components/StudentRegistration/StudentRegistrationForm';
 import { UserSignin } from './components/UserComponent/UserSignin.jsx';
+
 import { UserCreationForm } from './components/UserComponent/AdminUserCreationForm.jsx';
 import { UserProvider } from './components/NewContextApis/UserContext.js';
+
 import { UserSignup } from './components/UserComponent/UserSignup.jsx';
 import { StudentProviderV1 } from './components/NewContextApis/StudentContextApi.js';
+
 import { FileUploadProvider } from './components/NewContextApis/StudentContextApi.js';
 import { StudentSignin } from './components/StudentRegistration/StudentSignin.jsx';
+
 import { DateContextProvider } from './components/NewContextApis/DateContextApi.js';
 import { AcknowledgementSlipComponent } from './components/StudentRegistration/AcknowledgementSlip.jsx';
 import { UserDashBoard } from './components/UserComponent/UserDash.jsx';
+
 import { MainNavBar } from './components/NavbarsAndFooters/MainNavBar.jsx';
 import { MainFooter } from './components/NavbarsAndFooters/MainFooter.jsx';
+
 import { UserLayout } from './components/NavbarsAndFooters/UserNavbarLayout.jsx';
 import { BulkRegistrations } from './components/UserComponent/BulkRegistration.jsx';
+
 import { StudentLayout } from './components/NavbarsAndFooters/StudentNavbarLayout.jsx';
 import { UserLoginForFormVerification } from './components/UserComponent/UserLoginForFormVerification.jsx';
+
 import { StudentFormVerification } from './components/UserComponent/StudentFormVerification.jsx';
 import { RegisteredStudentsByUsers } from './components/UserComponent/RegisteredStudentsByUsers.jsx';
+
 import { Districtdashboard, Districtdashboard8 } from './components/Dashboards/DistrictDashboard8.jsx';
 import Districtdashboard10 from './components/Dashboards/DistrictDashboard10.jsx';
+
 import { BlockSchoolDashboard8 } from './components/Dashboards/BlockDashboard8.jsx';
 import { BlockSchoolDashboard10 } from './components/Dashboards/BlockDashboard10.jsx';
+
 import { DashboardLandingPage } from './components/Dashboards/DashBoardLandingPage.jsx';
 import { StudentDashLevelComponent } from './components/StudentRegistration/StudentDashLevel.jsx';
+
 import BulkDownloadProvider from './components/ContextApi/BulkDownloadAPI/BulkAdmitCardDownloadContextApi.js';
 import { SchoolDashboard } from './components/Dashboards/SchoolDashboard.jsx';
+
 import { BLCStudentSignatureForm } from './components/StudentRegistration/BLCStudentSignatureForm.jsx';
 import { PrincipalAbrcBeoDeoCalling } from './components/UserComponent/PrincipalAbrcBeoDeoCallings.jsx';
+
 import {PrincipalCallings} from './components/UserComponent/PrincipalCallings.jsx';
 import { AbrcCallings } from './components/UserComponent/AbrcCalling.jsx';
+
 import { BeoCallings } from './components/UserComponent/BeoCalling.jsx';
 import { DeoCallings } from './components/UserComponent/DeoCalling.jsx';
+
 import { AdminDash } from './components/UserComponent/AdminDash.jsx';
 import { BulkStudentFormVerification } from './components/UserComponent/BulkStudentFromVerification.jsx';
+
 import { DownloadDashboardReports } from './components/Dashboards/DownloadReports.jsx';
 import { GetCallSummary } from './components/Dashboards/DownloadCallingSummary.jsx';
+
 import { VerificationSummary } from './components/Dashboards/VerificationDashboard.jsx';
 import { ManualEntryForm } from './components/StudentRegistration/ManualFormEntry.jsx';
+
 import { EditStudentRegistrationForm } from './components/StudentRegistration/EditStudentRegistrationForm.jsx';
 import { EditStudentSignin } from './components/StudentRegistration/EditInputSrn.jsx';
+
 import { StudentAadharCorrecition } from './components/UserComponent/AadharCorrectionCalling.jsx';
 import { Level1AdmitCard } from './components/StudentRegistration/Level1AdmitCard.jsx';
+
 import { AdmitCardStudentSignin } from './components/StudentRegistration/AdmitCardLogin.jsx';
 import { StudentsCenterPreferenceForm } from './components/StudentRegistration/StudentCenterPreferenceForm.jsx';
+
 import { CenterAllocation } from './components/Admin/CenterAllocation.jsx';
 import { AttendanceSheet } from './components/Dashboards/AttendanceSheet.jsx';
+
 import { UpdateCenterAttendanceCount } from './components/Attendance/UpdateExaminationVenueAndCenterCapcity.jsx';
 import { AdmitCardStudentSigninLevel2 } from './components/StudentRegistration/AdmitCardLoginLevel2.jsx';
+
 import { Level2AdmitCard } from './components/StudentRegistration/Level2AdmitCard.jsx';
 import { CallingsMB2 } from './components/UserComponent/CallingsMBL2.jsx';
 
 import { StudentNotFound } from './components/StudentRegistration/NotQualified.jsx';
 import { Level1AdmitCardS100 } from './components/StudentRegistration/L1AdmitCardSuper100.jsx';
+import { AdmitCardStudentSigninLevel3 } from './components/StudentRegistration/AdmitCardLoginLevel3.jsx';
+import { Level3AdmitCard } from './components/StudentRegistration/Level3AdmitCard.jsx';
 
 function App() {
 
@@ -146,8 +191,10 @@ function App() {
     <div className="app-root">
 
       
-      
-       
+     
+ 
+
+
     <Router>
  <MainNavBar/>
  
@@ -392,16 +439,19 @@ function App() {
 
 
                          <Route path='/mb-level2-admit-card' element={<Level2AdmitCard/>}/>
+                         <Route path='/mb-level2-result' element={<Level3AdmitCard/>}/>
 
                       </Route>
                         
                         <Route path='/mb-l1-admit-card-deactivateddddddddddddddddddddd' element = {<AdmitCardStudentSignin/>}/>
 
-                        <Route path='/mb-l2-admit-card' element = {<AdmitCardStudentSigninLevel2/>}/>
+                        <Route path='/mb-l2-admit-card-deactivated' element = {<AdmitCardStudentSigninLevel2/>}/>
+
+                        <Route path='/mb-l2-result--deactivated' element = {<AdmitCardStudentSigninLevel3/>}/>
 
 
                           
-                        <Route path='/s100-l1-admit-card' element = {<AdmitCardStudentSignin/>}/>
+                        <Route path='/s100-l1-admit-card--deactivated' element = {<AdmitCardStudentSignin/>}/>
 
                           <Route path='/s100-level1-admit-card' element={<Level1AdmitCardS100/>}/>
 
@@ -473,7 +523,9 @@ function App() {
                             <Route path='/mb-l2-calling' element = {<CallingsMB2/>}/>
 
                             
-                            <Route path='/mb-l1-result' element = {<StudentNotFound/>}/>
+                            {/* <Route path='/mb-l1-result' element = {<StudentNotFound/>}/> */}
+
+                            <Route path='/mb-l2-result-notqualifed' element = {<StudentNotFound/>}/>
                           
 
 
