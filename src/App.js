@@ -447,7 +447,7 @@ function App() {
 
                         <Route path='/mb-l2-admit-card-deactivated' element = {<AdmitCardStudentSigninLevel2/>}/>
 
-                        <Route path='/mb-l2-result--deactivated' element = {<AdmitCardStudentSigninLevel3/>}/>
+                        <Route path='/mb-l2-result' element = {<AdmitCardStudentSigninLevel3/>}/>
 
 
                           
