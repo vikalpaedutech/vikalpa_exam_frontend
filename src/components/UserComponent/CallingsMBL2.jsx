@@ -1232,6 +1232,8 @@ export const CallingsMB2 = () => {
   // Remark options for dropdown
   const remarkOptions = [
     { value: "Teacher's Number", label: "Teacher's Number" },
+    { value: "Information Shared", label: "Information Shared" },
+    { value: "Result Checked", label: "Result Checked" },
     { value: "Parent's denied for exam", label: "Parent's denied for exam" },
     { value: "School denied for exam", label: "School denied for exam" },
     { value: "Not interested", label: "Not interested" },
