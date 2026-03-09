@@ -1499,6 +1499,8 @@ const registrationDate =  new Date();
       const finalSchool = schoolContext?.label || school;
       const finalSchoolCode = schoolContext?.value || schoolCode;
 
+      
+
       formData.append("schoolDistrict", toUpperTrim(finalSchoolDistrict));
       formData.append("schoolDistrictCode", trim(finalSchoolDistrictCode));
       formData.append("schoolBlock", toUpperTrim(finalSchoolBlock));
