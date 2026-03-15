@@ -113,6 +113,17 @@ const {studentData, setStudentData} = useContext(StudentContext);
 
 
 
+
+
+               <Link  to="/hs100-result-l1" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
+            <p><BsArrowRight className="blinking-link" />Class 10th Result -  Haryana Super 100 Level-1. <br/>(कक्षा 10वीं का परिणाम – हरियाणा सुपर 100 स्तर-1।)</p> 
+            </Link>
+            <br /> 
+
+
+
+
+
 {/* 
                  <Link  to="/s100-l1-admit-card" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
             <p><BsArrowRight className="blinking-link" />Class 10th Admit Card -  Haryana Super 100 Level-1. <br/>(कक्षा 10वीं का प्रवेश पत्र – हरियाणा सुपर 100 स्तर-1।)</p> 

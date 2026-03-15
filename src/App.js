@@ -183,6 +183,9 @@ import { StudentNotFound } from './components/StudentRegistration/NotQualified.j
 import { Level1AdmitCardS100 } from './components/StudentRegistration/L1AdmitCardSuper100.jsx';
 import { AdmitCardStudentSigninLevel3 } from './components/StudentRegistration/AdmitCardLoginLevel3.jsx';
 import { Level3AdmitCard } from './components/StudentRegistration/Level3AdmitCard.jsx';
+import { AdmitCardStudentSigninSuper100Level2 } from './components/StudentRegistration/AdmitCardLoginSuper100L2.jsx';
+import { ResultSuper100L1 } from './components/StudentRegistration/ResultSuper100L1.jsx';
+import { WaitingListSuper100 } from './components/StudentRegistration/WaitingListSuper100.jsx';
 
 function App() {
 
@@ -450,6 +453,12 @@ function App() {
                         <Route path='/mb-l2-result' element = {<AdmitCardStudentSigninLevel3/>}/>
 
 
+                         <Route path='/hs100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/>
+
+                         <Route path='/hs100-level1-result' element = {<ResultSuper100L1/>}/>
+                          <Route path='/hs100-level1-waitinglist' element = {<WaitingListSuper100/>}/>
+
+
                           
                         <Route path='/s100-l1-admit-card--deactivated' element = {<AdmitCardStudentSignin/>}/>
 
@@ -526,6 +535,8 @@ function App() {
                             {/* <Route path='/mb-l1-result' element = {<StudentNotFound/>}/> */}
 
                             <Route path='/mb-l2-result-notqualifed' element = {<StudentNotFound/>}/>
+
+                            <Route path='/sh100-l1-result-notqualifed' element = {<StudentNotFound/>}/>
                           
 
 
