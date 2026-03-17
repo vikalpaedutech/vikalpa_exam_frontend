@@ -559,11 +559,11 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                             </span>
 
                             <hr></hr>
-                            <h5>Important Notice:</h5>
+                            {/* <h5>Important Notice:</h5>
                             
                             <strong style={{color:'red', fontSize:'20px'}}>The Mission Buniyaad Entrance Examination Level 3 admit card will be available for download from 15 March 2026 onwards.</strong>{" "}<br></br>
                             <strong style={{color:'red', fontSize:'20px'}}>(मिशन बुनियाद प्रवेश परीक्षा लेवल 3 का प्रवेश पत्र 15 मार्च 2026 से डाउनलोड हेतु उपलब्ध कराया जाएगा।)</strong>
-                            
+                             */}
                         </p>
 
 
