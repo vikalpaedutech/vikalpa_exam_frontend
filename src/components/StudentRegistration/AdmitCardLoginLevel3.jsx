@@ -59,11 +59,13 @@ export const AdmitCardStudentSigninLevel3 = () => {
                 const student = res.student;
                 setStudentData(student);
 
-                console.log(student.L1ExaminationCenter)
+                
+                console.log(student.L3ExaminationCenter)
                 // 🔴 L1ExaminationCenter NOT ASSIGNED
                 if (student?.isPresentInL2Examination === false 
                 ) {
 
+                    alert('i am absent')
 
                     if (student?.classOfStudent === "8") {
 
@@ -88,12 +90,18 @@ export const AdmitCardStudentSigninLevel3 = () => {
                     }
                 } else {
 
-                    if(student?.L2Qualified === true &&  student?.classOfStudent === "8" ){
+                    if(student?.L3ExaminationCenter === null){
 
+                         alert('Admit card will be live soon for your district!')
+                         
+                         return;
                           // ✅ All good → navigate
-                    navigate("/mb-level2-result");
+                    
                     } else {
-                        navigate('/mb-l2-result-notqualifed')
+                        // navigate('/mb-l2-result-notqualifed')
+
+                       navigate("/mb-level2-result");
+
                     }
 
                   

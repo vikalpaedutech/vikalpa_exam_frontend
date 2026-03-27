@@ -22,6 +22,7 @@ import { DateUtils } from "../components/utils/DateUtils";
 import { UserContext } from "../components/NewContextApis/UserContext";
 import { StudentContext } from "../components/NewContextApis/StudentContextApi";
 import { Admitcardcomponent } from "../components/StudentRegistration/Admitcardcomponent";
+import { MBL3OrientationDates } from "../components/StudentRegistration/MBL3OrientationDates";
 
 
 export default function LandingPage() {
@@ -104,14 +105,14 @@ const {studentData, setStudentData} = useContext(StudentContext);
             <br /> */}
 
 
-
+{/* 
               <Link  to="/mb-l2-result" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
             <p><BsArrowRight className="blinking-link" />Class 8th Result -  Mission Buniyaad Level-2. <br/>(कक्षा 8वीं का परिणाम – मिशन बुनियाद स्तर-2।)</p> 
             </Link>
-            <br /> 
+            <br />  */}
 
 
-
+            <MBL3OrientationDates/>
 
 
 
