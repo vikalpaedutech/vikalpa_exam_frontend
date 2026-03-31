@@ -144,3 +144,27 @@ export const GetAttendanceSheetData = async (rqBody) => {
 };
 
 
+
+
+
+
+//Attendance sheet api
+
+export const FetchMbL2QualifiedStudent = async () => {
+  try {
+   
+
+    const response = await axios.post(`${API_BASE_URL}/api/fetch-mb-l2-qualified-student`);
+
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+
+    console.error("Error fetching data", error);
+
+    throw error;
+  }
+};
+
+

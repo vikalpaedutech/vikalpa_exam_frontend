@@ -186,6 +186,7 @@ import { Level3AdmitCard } from './components/StudentRegistration/Level3AdmitCar
 import { AdmitCardStudentSigninSuper100Level2 } from './components/StudentRegistration/AdmitCardLoginSuper100L2.jsx';
 import { ResultSuper100L1 } from './components/StudentRegistration/ResultSuper100L1.jsx';
 import { WaitingListSuper100 } from './components/StudentRegistration/WaitingListSuper100.jsx';
+import { MbL3OrientationCertificate } from './components/StudentRegistration/MbL3OrientationCertificate.jsx';
 
 function App() {
 
@@ -541,6 +542,10 @@ function App() {
                             <Route path='/mb-l2-result-notqualifed' element = {<StudentNotFound/>}/>
 
                             <Route path='/sh100-l1-result-notqualifed' element = {<StudentNotFound/>}/>
+
+
+
+                            <Route path='/mb-l3-orientation-certificate' element = {<MbL3OrientationCertificate/>}/>
                           
 
 
