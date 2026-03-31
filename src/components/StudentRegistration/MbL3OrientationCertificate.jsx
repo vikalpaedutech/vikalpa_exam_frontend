@@ -631,15 +631,15 @@ page.drawText(studentName, {
       color: textColor,
     });
     
-    // Optional: Add date of certificate generation
-    const currentDate = new Date().toLocaleDateString('en-IN');
-    page.drawText(`Date: ${currentDate}`, {
-      x: width - 150,
-      y: 50,
-      size: 10,
-      font: helveticaFont,
-      color: rgb(0.5, 0.5, 0.5),
-    });
+    // // Optional: Add date of certificate generation
+    // const currentDate = new Date().toLocaleDateString('en-IN');
+    // page.drawText(`Date: ${currentDate}`, {
+    //   x: width - 150,
+    //   y: 50,
+    //   size: 10,
+    //   font: helveticaFont,
+    //   color: rgb(0.5, 0.5, 0.5),
+    // });
     
     // Save the PDF
     const pdfBytes = await pdfDoc.save();
