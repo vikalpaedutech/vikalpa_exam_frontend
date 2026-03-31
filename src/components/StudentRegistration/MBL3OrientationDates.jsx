@@ -256,7 +256,7 @@ export const MBL3OrientationDates = () => {
     const districts = [
         { sno: 1, name: "Sirsa", status: "Exam Done" },
         { sno: 2, name: "Kurukshetra", status: "Download Admit Card" },
-        { sno: 3, name: "Sonipat", status: "Coming Soon" },
+        { sno: 3, name: "Sonipat", status: "Download Admit Card" },
         { sno: 4, name: "Bhiwani", status: "Coming Soon" },
         { sno: 5, name: "Ambala", status: "Coming Soon" },
         { sno: 6, name: "Rewari", status: "Coming Soon" },
