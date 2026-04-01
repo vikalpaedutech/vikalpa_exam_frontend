@@ -565,7 +565,15 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
                             </span>
                         </p>
 
+                    <hr></hr>
+<p>
+     <br /><br />
+                            <span style={{ fontWeight: "normal" , fontWeight:"bold", color:'red', fontSize:'150%'}}>
+                                Note: Students are informed that their admit cards will be available for download soon. They will be notified once the admit cards are released.
 
+(छात्रों को सूचित किया जाता है कि उनके एडमिट कार्ड जल्द ही डाउनलोड के लिए उपलब्ध होंगे। एडमिट कार्ड जारी होने पर उन्हें सूचित कर दिया जाएगा।)
+                            </span>
+</p>
 
                         <hr></hr>
 
