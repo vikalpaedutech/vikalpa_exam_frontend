@@ -470,7 +470,7 @@ export const MbL3OrientationCertificate = () => {
         const districtMap = new Map();
         
         response.data.forEach(student => {
-          const districtName = student.addressDistrict || student.schoolDistrict;
+          const districtName = student.schoolDistrict || student.schoolDistrict;
           const districtId = student.schoolDistrictCode || districtName;
           
           if (districtName && !districtMap.has(districtId)) {
