@@ -156,6 +156,10 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
             doc.text("by the school principal.", 155, 70);
         }
 
+
+                                                                    
+    
+
         // dividing line and instructions
         doc.setLineWidth(0.5);
         doc.line(10, 130, pageWidth - 10, 130);
