@@ -29,7 +29,7 @@ export const MBL3OrientationDates = () => {
         { sno: 11, name: "Kaithal", status: "Download Admit Card" },
         { sno: 12, name: "Panipat", status: "Coming Soon" },
         { sno: 13, name: "Faridabad", status: "Coming Soon" },
-        { sno: 14, name: "Jhajjar", status: "Coming Soon" },
+        { sno: 14, name: "Jhajjar", status: "Download Admit Card" },
         { sno: 15, name: "Mahendergarh", status: "Coming Soon" },
         { sno: 16, name: "Rohtak", status: "Coming Soon" },
         { sno: 17, name: "Fatehabad", status: "Coming Soon" },
