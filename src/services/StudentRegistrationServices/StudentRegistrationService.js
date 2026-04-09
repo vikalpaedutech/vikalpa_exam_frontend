@@ -168,3 +168,24 @@ export const FetchMbL2QualifiedStudent = async () => {
 };
 
 
+
+
+//Updating level 3 attendance
+
+export const markL3AttendanceOfStudents = async (reqBody) => {
+  try {
+   
+
+    const response = await axios.post(`${API_BASE_URL}/api/update-level3-attendance`, reqBody);
+
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+
+    console.error("Error fetching data", error);
+
+    throw error;
+  }
+};
+
