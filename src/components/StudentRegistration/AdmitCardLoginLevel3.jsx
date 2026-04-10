@@ -65,7 +65,7 @@ export const AdmitCardStudentSigninLevel3 = () => {
                 if (student?.isPresentInL2Examination === false 
                 ) {
 
-                    alert('i am absent')
+                    // alert('i am absent')
 
                     if (student?.classOfStudent === "8") {
 
@@ -83,8 +83,8 @@ export const AdmitCardStudentSigninLevel3 = () => {
                     if (student?.classOfStudent === "10") {
                         openModal(
                             "Result Coming Soon",
-                            `Haryana Super 100 Reuslt will be live soon.
-(हरियाणा सुपर 100 परीक्षा परिणाम जल्द ही जारी किया जाएगा।)`
+                            `Haryana Super 100 Level 2 Admit Card will be available soon..
+                             (हरियाणा सुपर 100 लेवल 2 का एडमिट कार्ड जल्द ही उपलब्ध होगा।)`
                         );
                         return;
                     }
