@@ -1589,7 +1589,7 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
         // doc.text("Examination Date: 30th January, Friday", pageWidth / 2, 26, { align: "center" });
 
         doc.setFontSize(8); // Reduced from 9
-        doc.text(`Reporting Date: ${student.L2ExaminationDate}, Reporting Time: 08:00 AM.`, pageWidth / 2, 26, { align: "center" });
+        doc.text(`Reporting Date: ${student.L2ExaminationDate}, Reporting Time: 09:00 AM.`, pageWidth / 2, 26, { align: "center" });
 
         const dataForPdf = [
             ["Student Name", student.name ?? "-"],
@@ -2079,19 +2079,19 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
                         </p>
 
                     <hr></hr>
-<p>
+{/* <p>
      <br /><br />
                             <span style={{ fontWeight: "normal" , fontWeight:"bold", color:'red', fontSize:'150%'}}>
                                 Note: Students are informed that their admit cards will be available for download soon. They will be notified once the admit cards are released.
 
 (छात्रों को सूचित किया जाता है कि उनके एडमिट कार्ड जल्द ही डाउनलोड के लिए उपलब्ध होंगे। एडमिट कार्ड जारी होने पर उन्हें सूचित कर दिया जाएगा।)
                             </span>
-</p>
+</p> */}
 
                         <hr></hr>
 
                         <br></br>
-                        {/* <div className="d-flex align-items-center justify-content-center mb-3">
+                        <div className="d-flex align-items-center justify-content-center mb-3">
                             <div style={{ textAlign: "center" }}>
                                 <a
                                     onClick={() => downloadSinglePdf(student)}
@@ -2103,7 +2103,7 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
                                 </a>
                                 <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                             </div>
-                        </div> */}
+                        </div>
 
 
 
