@@ -454,9 +454,14 @@ function App() {
                         <Route path='/mb-l2-result' element = {<AdmitCardStudentSigninLevel3/>}/>
 
 
-                         <Route path='/hs100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/>
+                         {/* <Route path='/hs100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/> */}
+
+                           <Route path='/s100-l2-admit-card' element = {<AdmitCardStudentSigninSuper100Level2/>}/>
+                       
 
                          <Route path='/hs100-level1-result' element = {<ResultSuper100L1/>}/>
+
+                         <Route path='/s100-l2-admit-card' element = {<ResultSuper100L1/>}/>
                           <Route path='/hs100-level1-waitinglist' element = {<WaitingListSuper100/>}/>
 
 
