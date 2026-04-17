@@ -144,6 +144,23 @@ export const GetAttendanceSheetData = async (rqBody) => {
 };
 
 
+export const GetAttendanceSheetDataS100 = async (rqBody) => {
+  try {
+    console.log(rqBody);
+
+    const response = await axios.post(`${API_BASE_URL}/api/get-attendance-sheet-data-s100`, rqBody);
+
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+
+    console.error("Error fetching data", error);
+
+    throw error;
+  }
+};
+
 
 
 

@@ -187,6 +187,7 @@ import { AdmitCardStudentSigninSuper100Level2 } from './components/StudentRegist
 import { ResultSuper100L1 } from './components/StudentRegistration/ResultSuper100L1.jsx';
 import { WaitingListSuper100 } from './components/StudentRegistration/WaitingListSuper100.jsx';
 import { MbL3OrientationCertificate } from './components/StudentRegistration/MbL3OrientationCertificate.jsx';
+import { S100AttendanceSheet } from './components/Dashboards/S100AttendanceSheet.jsx';
 
 function App() {
 
@@ -533,9 +534,10 @@ function App() {
                           <Route path='/mb-l3-attendance-pdf' element = {<AttendanceSheet/>}/>
 
 
-                              <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/>
+                              {/* <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/> */}
 
-                            
+                               <Route path='/s100-l2-attendance' element = {<S100AttendanceSheet/>}/>
+
                             <Route path='/update-examination-center-and-capacities' element = {<UpdateCenterAttendanceCount/>}/>
 
                             

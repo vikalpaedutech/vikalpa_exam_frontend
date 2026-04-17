@@ -36,7 +36,7 @@ export const MBL3OrientationDates = () => {
         { sno: 18, name: "Hisar", status: "Download Admit Card" },
         { sno: 19, name: "Jind", status: "Download Admit Card" },
         { sno: 20, name: "Karnal", status: "Download Admit Card" },
-        { sno: 21, name: "Gurugram", status: "Coming Soon" },
+        { sno: 21, name: "Gurugram", status: "Download Admit Card" },
         { sno: 22, name: "Nuh", status: "Coming Soon" }
     ];
 

@@ -27,6 +27,22 @@ export const GetCentersDataByExaminationAndExamType = async () => {
 
 
 
+export const GetCentersDataByExaminationAndExamTypes100 = async () => {
+  try {
+   
+
+    const response = await axios.post(`${API_BASE_URL}/api/get-examination-centers-s100`);
+
+    return response.data;
+  } catch (error) {
+    console.error("❌ Error fetching data:", error);
+    throw error;
+  }
+};
+
+
+
+
 
 export const updateExaminationCentersAndCapacity = async (reqBody) => {
   try {
