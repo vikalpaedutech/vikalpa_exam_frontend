@@ -2093,7 +2093,7 @@ export const S100AttendanceSheet = () => {
       <Card className="shadow">
         <Card.Header className="bg-primary text-white d-flex align-items-center">
           <FaFilter className="me-2" /> 
-          <h5 className="mb-0">MB L-3 ATTENDANCE & DOC VERIFICATION SHEETS</h5>
+          <h5 className="mb-0">HS 100 L-2 ATTENDANCE & DOC VERIFICATION SHEETS</h5>
         </Card.Header>
 
         <Card.Body>
