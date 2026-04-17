@@ -188,6 +188,7 @@ import { ResultSuper100L1 } from './components/StudentRegistration/ResultSuper10
 import { WaitingListSuper100 } from './components/StudentRegistration/WaitingListSuper100.jsx';
 import { MbL3OrientationCertificate } from './components/StudentRegistration/MbL3OrientationCertificate.jsx';
 import { S100AttendanceSheet } from './components/Dashboards/S100AttendanceSheet.jsx';
+import { PptS100L2Students } from './components/Dashboards/PptS100L2Students.jsx';
 
 function App() {
 
@@ -537,6 +538,8 @@ function App() {
                               {/* <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/> */}
 
                                <Route path='/s100-l2-attendance' element = {<S100AttendanceSheet/>}/>
+
+                                <Route path='/s100-l2-ppt' element = {<PptS100L2Students/>}/>
 
                             <Route path='/update-examination-center-and-capacities' element = {<UpdateCenterAttendanceCount/>}/>
 
