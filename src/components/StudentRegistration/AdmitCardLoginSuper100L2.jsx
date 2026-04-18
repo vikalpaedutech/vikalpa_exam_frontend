@@ -1,9 +1,4 @@
 
-
-
-
-
-
 import React, { useState, useEffect, useContext } from "react";
 import { StudentContext } from "../NewContextApis/StudentContextApi";
 import {
@@ -66,7 +61,6 @@ export const AdmitCardStudentSigninSuper100Level2 = () => {
 
 
                     if (student?.classOfStudent === "10") {
-
 
 //                         openModal(
 //                             "MB Level-1 Result Status",
