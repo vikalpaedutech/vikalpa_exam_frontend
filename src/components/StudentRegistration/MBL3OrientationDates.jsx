@@ -23,7 +23,7 @@ export const MBL3OrientationDates = () => {
         { sno: 6, name: "Rewari", status: "Exam Done" },
         { sno: 7, name: "Yamunanagar", status: "Exam Done" },
         { sno: 8, name: "Charkhi Dadri", status: "Coming Soon" },
-        { sno: 9, name: "Ambala", status: "Coming Soon" },
+        { sno: 9, name: "Ambala", status: "Download Admit Card" },
         
         { sno: 10, name: "Palwal", status: "Exam Done" },
         { sno: 11, name: "Kaithal", status: "Exam Done" },
@@ -35,8 +35,8 @@ export const MBL3OrientationDates = () => {
         { sno: 17, name: "Fatehabad", status: "Exam Done" },
         { sno: 18, name: "Hisar", status: "Exam Done" },
         { sno: 19, name: "Jind", status: "Exam Done" },
-        { sno: 20, name: "Karnal", status: "Download Admit Card" },
-        { sno: 21, name: "Gurugram", status: "Download Admit Card" },
+        { sno: 20, name: "Karnal", status: "Exam Done" },
+        { sno: 21, name: "Gurugram", status: "Exam Done" },
         { sno: 22, name: "Nuh", status: "Download Admit Card" }
     ];
 
