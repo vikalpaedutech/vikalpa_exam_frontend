@@ -21,7 +21,7 @@ import { rgb } from "pdf-lib";
 
 const logo = "/haryana.png";
 const logo2 = "/admitBuniyaLogo.png";
-const level1admitinstructions = "/level2adimitcardinstructions.png";
+const level1admitinstructions = "/s100admitinstructionsLevel2Using.png";
 
 const certificate = "/L1HSQualificationCertificateblank.png"
 
