@@ -22,13 +22,13 @@ export const MBL3OrientationDates = () => {
         { sno: 5, name: "Panchkula", status: "Exam Done" },
         { sno: 6, name: "Rewari", status: "Exam Done" },
         { sno: 7, name: "Yamunanagar", status: "Exam Done" },
-        { sno: 8, name: "Charkhi Dadri", status: "Download Admit Card" },
-        { sno: 9, name: "Ambala", status: "Download Admit Card" },
+        { sno: 8, name: "Charkhi Dadri", status: "Exam Done" },
+        { sno: 9, name: "Ambala", status: "Exam Done" },
         
         { sno: 10, name: "Palwal", status: "Exam Done" },
         { sno: 11, name: "Kaithal", status: "Exam Done" },
         { sno: 12, name: "Panipat", status: "Exam Done" },
-        { sno: 13, name: "Faridabad", status: "Download Admit Card" },
+        { sno: 13, name: "Faridabad", status: "Exam Done" },
         { sno: 14, name: "Jhajjar", status: "Exam Done" },
         { sno: 15, name: "Mahendergarh", status: "Exam Done" },
         { sno: 16, name: "Rohtak", status: "Exam Done" },
@@ -37,7 +37,7 @@ export const MBL3OrientationDates = () => {
         { sno: 19, name: "Jind", status: "Exam Done" },
         { sno: 20, name: "Karnal", status: "Exam Done" },
         { sno: 21, name: "Gurugram", status: "Exam Done" },
-        { sno: 22, name: "Nuh", status: "Download Admit Card" }
+        { sno: 22, name: "Nuh", status: "Exam Done" }
     ];
 
     const handleLinkClick = (district, status) => {
