@@ -64,7 +64,7 @@ export const AdmitCardStudentSigninLevel3 = () => {
                 // 🔴 L1ExaminationCenter NOT ASSIGNED
                 if (student?.isPresentInL3Examination === false 
                 ) {
-
+                      
                     // alert('i am absent')
 
                     if (student?.classOfStudent === "8") {
@@ -81,6 +81,7 @@ export const AdmitCardStudentSigninLevel3 = () => {
                     }
 
                     if (student?.classOfStudent === "10") {
+                        
                         openModal(
                             "Result Coming Soon",
                             `Pleae! Go to Haryana Super 100 Link.
@@ -100,6 +101,7 @@ export const AdmitCardStudentSigninLevel3 = () => {
                           // ✅ All good → navigate
                     
                     } else {
+                        
                       
                         // navigate('/mb-l2-result-notqualifed')
 

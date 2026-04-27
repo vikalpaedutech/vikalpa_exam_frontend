@@ -721,7 +721,7 @@ import { rgb } from "pdf-lib";
 
 const logo = "/haryana.png";
 const logo2 = "/admitBuniyaLogo.png";
-const level1admitinstructions = "/level3adimitcardinstructions.png";
+const level1admitinstructions = "/counsellingselected.png";
 
 const certificate = "/L2QualificationCertificateblank.png"
 
@@ -805,10 +805,21 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
 
         doc.setFont("helvetica", "bold");
         doc.setFontSize(10);
-        doc.text(`Examination Date: ${student.L3ExaminationDate}`, pageWidth / 2, 27, { align: "center" });
+        doc.text(`Admission/Counselling Date: ${student.counsellingDate}`, pageWidth / 2, 27, { align: "center" });
 
-        doc.setFontSize(10);
-        doc.text("Reporting Time: 08:00 AM, Exam Time: 09:15 AM to 09:45 AM", pageWidth / 2, 32, { align: "center" });
+
+        
+
+        if (student?.selectionStatusForL3 === "Selected"){
+            doc.setFontSize(10);
+        doc.text(`Reporting Time: 09:00 AM`, pageWidth / 2, 32, { align: "center" });
+        } else {
+            doc.setFontSize(10);
+        doc.text(`Reporting Time: 12:30 PM`, pageWidth / 2, 32, { align: "center" });
+
+        }
+
+        
 
         const dataForPdf = [
             ["Student Name", student.name ?? "-"],
@@ -826,8 +837,8 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
 
             ["District", (student.L3ExaminationDistrict)],
             ["Block", (student.L3ExaminationBlock)],
-            ["Examination Center", student.L3ExaminationCenter ?? "-"],
-            ["Room No.", student.orientationRoomNumber ?? "-"]
+            ["Counselling Center", student.counsellingVenue ?? "-"],
+            ["Room No.", student.counsellingRoomNumber ?? "-"]
         ];
 
         doc.autoTable({
@@ -883,7 +894,7 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
             try {
                 await IsAdmitCardDownloaded({
                     _id: student._id,
-                    admitCardDownloadStatus: { isL3AdmitCardDownloaded: true }
+                    admitCardDownloadStatus: { iscounsellingAdmitCardDownloaded: true }
                 });
             } catch (e) {
                 console.warn("Notify failed:", e);
@@ -928,7 +939,7 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                 try {
                     await IsAdmitCardDownloaded({
                         _id: st._id,
-                        admitCardDownloadStatus: { isL3AdmitCardDownloaded: true }
+                        admitCardDownloadStatus: { iscounsellingAdmitCardDownloaded: true }
                     });
                 } catch (e) {
                     console.warn("Notify failed for", st._id, e);
@@ -1023,8 +1034,8 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
             { field: "Mobile Number", value: student.mobile || "-" },
             { field: "District", value: (student.schoolDistrict ? student.schoolDistrict : "-") + (student.schoolDistrictCode ? " (" + student.schoolDistrictCode + ")" : "") },
             { field: "Block", value: (student.schoolBlock ? student.schoolBlock : "-") + (student.schoolBlockCode ? " (" + student.schoolBlockCode + ")" : "") },
-            { field: "Examination Center", value: student.L1ExaminationCenter || "-" },
-            { field: "Room No.", value: student.orientationRoomNumber || "-" },
+            { field: "Counselling Center", value: student.counsellingVenue || "-" },
+            { field: "Room No.", value: student.counsellingRoomNumber || "-" },
         ];
 
         // NEW: Show only the basic details table and a download blinking hyperlink/button below it.
@@ -1297,6 +1308,27 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                                 <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                             </div>
                         </div> */}
+
+
+
+
+                                <div className="d-flex align-items-center justify-content-center mb-3">
+                            <div style={{ textAlign: "center" }}>
+                                <a
+                                    onClick={() => downloadSinglePdf(student)}
+                                    style={{ cursor: "pointer", fontWeight: "bold", fontSize: "22px", animation: "blink 1s infinite", alignItems: "center" }}
+                                    className="blinking-link"
+                                >
+                                    Download Mission Buniyaad Counselling Admit Card. <br />
+                                    (अपना Counselling प्रवेश पत्र डाउनलोड करें)
+                                </a>
+                                <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
+                            </div>
+                        </div>
+
+
+
+
 
 
 {/* 

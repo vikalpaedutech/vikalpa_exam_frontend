@@ -21,7 +21,7 @@ import { rgb } from "pdf-lib";
 
 const logo = "/haryana.png";
 const logo2 = "/admitBuniyaLogo.png";
-const level1admitinstructions = "/s100admitinstructionsLevel2Using.png";
+const level1admitinstructions = "/counsellingwaiting.png";
 
 const certificate = "/L1HSQualificationCertificateblank.png"
 
@@ -82,35 +82,45 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
     
             const doc = new jsPDF();
             doc.setFont("helvetica", "normal");
-            doc.setFontSize(9); // Further reduced from 10
+            doc.setFontSize(11);
     
             // border
             doc.rect(5, 5, 200, 285);
     
             // logos - best effort
-            try { 
-                doc.addImage(logo, "PNG", 10, 8, 18, 18); 
-            } catch (e) { }
-            try { 
-                doc.addImage(logo2, "PNG", 182, 8, 18, 18); 
-            } catch (e) { }
+            try { doc.addImage(logo, "PNG", 10, 8, 20, 20); } catch (e) { }
+            try { doc.addImage(logo2, "PNG", 180, 8, 20, 20); } catch (e) { }
     
             const pageWidth = doc.internal.pageSize.getWidth();
     
-            doc.setFontSize(10); // Reduced from 11
+            doc.setFontSize(12);
             doc.text("Directorate of School Education (DSE) Shiksha Sadan, Haryana", pageWidth / 2, 10, { align: "center" });
-            doc.setFontSize(11); // Reduced from 12
+            doc.setFontSize(13);
             const examLevel = student.classOfStudent === "8" ? "Mission Buniyaad" : "Haryana Super 100";
-            doc.text(`${examLevel} Level 2 Exam (2026-28)`, pageWidth / 2, 15, { align: "center" });
-            doc.setFontSize(10); // Reduced from 11
-            doc.text("E – Admit Card", pageWidth / 2, 21, { align: "center" });
+            doc.text(`${examLevel} Level 3 Exam (2026-28)`, pageWidth / 2, 15, { align: "center" });
+            doc.setFontSize(12);
+            doc.text("E – Admit Card", pageWidth / 2, 22, { align: "center" });
+            // doc.setFontSize(10);
+            // doc.text(`Examination Date: 26th December, Friday`, pageWidth / 2, 27, { align: "center" });
+    
     
             doc.setFont("helvetica", "bold");
-            doc.setFontSize(8); // Reduced from 9
-            // doc.text("Examination Date: 30th January, Friday", pageWidth / 2, 26, { align: "center" });
+            doc.setFontSize(10);
+            doc.text(`Admission/Counselling Date: ${student.counsellingDate}`, pageWidth / 2, 27, { align: "center" });
     
-            doc.setFontSize(8); // Reduced from 9
-            doc.text(`Reporting Date: ${student.L2ExaminationDate}, Reporting Time: 09:00 AM.`, pageWidth / 2, 26, { align: "center" });
+    
+            
+    
+            if (student?.selectionStatusForL3 === "Selected"){
+                doc.setFontSize(10);
+            doc.text(`Reporting Time: 09:00 AM`, pageWidth / 2, 32, { align: "center" });
+            } else {
+                doc.setFontSize(10);
+            doc.text(`Reporting Time: 12:30 PM`, pageWidth / 2, 32, { align: "center" });
+    
+            }
+    
+            
     
             const dataForPdf = [
                 ["Student Name", student.name ?? "-"],
@@ -121,83 +131,51 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                 ["Exam Roll Number", student.rollNumber ?? "-"],
                 ["Aadhar Number", student.aadhar ?? "-"],
                 ["Mobile Number", student.mobile ?? "-"],
-                ["District", (student.L2ExaminationDistrict)],
-                ["Block", (student.L2ExaminationBlock)],
-                ["School", student.school ?? "-"],
-                ["Examination Center", student.L2ExaminationCenter ?? "-"],
-                ["Batch", student.batchDivisionForL2Examination ?? "-"] // Added new field
+    
+                // ["District", (student.schoolDistrict ?? "-") + (student.schoolDistrictCode ? ` (${student.schoolDistrictCode})` : "")],
+                // ["Block", (student.schoolBlock ?? "-") + (student.schoolBlockCode ? ` (${student.schoolBlockCode})` : "")],
+    
+    
+                ["District", (student.L3ExaminationDistrict)],
+                ["Block", (student.L3ExaminationBlock)],
+                ["Counselling Center", student.counsellingVenue ?? "-"],
+                ["Room No.", student.counsellingRoomNumber ?? "-"]
             ];
     
-            // Calculate available space for table - made even smaller
-            const startY = 32;
-            const maxTableHeight = 70; // Reduced from 85 to leave more space
-            
             doc.autoTable({
-                startY: startY,
+                startY: 35,
                 body: dataForPdf,
                 theme: "grid",
-                styles: { 
-                    lineWidth: 0.1,
-                    lineColor: [0, 0, 0], 
-                    fillColor: false, 
-                    textColor: [0, 0, 0], 
-                    fontSize: 7, // Reduced from 8 to 7
-                    cellPadding: 1.5, // Reduced from 2 to 1.5
-                    overflow: 'linebreak'
-                },
-                columnStyles: { 
-                    0: { cellWidth: 32 }, // Reduced from 35
-                    1: { cellWidth: 100, cellPadding: 1.5, overflow: 'linebreak' } // Reduced from 85
-                },
-                tableWidth: "auto",
-                margin: { left: 10, right: 10 }
+                styles: { lineWidth: 0.2, lineColor: [0, 0, 0], fillColor: false, textColor: [0, 0, 0], fontSize: 10 },
+                columnStyles: { 0: { cellWidth: 50 }, 1: { cellWidth: 80 } },
+                tableWidth: "wrap"
             });
     
-            // Get the final Y position after table
-            const finalY = doc.lastAutoTable.finalY + 3;
-    
-            // photo area (adjusted position and size)
+            // photo area
             if (student.imageUrl) {
                 try {
-                    doc.addImage(student.imageUrl, "PNG", 152, 35, 45, 45); // Slightly smaller and repositioned
+                    doc.addImage(student.imageUrl, "PNG", 150, 40, 50, 50);
                 } catch (e) {
-                    doc.rect(152, 35, 45, 45);
-                    doc.setFontSize(6); // Smaller font
-                    doc.text("Paste your", 158, 50);
-                    doc.text("passport-size", 158, 55);
-                    doc.text("photograph", 158, 60);
-                    doc.text("duly attested", 158, 65);
+                    doc.rect(150, 40, 50, 50);
+                    doc.text("Paste your passport-size", 155, 60);
+                    doc.text("photograph duly attested", 155, 65);
+                    doc.text("by the school principal.", 155, 70);
                 }
             } else {
-                doc.rect(152, 35, 45, 45);
-                doc.setFontSize(6);
-                doc.text("Paste your", 158, 50);
-                doc.text("passport-size", 158, 55);
-                doc.text("photograph", 158, 60);
-                doc.text("duly attested", 158, 65);
+                doc.rect(150, 40, 50, 50);
+                doc.text("Paste your passport-size", 155, 60);
+                doc.text("photograph duly attested", 155, 65);
+                doc.text("by the school principal.", 155, 70);
             }
     
             // dividing line and instructions
-            doc.setLineWidth(0.5);
-            doc.line(10, finalY, pageWidth - 10, finalY);
-            
+            // doc.setLineWidth(0.5);
+            // doc.line(10, 130, pageWidth - 10, 130);
             try {
-                // Adjust instruction image position and size based on available space
-                const instructionsY = finalY + 2;
-                const availableHeight = 285 - instructionsY ; // Leave bottom margin
-                const imageHeight = Math.min(availableHeight, 165); // Reduced from 145
-                doc.addImage(level1admitinstructions, "PNG", 15, instructionsY, 168, imageHeight);
+                doc.addImage(level1admitinstructions, "PNG", 15, 132, 180, 152);
             } catch (e) {
-                doc.setFontSize(6.5); // Even smaller font for instructions
-                const instructionsY = finalY + 5;
-                doc.text("General Instructions:", 15, instructionsY);
-                doc.text("1. Reach examination center 30 minutes before the scheduled time.", 15, instructionsY + 4, { maxWidth: pageWidth - 30 });
-                doc.text("2. Carry this admit card along with valid ID proof (Aadhar Card).", 15, instructionsY + 8, { maxWidth: pageWidth - 30 });
-                doc.text("3. Do not carry mobile phones, calculators, or any electronic devices.", 15, instructionsY + 12, { maxWidth: pageWidth - 30 });
-                doc.text("4. Use black/blue ballpoint pen only.", 15, instructionsY + 16, { maxWidth: pageWidth - 30 });
-                doc.text("5. No candidate will be allowed after the reporting time.", 15, instructionsY + 20, { maxWidth: pageWidth - 30 });
-                doc.text("6. Carry your own stationery items.", 15, instructionsY + 24, { maxWidth: pageWidth - 30 });
-                doc.text("7. Follow all COVID-19 protocols if applicable.", 15, instructionsY + 28, { maxWidth: pageWidth - 30 });
+                doc.setFontSize(9);
+                doc.text("General Instructions: Reach 30 minutes early. Carry admit card & Aadhar. Do not carry mobile/calculators etc.", 15, 135, { maxWidth: pageWidth - 30 });
             }
     
             return doc.output("blob");
@@ -217,7 +195,7 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                 try {
                     await IsAdmitCardDownloaded({
                         _id: student._id,
-                        admitCardDownloadStatus: { isL2AdmitCardDownloaded: true }
+                        admitCardDownloadStatus: { iscounsellingAdmitCardDownloaded: true }
                     });
                 } catch (e) {
                     console.warn("Notify failed:", e);
@@ -262,7 +240,7 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                     try {
                         await IsAdmitCardDownloaded({
                             _id: st._id,
-                            admitCardDownloadStatus: { isL2AdmitCardDownloaded: true }
+                            admitCardDownloadStatus: { iscounsellingAdmitCardDownloaded: true }
                         });
                     } catch (e) {
                         console.warn("Notify failed for", st._id, e);
@@ -357,7 +335,8 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                 { field: "Mobile Number", value: student.mobile || "-" },
                 { field: "District", value: (student.schoolDistrict ? student.schoolDistrict : "-") + (student.schoolDistrictCode ? " (" + student.schoolDistrictCode + ")" : "") },
                 { field: "Block", value: (student.schoolBlock ? student.schoolBlock : "-") + (student.schoolBlockCode ? " (" + student.schoolBlockCode + ")" : "") },
-                { field: "Examination Center", value: student.L1ExaminationCenter || "-" },
+                { field: "Counselling Center", value: student.counsellingVenue || "-" },
+                { field: "Room No.", value: student.counsellingRoomNumber || "-" },
             ];
     
             // NEW: Show only the basic details table and a download blinking hyperlink/button below it.
@@ -375,7 +354,7 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                     const doc = new jsPDF("landscape", "mm", "a4");
     
                     // Template
-                    const templatePath = "/L1HSQualificationCertificateblank.png";
+                    const templatePath = "/L3QualificationCertificateblankup.png";
                     const response = await fetch(templatePath);
                     const blob = await response.blob();
     
@@ -390,12 +369,12 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                     // Safe values
                     const name = student?.name || "";
                     const father = student?.father || "";
-                    const district = student?.L1ExaminationDistrict || "";
-                    const block = student?.L1ExaminationBlock || "";
+                    const district = student?.L2ExaminationDistrict || "";
+                    const block = student?.L2ExaminationBlock || "";
                     const school = student?.school || "";
-                    const stateRank = student?.stateRank || "";
-                    const districtRank = student?.districtRankL1 || "";
-                    const blockRank = student?.blockRankL1 || "";
+                    const stateRank = student?.stateRankL2 || "";
+                    const districtRank = student?.districtRankL2 || "";
+                    // const blockRank = student?.blockRankL1 || "";
     
                     const startX = 35;
                     let y = 100;
@@ -424,9 +403,6 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                         y + 1.5
                     );
     
-    
-                    
-    
                     // ---------- LINE 2 ----------
                     // y += 12;
                     // doc.setFont("times", "normal");
@@ -452,10 +428,10 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                     let districtWidth = doc.getTextWidth(district);
                     doc.line(xCursor + 16, y + 1.5, xCursor + 32 + districtWidth, y + 1.5);
                     doc.setFont("times", "normal");
-                    doc.text(",", xCursor + 52, y);
+                    doc.text(",", xCursor + 60, y);
     
                     doc.setFont("times", "normal");
-                    doc.text("block", xCursor + 54, y);
+                    doc.text("block", xCursor + 63, y);
     
     
                     xCursor += districtWidth;
@@ -472,15 +448,12 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                     doc.text(`${block.replace(/\s*-\s*\(.*?\)\s*$/, "") || ""
                         }`, xCursor + 50, y);
                     let blockWidth = doc.getTextWidth(block);
-                    doc.line(xCursor + 50, y + 1.5, xCursor + 100, y + 1.5);
-    
-    
-    
+                    doc.line(xCursor + 49, y + 1.5, xCursor + 100, y + 1.5);
     
     
     
                     // ---------- LINE 3 (School – dynamic font) ----------
-                 y += 12;
+                    y += 12;
                     doc.setFont("times", "normal");
                     doc.text("school", startX, y);
     
@@ -497,7 +470,6 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                     let schoolWidth = doc.getTextWidth(school);
                     doc.line(startX + 20, y + 1.5, startX + 55 + schoolWidth, y + 1.5);
     
-    
                     // ---------- LINE 4 ----------
                     y += 14;
                     doc.setFontSize(16);
@@ -506,23 +478,31 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
     
                     doc.setFont("times", "bold");
                     doc.text(
-                        "Haryana Super 100 Entrance Examination Level 1 for the batch 2026–28.",
+                        "Mission Buniyaad Entrance Examination Level 3. You are now eligible",
                         startX + 39,
                         y,
                         { maxWidth: 220 }
                     );
     
+                     doc.setFont("times", "bold");
+                    doc.text(
+                        "for admission to Mission Buniyaad Batch-5 (Session 2026-28).",
+                        startX ,
+                        y+10,
+                        { maxWidth: 240 }
+                    );
+    
                     // ---------- RANKS ----------
                     y += 18;
-                    doc.setFont("times", "normal");
-                    doc.setFontSize(14);
+                    // doc.setFont("times", "normal");
+                    // doc.setFontSize(14);
     
                     // doc.text(`State Rank : ${stateRank}`, startX, y);
                     // doc.text(`District Rank : ${districtRank}`, startX, y + 10);
-                    // doc.text(`Block Rank : ${blockRank}`, startX, y + 20);
+                    // // doc.text(`Block Rank : ${blockRank}`, startX, y + 20);
     
                     // Save
-                    doc.save(`${name || "Student"}_HS100_Level1_Qualification_Certificate.pdf`);
+                    doc.save(`${name || "Student"}_Level3_Qualification_Certificate.pdf`);
     
     
     
@@ -530,7 +510,7 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                 try {
                     await IsAdmitCardDownloaded({
                         _id: student._id,
-                        admitCardDownloadStatus: { L3ResultDownloaded: true }
+                        admitCardDownloadStatus: { iscounsellingAdmitCardDownloaded: true }
                     });
                 } catch (e) {
                     console.warn("Notify failed:", e);
@@ -619,6 +599,22 @@ export const WaitingListMBL3 = ({ singleStudent = null, bulkDownload = null, onD
                              </div>
                          </div> */}
 
+
+
+
+    <div className="d-flex align-items-center justify-content-center mb-3">
+                            <div style={{ textAlign: "center" }}>
+                                <a
+                                    onClick={() => downloadSinglePdf(student)}
+                                    style={{ cursor: "pointer", fontWeight: "bold", fontSize: "22px", animation: "blink 1s infinite", alignItems: "center" }}
+                                    className="blinking-link"
+                                >
+                                    Download Mission Buniyaad Counselling Admit Card. <br />
+                                    (अपना Counselling प्रवेश पत्र डाउनलोड करें)
+                                </a>
+                                <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
+                            </div>
+                        </div>
 
 
                         {/* <div className="d-flex align-items-center justify-content-center mb-3">
