@@ -150,7 +150,7 @@ export const AdmitCardStudentSigninLevel3 = () => {
                 <Card className="p-4 shadow-lg" style={{ width: "350px", borderRadius: "16px" }}>
                     <Card.Header className="text-center">
                         <strong style={{ fontSize: "20px" }}>
-                            ENTER SRN/Slip ID (एसआरएन/स्लिप आईडी भरे)
+                            ENTER SRN (एसआरएन भरे)
                         </strong>
                         <hr />
                         <small style={{ fontWeight: "bold" }}>
