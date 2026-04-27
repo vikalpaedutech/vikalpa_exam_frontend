@@ -1042,7 +1042,7 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                 const doc = new jsPDF("landscape", "mm", "a4");
 
                 // Template
-                const templatePath = "/L2QualificationCertificateblankup.png";
+                const templatePath = "/L3QualificationCertificateblankup.png";
                 const response = await fetch(templatePath);
                 const blob = await response.blob();
 
@@ -1166,23 +1166,31 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
 
                 doc.setFont("times", "bold");
                 doc.text(
-                    "Mission Buniyaad Entrance Examination Level 2 for the batch 2026–28.",
+                    "Mission Buniyaad Entrance Examination Level 3. You are now eligible",
                     startX + 39,
                     y,
                     { maxWidth: 220 }
                 );
 
+                 doc.setFont("times", "bold");
+                doc.text(
+                    "for admission to Mission Buniyaad Batch-5 (Session 2026-28).",
+                    startX ,
+                    y+10,
+                    { maxWidth: 240 }
+                );
+
                 // ---------- RANKS ----------
                 y += 18;
-                doc.setFont("times", "normal");
-                doc.setFontSize(14);
+                // doc.setFont("times", "normal");
+                // doc.setFontSize(14);
 
-                doc.text(`State Rank : ${stateRank}`, startX, y);
-                doc.text(`District Rank : ${districtRank}`, startX, y + 10);
-                // doc.text(`Block Rank : ${blockRank}`, startX, y + 20);
+                // doc.text(`State Rank : ${stateRank}`, startX, y);
+                // doc.text(`District Rank : ${districtRank}`, startX, y + 10);
+                // // doc.text(`Block Rank : ${blockRank}`, startX, y + 20);
 
                 // Save
-                doc.save(`${name || "Student"}_Level2_Qualification_Certificate.pdf`);
+                doc.save(`${name || "Student"}_Level3_Qualification_Certificate.pdf`);
 
 
 
@@ -1190,7 +1198,7 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
             try {
                 await IsAdmitCardDownloaded({
                     _id: student._id,
-                    admitCardDownloadStatus: { L2ResultDownloaded: true }
+                    admitCardDownloadStatus: { L3ResultDownloaded: true }
                 });
             } catch (e) {
                 console.warn("Notify failed:", e);
@@ -1209,7 +1217,7 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
              try {
                 await IsAdmitCardDownloaded({
                     _id: student._id,
-                    admitCardDownloadStatus: { L2ResultDownloaded: true }
+                    admitCardDownloadStatus: { L3ResultDownloaded: true }
                 });
             } catch (e) {
                 console.warn("Notify failed:", e);
@@ -1229,7 +1237,7 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                 <Card className="shadow-sm" style={cardStyle}>
                     <Card.Header className="bg-white text-center border-0 py-2">
                         <div style={{ textAlign: "center" }}>
-                            <div style={{ fontSize: 35, fontWeight: 700, color: "MediumSeaGreen" }}>You have Qualified Mission Buniyaad Entrance Examination Level-2
+                            <div style={{ fontSize: 35, fontWeight: 700, color: "MediumSeaGreen" }}>Result Status -  Selected
                           </div>
                         </div>
                     </Card.Header>
@@ -1248,16 +1256,20 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                             Dear {student.name},
                             <br /><br />
                             We are pleased to inform you that you have successfully Qualified the {" "}
-                            <strong>Mission Buniyaad Entrance Examination Level 2 for the 2026–28 session.</strong>{" "}
+                            <strong>Mission Buniyaad Entrance Examination Level 3 for the batch 2026–28. You are now eligible for admission to Mission Buniyaad Batch-5 (Session-2026-28). Kindly attend the Counselling Session to complete the admission process.</strong>{" "}
                             <strong></strong>
                             <br /><br />
-                        
-                            <strong>You can now download your Mission Buniyaad Entrance Examination Level 3 Admit Card using the links provided below.</strong>{" "}
+{/*                         
+                            <strong>You can now download your Mission Buniyaad Entrance Examination Level 3 Admit Card using the links provided below.</strong>{" "}\ */}
+
+
+                               <strong>You may now download your Mission Buniyaad Entrance Examination Level 3 Qualifying Certificate using the link provided below.</strong>{" "}
+                            
                             
                             <br /><br />
-                            <span style={{ fontWeight: "normal" }}>
-                                (प्प्रिय {student.name}, हमें आपको यह सूचित करते हुए अत्यंत प्रसन्नता हो रही है कि आपने सत्र 2026–28 के लिए मिशन बुनियाद प्रवेश परीक्षा लेवल 3 सफलतापूर्वक उत्तीर्ण कर ली है। आप नीचे दिए गए लिंक के माध्यम से मिशन बुनियाद प्रवेश परीक्षा लेवल 3 का प्रवेश पत्र डाउनलोड कर सकते हैं।)
-                            </span>
+                           <span style={{ fontWeight: "normal" }}>
+(प्रिय {student.name}, हमें आपको यह सूचित करते हुए अत्यंत प्रसन्नता हो रही है कि आपने सत्र 2026–28 के लिए मिशन बुनियाद प्रवेश परीक्षा लेवल 3 सफलतापूर्वक उत्तीर्ण कर ली है। अब आप मिशन बुनियाद बैच-5 (सत्र-2026-28) में प्रवेश के लिए पात्र हैं। कृपया प्रवेश प्रक्रिया पूर्ण करने हेतु परामर्श सत्र में अनिवार्य रूप से उपस्थित हों।) </span>
+
 
                             <hr></hr>
                             {/* <h5>Important Notice:</h5>
@@ -1272,7 +1284,7 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                         <hr></hr>
 
                         <br></br>
-                        <div className="d-flex align-items-center justify-content-center mb-3">
+                        {/* <div className="d-flex align-items-center justify-content-center mb-3">
                             <div style={{ textAlign: "center" }}>
                                 <a
                                     onClick={() => downloadSinglePdf(student)}
@@ -1284,11 +1296,11 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                                 </a>
                                 <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                             </div>
-                        </div>
+                        </div> */}
 
 
-
-                        {/* <div className="d-flex align-items-center justify-content-center mb-3">
+{/* 
+                        <div className="d-flex align-items-center justify-content-center mb-3">
                             <div style={{ textAlign: "center" }}>
                                 <a
                                     onClick={() => downloadCertificate(student)}
@@ -1301,6 +1313,24 @@ export const Level3AdmitCard = ({ singleStudent = null, bulkDownload = null, onD
                                 <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                             </div>
                         </div> */}
+
+
+
+
+
+   <div className="d-flex align-items-center justify-content-center mb-3">
+                            <div style={{ textAlign: "center" }}>
+                                <a
+                                    onClick={() => downloadCertificate(student)}
+                                    style={{ cursor: "pointer", fontWeight: "bold", fontSize: "22px", animation: "blink 1s infinite", alignItems: "center" }}
+                                    className="blinking-link"
+                                >
+                                    Download Mission Buniyaad Entrance Examination Level-3 Qualification Certificate. <br />
+                                    (मिशन बुनियाद प्रवेश परीक्षा लेवल-3 प्रमाण पत्र डाउनलोड करें)
+                                </a>
+                                <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
+                            </div>
+                        </div>
 
 
 

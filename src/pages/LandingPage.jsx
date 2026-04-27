@@ -110,6 +110,19 @@ const {studentData, setStudentData} = useContext(StudentContext);
             <p><BsArrowRight className="blinking-link" />Class 8th Result -  Mission Buniyaad Level-2. <br/>(कक्षा 8वीं का परिणाम – मिशन बुनियाद स्तर-2।)</p> 
             </Link>
             <br />  */}
+
+
+
+
+
+            
+              <Link  to="/mb-l3-result" style={{textDecoration:'none', fontSize:'35px', color:'red'}}>
+            <p><BsArrowRight className="blinking-link" />Class 8th Result -  Mission Buniyaad Level-3. <br/>(कक्षा 8वीं का परिणाम – मिशन बुनियाद स्तर-3)</p> 
+            </Link>
+            <br /> 
+
+<hr></hr>
+
               <Link  to="s100-l2-admit-card" style={{textDecoration:'none', fontSize:'35px', color:'red'}}>
            <p>
   <BsArrowRight className="blinking-link" />
@@ -120,7 +133,7 @@ const {studentData, setStudentData} = useContext(StudentContext);
             <br /> 
             <hr></hr>
 
-            <MBL3OrientationDates/>
+            {/* <MBL3OrientationDates/> */}
 
 
 

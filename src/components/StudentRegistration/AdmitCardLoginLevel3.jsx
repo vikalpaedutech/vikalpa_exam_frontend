@@ -62,7 +62,7 @@ export const AdmitCardStudentSigninLevel3 = () => {
                 
                 console.log(student.L3ExaminationCenter)
                 // 🔴 L1ExaminationCenter NOT ASSIGNED
-                if (student?.isPresentInL2Examination === false 
+                if (student?.isPresentInL3Examination === false 
                 ) {
 
                     // alert('i am absent')
@@ -76,15 +76,15 @@ export const AdmitCardStudentSigninLevel3 = () => {
 // (प्रिय विद्यार्थी, आप मिशन बुनियाद लेवल-1 प्रवेश परीक्षा में अनुपस्थित थे।)`
 //                         );
 
-                        navigate('/mb-l2-result-notqualifed')
+                        navigate('/mb-l3-result-notqualifed')
                         return;
                     }
 
                     if (student?.classOfStudent === "10") {
                         openModal(
                             "Result Coming Soon",
-                            `Haryana Super 100 Level 2 Admit Card will be available soon..
-                             (हरियाणा सुपर 100 लेवल 2 का एडमिट कार्ड जल्द ही उपलब्ध होगा।)`
+                            `Pleae! Go to Haryana Super 100 Link.
+                             (कृपया हरियाणा सुपर 100 लिंक पर जाएं।)`
                         );
                         return;
                     }
@@ -92,15 +92,25 @@ export const AdmitCardStudentSigninLevel3 = () => {
 
                     if(student?.L3ExaminationCenter === null){
 
-                         alert('Admit card will be live soon for your district!')
+                        //  alert('Admit card will be live soon for your district!')
+
+                         alert('!!!!!')
                          
                          return;
                           // ✅ All good → navigate
                     
                     } else {
+                      
                         // navigate('/mb-l2-result-notqualifed')
 
-                       navigate("/mb-level2-result");
+                        if ( student?.isPresentInL3Examination === true && student?.selectionStatusForL3 === "Selected" && student?.L3Qualified === true)
+                        {
+                            navigate("/mb-level3-result");
+                        } else if (student?.isPresentInL3Examination === true && student?.selectionStatusForL3 === "Waiting" && student?.L3Qualified === true)
+                        {
+                            navigate("/MB-level3-waitinglist");
+                        }
+                    
 
                     }
 
@@ -124,7 +134,7 @@ export const AdmitCardStudentSigninLevel3 = () => {
 //             );
 
 
-            navigate('/mb-l2-result-notqualifed')
+            navigate('/mb-l3-result-notqualifed')
         } finally {
             setLoading(false);
         }

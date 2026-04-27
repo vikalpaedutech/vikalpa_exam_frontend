@@ -190,6 +190,8 @@ import { MbL3OrientationCertificate } from './components/StudentRegistration/MbL
 import { S100AttendanceSheet } from './components/Dashboards/S100AttendanceSheet.jsx';
 import { PptS100L2Students } from './components/Dashboards/PptS100L2Students.jsx';
 import { IDCardSuper100L2 } from './components/Dashboards/IDCardSuper100L2.jsx';
+import { WaitingListMBL3 } from './components/StudentRegistration/WaitingListMBL3.jsx';
+import { StudentNotFoundMB } from './components/StudentRegistration/NotQualifiedMB.jsx';
 
 function App() {
 
@@ -446,7 +448,10 @@ function App() {
 
 
                          <Route path='/mb-level2-admit-card' element={<Level2AdmitCard/>}/>
-                         <Route path='/mb-level2-result' element={<Level3AdmitCard/>}/>
+
+                         {/* <Route path='/mb-level2-result' element={<Level3AdmitCard/>}/> */}
+
+                         <Route path='/mb-level3-result' element={<Level3AdmitCard/>}/>
 
                       </Route>
                         
@@ -454,7 +459,10 @@ function App() {
 
                         <Route path='/mb-l2-admit-card-deactivated' element = {<AdmitCardStudentSigninLevel2/>}/>
 
-                        <Route path='/mb-l2-result' element = {<AdmitCardStudentSigninLevel3/>}/>
+                        {/* <Route path='/mb-l2-result' element = {<AdmitCardStudentSigninLevel3/>}/> */}
+
+
+                        <Route path='/mb-l3-result' element = {<AdmitCardStudentSigninLevel3/>}/>
 
 
                          {/* <Route path='/hs100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/> */}
@@ -467,6 +475,7 @@ function App() {
                          <Route path='/s100-l2-admit-card' element = {<ResultSuper100L1/>}/>
                           <Route path='/hs100-level1-waitinglist' element = {<WaitingListSuper100/>}/>
 
+                          <Route path='/MB-level3-waitinglist' element = {<WaitingListMBL3/>}/>
 
                           
                         <Route path='/s100-l1-admit-card--deactivated' element = {<AdmitCardStudentSignin/>}/>
@@ -553,7 +562,9 @@ function App() {
                             
                             {/* <Route path='/mb-l1-result' element = {<StudentNotFound/>}/> */}
 
-                            <Route path='/mb-l2-result-notqualifed' element = {<StudentNotFound/>}/>
+                            {/* <Route path='/mb-l2-result-notqualifed' element = {<StudentNotFound/>}/> */}
+
+                             <Route path='/mb-l3-result-notqualifed' element = {<StudentNotFoundMB/>}/>
 
                             <Route path='/sh100-l1-result-notqualifed' element = {<StudentNotFound/>}/>
 

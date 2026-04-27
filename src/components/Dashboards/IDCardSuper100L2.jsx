@@ -4573,6 +4573,7 @@ export const IDCardSuper100L2 = () => {
     { value: "Batch 01 - (19-April-2026 - 21-April-2026)", label: "Batch 01 - (19-April-2026 - 21-April-2026)" },
     { value: "Batch 02 - (22-April-2026 - 24-April-2026)", label: "Batch 02 - (22-April-2026 - 24-April-2026)" },
     { value: "Batch 03 - (25-April-2026 - 27-April-2026)", label: "Batch 03 - (25-April-2026 - 27-April-2026)" },
+    { value: "Batch 04 - (29-April-2026 - 01-May-2026)", label: "Batch 04 - (29-April-2026 - 01-May-2026)" },
   ];
 
   const [selectedSelectionStatus, setSelectedSelectionStatus] = useState(null);
