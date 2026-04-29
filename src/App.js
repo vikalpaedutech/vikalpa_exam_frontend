@@ -192,6 +192,7 @@ import { PptS100L2Students } from './components/Dashboards/PptS100L2Students.jsx
 import { IDCardSuper100L2 } from './components/Dashboards/IDCardSuper100L2.jsx';
 import { WaitingListMBL3 } from './components/StudentRegistration/WaitingListMBL3.jsx';
 import { StudentNotFoundMB } from './components/StudentRegistration/NotQualifiedMB.jsx';
+import { MBCounsellingAttendance } from './components/StudentRegistration/MBCounsellingAttemdamce.jsx';
 
 function App() {
 
@@ -571,6 +572,10 @@ function App() {
 
 
                             <Route path='/mb-l3-orientation-certificate' element = {<MbL3OrientationCertificate/>}/>
+
+                            {/* Counselling */}
+
+                            <Route path = '/mb-counselling-attendance' element = {<MBCounsellingAttendance/>}/>
                           
 
 

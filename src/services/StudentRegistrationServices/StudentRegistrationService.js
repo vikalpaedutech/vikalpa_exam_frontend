@@ -163,6 +163,44 @@ export const GetAttendanceSheetDataS100 = async (rqBody) => {
 
 
 
+export const GetAttendanceSheetDataCounselling = async (rqBody) => {
+  try {
+    console.log(rqBody);
+
+    const response = await axios.post(`${API_BASE_URL}/api/get-attendance-sheet-counselling`, rqBody);
+
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+
+    console.error("Error fetching data", error);
+
+    throw error;
+  }
+};
+
+
+
+
+
+export const MarkCounsellingAttendance = async (rqBody) => {
+  try {
+    console.log(rqBody);
+
+    const response = await axios.post(`${API_BASE_URL}/api/mark-counselling-attendance`, rqBody);
+
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+
+    console.error("Error fetching data", error);
+
+    throw error;
+  }
+};
+
 
 
 //Attendance sheet api
