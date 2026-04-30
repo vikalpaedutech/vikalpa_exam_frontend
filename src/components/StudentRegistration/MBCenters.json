@@ -1439,4 +1439,355 @@
   "createdAt": "",
   "updatedAt": "",
   "isCenterClosed": false
+},
+
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343801"
+  },
+  "districtId": "1",
+  "districtName": "Ambala",
+  "blockId": "5",
+  "blockName": "Saha",
+  "centerId": "-",
+  "centerName": "GMSSSS SAMALEHRI_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343802"
+  },
+  "districtId": "2",
+  "districtName": "Bhiwani",
+  "blockId": "9",
+  "blockName": "Bawani Khera",
+  "centerId": "-",
+  "centerName": "GMSSSS BAWANI KHERA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343803"
+  },
+  "districtId": "2",
+  "districtName": "Bhiwani",
+  "blockId": "11",
+  "blockName": "Bhiwani",
+  "centerId": "-",
+  "centerName": "GGSSS LOHAR_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343804"
+  },
+  "districtId": "4",
+  "districtName": "Faridabad",
+  "blockId": "18",
+  "blockName": "Faridabad",
+  "centerId": "-",
+  "centerName": "GMSSSS TIGAON_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343805"
+  },
+  "districtId": "6",
+  "districtName": "Gurugram",
+  "blockId": "28",
+  "blockName": "Sohna",
+  "centerId": "-",
+  "centerName": "GMSSSS SOHNA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343806"
+  },
+  "districtId": "6",
+  "districtName": "Gurugram",
+  "blockId": "26",
+  "blockName": "Gurgaon",
+  "centerId": "-",
+  "centerName": "PM SHRI GSSS SECTOR 4/7 URBAN ESTATE_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343807"
+  },
+  "districtId": "13",
+  "districtName": "Hisar",
+  "blockId": "35",
+  "blockName": "Hisar - II",
+  "centerId": "-",
+  "centerName": "PM SHRI GSSS GANGWA (1447)_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343808"
+  },
+  "districtId": "13",
+  "districtName": "Hisar",
+  "blockId": "30",
+  "blockName": "Agroha",
+  "centerId": "-",
+  "centerName": "AMSSS AGROHA (6648)_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343809"
+  },
+  "districtId": "13",
+  "districtName": "Hisar",
+  "blockId": "32",
+  "blockName": "Bass (Hansi-II)",
+  "centerId": "-",
+  "centerName": "GMSSSS BASS (1430)_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f34380a"
+  },
+  "districtId": "19",
+  "districtName": "Jind",
+  "blockId": "47",
+  "blockName": "Pillu Khera",
+  "centerId": "-",
+  "centerName": "GMSSSS PILLU KHERA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f34380b"
+  },
+  "districtId": "19",
+  "districtName": "Jind",
+  "blockId": "43",
+  "blockName": "Alewa",
+  "centerId": "-",
+  "centerName": "GMSSSS ALEWA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f34380c"
+  },
+  "districtId": "19",
+  "districtName": "Jind",
+  "blockId": "49",
+  "blockName": "Uchana",
+  "centerId": "-",
+  "centerName": "GMSSSS UCHANA KALAN_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f34380d"
+  },
+  "districtId": "15",
+  "districtName": "Kaithal",
+  "blockId": "55",
+  "blockName": "Siwan",
+  "centerId": "-",
+  "centerName": "GMSSSS SIWAN_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f34380e"
+  },
+  "districtId": "16",
+  "districtName": "Karnal",
+  "blockId": "61",
+  "blockName": "Nissing At Chirao",
+  "centerId": "-",
+  "centerName": "GMSSSS NISSING_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f34380f"
+  },
+  "districtId": "17",
+  "districtName": "Kurukshetra",
+  "blockId": "104",
+  "blockName": "Odhan",
+  "centerId": "-",
+  "centerName": "GSSS PIPLI_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343810"
+  },
+  "districtId": "20",
+  "districtName": "Mahendragarh",
+  "blockId": "70",
+  "blockName": "Nangal Choudhary",
+  "centerId": "-",
+  "centerName": "PM SHRI GGSSS NANGAL CHAUDHARY_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343811"
+  },
+  "districtId": "21",
+  "districtName": "Nuh",
+  "blockId": "72",
+  "blockName": "Ferozepur Jhirka",
+  "centerId": "-",
+  "centerName": "GMSSSS FIROZPUR JHIRKA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343812"
+  },
+  "districtId": "22",
+  "districtName": "Palwal",
+  "blockId": "77",
+  "blockName": "Hassanpur",
+  "centerId": "-",
+  "centerName": "GSSS HASSANPUR_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343813"
+  },
+  "districtId": "8",
+  "districtName": "Panipat",
+  "blockId": "88",
+  "blockName": "Panipat",
+  "centerId": "-",
+  "centerName": "GSSS SIWAH_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343814"
+  },
+  "districtId": "9",
+  "districtName": "Rewari",
+  "blockId": "92",
+  "blockName": "Khol At Rewari",
+  "centerId": "-",
+  "centerName": "GSSS KHOL_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343815"
+  },
+  "districtId": "9",
+  "districtName": "Rewari",
+  "blockId": "91",
+  "blockName": "Jatusana",
+  "centerId": "-",
+  "centerName": "GMSSSS JATUSANA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343816"
+  },
+  "districtId": "10",
+  "districtName": "Rohtak",
+  "blockId": "98",
+  "blockName": "Rohtak",
+  "centerId": "-",
+  "centerName": "GMSSSS KALANAUR_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343817"
+  },
+  "districtId": "11",
+  "districtName": "Sirsa",
+  "blockId": "100",
+  "blockName": "Baragudha",
+  "centerId": "-",
+  "centerName": "GMSSSS BUPP_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343818"
+  },
+  "districtId": "11",
+  "districtName": "Sirsa",
+  "blockId": "105",
+  "blockName": "Rania",
+  "centerId": "-",
+  "centerName": "GMSSSS RANIA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
+},
+{
+  "_id": {
+    "$oid": "69f33d779255b0832f343819"
+  },
+  "districtId": "12",
+  "districtName": "Sonipat",
+  "blockId": "110",
+  "blockName": "Kharkhoda",
+  "centerId": "-",
+  "centerName": "PM SHRI GSSS KHARKHODA_UPCOMING",
+  "createdAt": "",
+  "updatedAt": "",
+  "isCenterClosed": false
 }]

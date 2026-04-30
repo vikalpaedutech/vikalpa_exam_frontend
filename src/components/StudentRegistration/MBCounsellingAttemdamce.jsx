@@ -1242,6 +1242,87 @@ export const MBCounsellingAttendance = () => {
 
   return (
     <Container fluid className="mt-4">
+<Row className="mb-4">
+  <Col>
+    <div className="d-flex flex-wrap gap-3 align-items-center">
+      <a 
+        href="https://registration.buniyaadhry.com/mb-counselling-attendance" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-decoration-none"
+        style={{ color: '#0d6efd', fontWeight: '500' }}
+      >
+        <i className="bi bi-calendar-check me-1"></i>
+        Attendance
+      </a>
+      
+      <span className="text-muted">|</span>
+      
+      <a 
+        href="https://registration.buniyaadhry.com/mb-center-allocation-counselling" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-decoration-none"
+        style={{ color: '#0d6efd', fontWeight: '500' }}
+      >
+        <i className="bi bi-building me-1"></i>
+        Center Allocation & Distance
+      </a>
+      
+      <span className="text-muted">|</span>
+      
+      <a 
+        href="https://registration.buniyaadhry.com/mb-doc-verfication-counselling" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-decoration-none"
+        style={{ color: '#0d6efd', fontWeight: '500' }}
+      >
+        <i className="bi bi-file-earmark-check me-1"></i>
+        Doc Verification
+      </a>
+      
+      <span className="text-muted">|</span>
+      
+      <a 
+        href="https://registration.buniyaadhry.com/mb-provisional-selected-counselling" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-decoration-none"
+        style={{ color: '#0d6efd', fontWeight: '500' }}
+      >
+        <i className="bi bi-person-check me-1"></i>
+        Admission Status
+      </a>
+      
+      <span className="text-muted">|</span>
+      
+      <a 
+        href="https://registration.buniyaadhry.com/center-preference-dashboard" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-decoration-none"
+        style={{ color: '#0d6efd', fontWeight: '500' }}
+      >
+        <i className="bi bi-speedometer2 me-1"></i>
+        All Dashboard
+      </a>
+      
+      <span className="text-muted">|</span>
+      
+      <a 
+        href="https://registration.buniyaadhry.com/mb-l3-attendance-pdf" 
+        target="_blank"
+        rel="noopener noreferrer"
+        className="text-decoration-none"
+        style={{ color: '#0d6efd', fontWeight: '500' }}
+      >
+        <i className="bi bi-file-pdf me-1"></i>
+        Attendance Pdf
+      </a>
+    </div>
+  </Col>
+</Row>
       <Row>
         <Col md={12}>
           {/* Main Form Accordion */}
