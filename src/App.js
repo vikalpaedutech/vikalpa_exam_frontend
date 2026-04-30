@@ -193,6 +193,10 @@ import { IDCardSuper100L2 } from './components/Dashboards/IDCardSuper100L2.jsx';
 import { WaitingListMBL3 } from './components/StudentRegistration/WaitingListMBL3.jsx';
 import { StudentNotFoundMB } from './components/StudentRegistration/NotQualifiedMB.jsx';
 import { MBCounsellingAttendance } from './components/StudentRegistration/MBCounsellingAttemdamce.jsx';
+import { MBCenterAllocationCounselling } from './components/StudentRegistration/MBCenterAllocationCounselling.jsx';
+import { MBDocVerificationCounselling } from './components/StudentRegistration/MBDocVerificationCounselling.jsx';
+import { MBProvisionalSelectedCounselling } from './components/StudentRegistration/MBProvisionalSelecteedCounselling.jsx';
+import { CenterPreferenceDashboard } from './components/StudentRegistration/MBCounsellingCenterPreferenceDashboard.jsx';
 
 function App() {
 
@@ -498,7 +502,7 @@ function App() {
                           <Route path="/Bulk-student-form-verification" element={<BulkStudentFormVerification />} />
 
 
-
+                          <Route path='/center-preference-dashboard' element = {<CenterPreferenceDashboard/>}/>
 
 
                             {/* dashboard routes */}
@@ -577,6 +581,11 @@ function App() {
 
                             <Route path = '/mb-counselling-attendance' element = {<MBCounsellingAttendance/>}/>
                           
+                            <Route path='/mb-center-allocation-counselling' element = {<MBCenterAllocationCounselling/>}/>
+
+                            <Route path='/mb-doc-verfication-counselling' element = {<MBDocVerificationCounselling/>}/>
+
+                            <Route path='/mb-provisional-selected-counselling' element = {<MBProvisionalSelectedCounselling/>}/>
 
 
             </Routes>

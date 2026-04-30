@@ -1,9 +1,9 @@
 // import React, { useEffect, useState } from "react";
-// import { Container, Row, Col, Form, Button, Card, Spinner, Alert, Badge, InputGroup, Accordion } from "react-bootstrap";
+// import { Container, Row, Col, Form, Button, Card, Spinner, Alert, Badge, InputGroup, Accordion, Modal } from "react-bootstrap";
 // import { GetCentersDataByExaminationAndExamTypeCounselling } from "../../services/ExaminationVenue/ExaminationVenueServices";
-// import { GetAttendanceSheetDataCounselling, MarkCounsellingAttendance } from "../../services/StudentRegistrationServices/StudentRegistrationService";
+// import { GetAttendanceSheetDataCounselling, updateDocumentVerification } from "../../services/StudentRegistrationServices/StudentRegistrationService";
 
-// export const MBCounsellingAttendance = () => {
+// export const MBProvisionalSelectedCounselling = () => {
 //   const [centersData, setCentersData] = useState([]);
 //   const [districts, setDistricts] = useState([]);
 //   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -20,11 +20,24 @@
 //   const [searchingStudent, setSearchingStudent] = useState(false);
 //   const [studentNotFound, setStudentNotFound] = useState(false);
 //   const [showSRNSearch, setShowSRNSearch] = useState(false);
+//   const [savingDocuments, setSavingDocuments] = useState(false);
+//   const [showDocVerificationAlert, setShowDocVerificationAlert] = useState(false);
+  
+//   // Document verification state
+//   const [documents, setDocuments] = useState({
+//     student3PassportSizedPhoto: false,
+//     studentAadharCardPhotoCopuy: false,
+//     parentsAaadhar: false,
+//     preCounsellingForm: false,
+//     class8MarksheetPhotoCopy: false,
+//     pppPhotocopy: false,
+//     slc: false
+//   });
   
 //   // Accordion state - main form expanded by default
 //   const [mainAccordionOpen, setMainAccordionOpen] = useState(["0"]);
   
-//   // Pre-defined access codes for districts based on your data
+//   // Pre-defined access codes for districts
 //   const districtAccessCodes = [
 //     { districtId: "10", districtName: "KAITHAL", accessCode: "KTH7823" },
 //     { districtId: "3", districtName: "CHARKHI DADRI", accessCode: "CHD5641" },
@@ -49,45 +62,6 @@
 //     { districtId: "20", districtName: "SIRSA", accessCode: "SIR4257" },
 //     { districtId: "13", districtName: "MAHENDRAGARH", accessCode: "MAH8639" }
 //   ];
-  
-//   // Loading state for individual student attendance marking
-//   const [markingAttendance, setMarkingAttendance] = useState(false);
-  
-//   // Attendance toggle state
-//   const [attendanceToggle, setAttendanceToggle] = useState(false);
-
-//   // Verify access code
-//   const verifyAccessCode = () => {
-//     if (!selectedDistrict) {
-//       setError("Please select a district first");
-//       return false;
-//     }
-
-//     const selectedDistrictObj = districts.find(d => d.id === selectedDistrict);
-//     if (!selectedDistrictObj) {
-//       setError("District not found");
-//       return false;
-//     }
-
-//     const districtCode = districtAccessCodes.find(
-//       dc => dc.districtId === selectedDistrict
-//     );
-
-//     if (!districtCode) {
-//       setError("Access code not configured for this district. Please contact administrator.");
-//       return false;
-//     }
-
-//     if (districtCode.accessCode === accessCode) {
-//       setAccessCodeVerified(true);
-//       setError("");
-//       return true;
-//     } else {
-//       setError(`Invalid access code for ${selectedDistrictObj.name}. Please enter the correct access code.`);
-//       setAccessCodeVerified(false);
-//       return false;
-//     }
-//   };
 
 //   // Fetch all counseling centers
 //   const fetchCounsellingCenters = async () => {
@@ -175,7 +149,40 @@
 //     return "Contact administrator for access code";
 //   };
 
-//   // Handle form submission - Just verify access code and venue
+//   // Verify access code
+//   const verifyAccessCode = () => {
+//     if (!selectedDistrict) {
+//       setError("Please select a district first");
+//       return false;
+//     }
+
+//     const selectedDistrictObj = districts.find(d => d.id === selectedDistrict);
+//     if (!selectedDistrictObj) {
+//       setError("District not found");
+//       return false;
+//     }
+
+//     const districtCode = districtAccessCodes.find(
+//       dc => dc.districtId === selectedDistrict
+//     );
+
+//     if (!districtCode) {
+//       setError("Access code not configured for this district. Please contact administrator.");
+//       return false;
+//     }
+
+//     if (districtCode.accessCode === accessCode) {
+//       setAccessCodeVerified(true);
+//       setError("");
+//       return true;
+//     } else {
+//       setError(`Invalid access code for ${selectedDistrictObj.name}. Please enter the correct access code.`);
+//       setAccessCodeVerified(false);
+//       return false;
+//     }
+//   };
+
+//   // Handle form submission
 //   const handleSubmit = async (e) => {
 //     e.preventDefault();
     
@@ -189,25 +196,25 @@
 //       return;
 //     }
 
-//     // Verify access code before proceeding
 //     if (!verifyAccessCode()) {
 //       return;
 //     }
     
-//     // Clear any previous data
 //     setError("");
 //     setSuccessMessage("");
 //     setCurrentStudent(null);
 //     setStudentNotFound(false);
-    
-//     // Show SRN search card
 //     setShowSRNSearch(true);
-    
-//     // Auto collapse the main accordion
 //     setMainAccordionOpen([]);
     
 //     setSuccessMessage("Access code verified! Please enter SRN to fetch student details.");
 //     setTimeout(() => setSuccessMessage(""), 5000);
+//   };
+
+//   // Check if student has completed document verification
+//   const hasCompletedDocVerification = (student) => {
+//     const validStatuses = ["Admission Done", "Provisional", "Waiting"];
+//     return student.finalAdmissionStatus && validStatuses.includes(student.finalAdmissionStatus);
 //   };
 
 //   // Handle SRN search and fetch student data
@@ -221,6 +228,7 @@
 //     setError("");
 //     setStudentNotFound(false);
 //     setCurrentStudent(null);
+//     setShowDocVerificationAlert(false);
     
 //     try {
 //       const requestBody = {
@@ -233,13 +241,48 @@
 //       console.log("Fetching student with SRN:", requestBody);
       
 //       const response = await GetAttendanceSheetDataCounselling(requestBody);
-//       console.log("Student data response:", response);
+//       console.log("Full response:", response);
       
-//       if (response.ok && response.data && response.data.length > 0) {
-//         const student = response.data[0]; // Get the first matching student
+//       let student = null;
+      
+//       if (response && response.data) {
+//         if (Array.isArray(response.data) && response.data.length > 0) {
+//           student = response.data[0];
+//         } else if (response.data.data && Array.isArray(response.data.data) && response.data.data.length > 0) {
+//           student = response.data.data[0];
+//         } else if (typeof response.data === 'object' && response.data._id) {
+//           student = response.data;
+//         }
+//       } else if (Array.isArray(response) && response.length > 0) {
+//         student = response[0];
+//       } else if (response && response._id) {
+//         student = response;
+//       }
+      
+//       console.log("Extracted student:", student);
+      
+//       if (student) {
+//         // Check if student has completed document verification
+//         if (!hasCompletedDocVerification(student)) {
+//           console.log("Student has not completed document verification");
+//           setShowDocVerificationAlert(true);
+//           setSearchingStudent(false);
+//           return;
+//         }
         
 //         setCurrentStudent(student);
-//         setAttendanceToggle(student.counsellingAttendance || false);
+        
+//         // Load existing document verification status
+//         setDocuments({
+//           student3PassportSizedPhoto: student.student3PassportSizedPhoto || false,
+//           studentAadharCardPhotoCopuy: student.studentAadharCardPhotoCopuy || false,
+//           parentsAaadhar: student.parentsAaadhar || false,
+//           preCounsellingForm: student.preCounsellingForm || false,
+//           class8MarksheetPhotoCopy: student.class8MarksheetPhotoCopy || false,
+//           pppPhotocopy: student.pppPhotocopy || false,
+//           slc: student.slc || false
+//         });
+        
 //         setStudentNotFound(false);
 //         setShowSRNSearch(false);
 //         setSuccessMessage(`✓ Student found: ${student.name}`);
@@ -248,65 +291,118 @@
 //       } else {
 //         setStudentNotFound(true);
 //         setCurrentStudent(null);
-//         setError(`No student found with SRN: ${srnInput}`);
+//         setError(`No student found with SRN: ${srnInput} at venue: ${selectedVenue}`);
 //       }
 //     } catch (error) {
 //       console.error("Error fetching student data", error);
-//       setError("An error occurred while fetching student data");
+//       setError("An error occurred while fetching student data: " + (error.message || "Unknown error"));
 //       setStudentNotFound(true);
 //     } finally {
 //       setSearchingStudent(false);
 //     }
 //   };
 
-//   // Handle Enter key press in SRN input
+//   // Handle Enter key press
 //   const handleSRNKeyPress = (e) => {
 //     if (e.key === 'Enter') {
 //       handleSRNSearch();
 //     }
 //   };
 
-//   // Handle attendance toggle with API integration
-//   const handleAttendanceToggle = async () => {
-//     if (!currentStudent) return;
+//   // Handle document checkbox change
+//   const handleDocumentChange = (documentName, checked) => {
+//     setDocuments(prev => ({
+//       ...prev,
+//       [documentName]: checked
+//     }));
+//   };
+
+//   // Calculate final admission status based on SLC and selection status
+//   const calculateFinalAdmissionStatus = (slcStatus, selectionStatus) => {
+//     // If student is not selected, status remains "Waiting"
+//     if (selectionStatus !== "Selected") {
+//       return "Waiting";
+//     }
     
-//     const newStatus = !attendanceToggle;
+//     // If student is selected and has submitted SLC
+//     if (slcStatus === true) {
+//       return "Admission Done";
+//     }
     
-//     setMarkingAttendance(true);
+//     // If student is selected but hasn't submitted SLC
+//     return "Provisional";
+//   };
+
+//   // Save document verification
+//   const saveDocumentVerification = async () => {
+//     console.log("=== saveDocumentVerification CALLED ===");
+//     console.log("Current student:", currentStudent);
+//     console.log("Documents state:", documents);
+    
+//     if (!currentStudent) {
+//       console.error("No current student found");
+//       setError("No student selected");
+//       return;
+//     }
+    
+//     setSavingDocuments(true);
+//     setError("");
+//     setSuccessMessage("");
     
 //     try {
+//       // Calculate final admission status based on SLC and selection status
+//       const finalStatus = calculateFinalAdmissionStatus(
+//         documents.slc,
+//         currentStudent.selectionStatusForL3
+//       );
+      
+//       console.log("Calculated final admission status:", finalStatus);
+      
 //       const requestBody = {
-//         studentId: currentStudent._id,
-//         counsellingVenue: selectedVenue,
-//         attendanceStatus: newStatus
+//         _id: currentStudent._id,
+//         documents: documents,
+//         finalAdmissionStatus: finalStatus
 //       };
       
-//       console.log("Marking attendance request:", requestBody);
+//       console.log("Saving document verification with body:", requestBody);
       
-//       const response = await MarkCounsellingAttendance(requestBody);
-//       console.log("Attendance marking response:", response);
+//       const response = await updateDocumentVerification(requestBody);
+//       console.log("Save response received:", response);
       
-//       if (response.ok) {
-//         setAttendanceToggle(newStatus);
+//       if (response && response.success) {
+//         setSuccessMessage(`Document verification updated successfully! Status: ${finalStatus}`);
         
-//         // Update current student
+//         // Update current student with new data
 //         setCurrentStudent(prev => ({
 //           ...prev,
-//           counsellingAttendance: newStatus,
-//           counsellingTokenNumber: response.data?.student?.counsellingTokenNumber || prev.counsellingTokenNumber
+//           ...documents,
+//           finalAdmissionStatus: finalStatus
 //         }));
         
-//         setSuccessMessage(`${currentStudent.name} marked as ${newStatus ? 'Present' : 'Absent'}${newStatus ? ` with Token ${response.tokenNumber || response.data?.student?.counsellingTokenNumber || 'N/A'}` : ''}`);
 //         setTimeout(() => setSuccessMessage(""), 3000);
-        
+//         setError("");
 //       } else {
-//         setError(response.message || `Failed to mark attendance`);
+//         console.error("Response success was false:", response);
+//         setError(response?.message || "Failed to save document verification");
 //       }
 //     } catch (error) {
-//       console.error("Error marking attendance:", error);
-//       setError(error.response?.data?.message || `An error occurred while marking attendance`);
+//       console.error("Error in saveDocumentVerification:", error);
+      
+//       let errorMessage = "An error occurred while saving document verification";
+      
+//       if (error.response) {
+//         errorMessage = error.response.data?.message || `Server error: ${error.response.status}`;
+//         console.error("Server error response:", error.response.data);
+//       } else if (error.request) {
+//         errorMessage = "Network error: Could not connect to server. Please check if backend is running.";
+//         console.error("No response received:", error.request);
+//       } else if (error.message) {
+//         errorMessage = error.message;
+//       }
+      
+//       setError(errorMessage);
 //     } finally {
-//       setMarkingAttendance(false);
+//       setSavingDocuments(false);
 //     }
 //   };
 
@@ -317,6 +413,15 @@
 //     setShowSRNSearch(true);
 //     setStudentNotFound(false);
 //     setError("");
+//     setDocuments({
+//       student3PassportSizedPhoto: false,
+//       studentAadharCardPhotoCopuy: false,
+//       parentsAaadhar: false,
+//       preCounsellingForm: false,
+//       class8MarksheetPhotoCopy: false,
+//       pppPhotocopy: false,
+//       slc: false
+//     });
 //   };
 
 //   // Reset everything
@@ -332,9 +437,18 @@
 //     setStudentNotFound(false);
 //     setShowSRNSearch(false);
 //     setMainAccordionOpen(["0"]);
+//     setDocuments({
+//       student3PassportSizedPhoto: false,
+//       studentAadharCardPhotoCopuy: false,
+//       parentsAaadhar: false,
+//       preCounsellingForm: false,
+//       class8MarksheetPhotoCopy: false,
+//       pppPhotocopy: false,
+//       slc: false
+//     });
 //   };
 
-//   // Get badge color based on selection status
+//   // Get status badge
 //   const getStatusBadge = (status) => {
 //     switch(status) {
 //       case "Selected":
@@ -346,8 +460,53 @@
 //     }
 //   };
 
+//   // Get admission status badge
+//   const getAdmissionStatusBadge = (status) => {
+//     switch(status) {
+//       case "Admission Done":
+//         return <Badge bg="success">Admission Done</Badge>;
+//       case "Provisional":
+//         return <Badge bg="warning" text="dark">Provisional</Badge>;
+//       case "Waiting":
+//         return <Badge bg="secondary">Waiting</Badge>;
+//       default:
+//         return <Badge bg="info">{status || "Not Set"}</Badge>;
+//     }
+//   };
+
 //   return (
 //     <Container fluid className="mt-4">
+//       {/* Modal for Document Verification Alert */}
+//       <Modal show={showDocVerificationAlert} onHide={() => setShowDocVerificationAlert(false)} centered>
+//         <Modal.Header closeButton style={{ background: '#dc3545', color: 'white' }}>
+//           <Modal.Title>
+//             <i className="bi bi-exclamation-triangle-fill me-2"></i>
+//             Document Verification Required
+//           </Modal.Title>
+//         </Modal.Header>
+//         <Modal.Body className="text-center py-4">
+//           <i className="bi bi-file-earmark-x" style={{ fontSize: '4rem', color: '#dc3545' }}></i>
+//           <h5 className="mt-3">Please Complete Document Verification First</h5>
+//           <p className="text-muted mt-2">
+//             This student has not completed the document verification process.
+//             <br />
+//             Please go to <strong>Document Verification</strong> section and verify all documents first.
+//           </p>
+//           <div className="mt-3 p-3 bg-light rounded">
+//             <small className="text-muted">
+//               <i className="bi bi-info-circle me-1"></i>
+//               Student must have one of these statuses: <strong>Admission Done</strong>, <strong>Provisional</strong>, or <strong>Waiting</strong>
+//             </small>
+//           </div>
+//         </Modal.Body>
+//         <Modal.Footer>
+//           <Button variant="danger" onClick={() => setShowDocVerificationAlert(false)}>
+//             <i className="bi bi-check-circle me-2"></i>
+//             OK, Understood
+//           </Button>
+//         </Modal.Footer>
+//       </Modal>
+
 //       <Row>
 //         <Col md={12}>
 //           {/* Main Form Accordion */}
@@ -356,8 +515,8 @@
 //               <Accordion.Header>
 //                 <div className="d-flex justify-content-between align-items-center w-100 me-3">
 //                   <span>
-//                     <i className="bi bi-person-check me-2"></i>
-//                     MB Counselling Attendance
+//                     <i className="bi bi-file-check me-2"></i>
+//                     MB Counselling - Selected/Provisional/Waiting Students
 //                   </span>
 //                   {selectedVenue && accessCodeVerified && (
 //                     <Badge bg="success" className="ms-2">
@@ -480,7 +639,6 @@
 //                     </Col>
 //                   </Row>
                   
-//                   {/* Display verification status */}
 //                   {accessCodeVerified && selectedVenue && (
 //                     <Alert variant="success" className="mt-3">
 //                       ✓ Access code verified successfully! Click on "Verify & Proceed" to search for students.
@@ -497,14 +655,14 @@
 //       {showSRNSearch && accessCodeVerified && (
 //         <Row className="mt-4">
 //           <Col md={12}>
-//             <Card className="shadow-lg border-0 bg-gradient-search" style={{ background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
+//             <Card className="shadow-lg border-0 bg-gradient-search">
 //               <Card.Body className="p-5">
 //                 <div className="text-center mb-4">
 //                   <div className="search-icon mb-3">
 //                     <i className="bi bi-search-heart" style={{ fontSize: '4rem', color: '#667eea' }}></i>
 //                   </div>
-//                   <h3 className="mb-2">Find Student</h3>
-//                   <p className="text-muted">Enter SRN to fetch and mark attendance</p>
+//                   <h3 className="mb-2">Student Search</h3>
+//                   <p className="text-muted">Enter SRN to view student details</p>
 //                   <Badge bg="info" className="mb-3">
 //                     <i className="bi bi-building me-1"></i>
 //                     Venue: {selectedVenue}
@@ -554,10 +712,7 @@
                 
 //                 <Row className="mt-4">
 //                   <Col md={12} className="text-center">
-//                     <Button 
-//                       variant="outline-secondary" 
-//                       onClick={handleReset}
-//                     >
+//                     <Button variant="outline-secondary" onClick={handleReset}>
 //                       <i className="bi bi-arrow-repeat me-2"></i>
 //                       Start Over
 //                     </Button>
@@ -585,151 +740,106 @@
 //         </Row>
 //       )}
       
-//       {/* Student Details Card */}
+//       {/* Student Details and Document Verification Card */}
 //       {currentStudent && !showSRNSearch && (
 //         <Row className="mt-4">
 //           <Col md={12}>
 //             <Card className="shadow-lg border-0 student-profile-card">
-//               <Card.Header className="bg-gradient-success text-white" style={{ background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)' }}>
+//               <Card.Header className="bg-gradient-success text-white">
 //                 <div className="d-flex justify-content-between align-items-center">
 //                   <h5 className="mb-0">
 //                     <i className="bi bi-person-circle me-2"></i>
-//                     Student Profile
+//                     Student Details & Admission Status
 //                   </h5>
-//                   {getStatusBadge(currentStudent.selectionStatusForL3)}
+//                   <div className="d-flex gap-2">
+//                     {getStatusBadge(currentStudent.selectionStatusForL3)}
+//                     {getAdmissionStatusBadge(currentStudent.finalAdmissionStatus)}
+//                   </div>
 //                 </div>
 //               </Card.Header>
 //               <Card.Body className="p-4">
-//                 <Row>
-//                   <Col md={12} className="text-center mb-4">
-//                     <div className="avatar-circle mb-3">
-//                       <i className="bi bi-person-fill" style={{ fontSize: '3rem', color: '#fff' }}></i>
-//                     </div>
-//                     <h3 className="mb-1">{currentStudent.name || "N/A"}</h3>
-//                     <p className="text-muted">
-//                       <i className="bi bi-hash me-1"></i>
-//                       SRN: {currentStudent.srn || "N/A"}
-//                     </p>
-//                   </Col>
-//                 </Row>
-                
-//                 <Row>
-//                   <Col md={6}>
-//                     <div className="info-card mb-3">
-//                       <h6 className="text-muted mb-3">
-//                         <i className="bi bi-person me-2"></i>
-//                         Personal Information
-//                       </h6>
-//                       <div className="info-item">
-//                         <i className="bi bi-person-badge me-2 text-primary"></i>
-//                         <strong>Father's Name:</strong> {currentStudent.father || "N/A"}
-//                       </div>
-//                       <div className="info-item">
-//                         <i className="bi bi-book me-2 text-primary"></i>
-//                         <strong>School:</strong> {currentStudent.school || "N/A"}
-//                       </div>
-//                     </div>
-//                   </Col>
-                  
-//                   <Col md={6}>
-//                     <div className="info-card mb-3">
-//                       <h6 className="text-muted mb-3">
-//                         <i className="bi bi-geo me-2"></i>
-//                         Address Information
-//                       </h6>
-//                       <div className="info-item">
-//                         <i className="bi bi-building me-2 text-primary"></i>
-//                         <strong>District:</strong> {currentStudent.addressDistrict || currentStudent.L3ExaminationDistrict || "N/A"}
-//                       </div>
-//                       <div className="info-item">
-//                         <i className="bi bi-grid me-2 text-primary"></i>
-//                         <strong>Block:</strong> {currentStudent.addressBlock || currentStudent.L3ExaminationBlock || "N/A"}
-//                       </div>
-//                       <div className="info-item">
-//                         <i className="bi bi-door-closed me-2 text-primary"></i>
-//                         <strong>Room No:</strong> {currentStudent.counsellingRoomNumber || currentStudent.orientationRoomNumber || "N/A"}
-//                       </div>
-//                       <div className="info-item">
-//                         <i className="bi bi-geo-alt me-2 text-primary"></i>
-//                         <strong>Venue:</strong> {selectedVenue}
-//                       </div>
+//                 {/* Student Information Section */}
+//                 <Row className="mb-4">
+//                   <Col md={12}>
+//                     <div className="student-info p-3" style={{ background: '#f8f9fa', borderRadius: '10px' }}>
+//                       <Row>
+//                         <Col md={3}>
+//                           <strong>Name:</strong> {currentStudent.name}
+//                         </Col>
+//                         <Col md={3}>
+//                           <strong>SRN:</strong> {currentStudent.srn}
+//                         </Col>
+//                         <Col md={3}>
+//                           <strong>Father's Name:</strong> {currentStudent.father}
+//                         </Col>
+//                         <Col md={3}>
+//                           <strong>Class:</strong> {currentStudent.classOfStudent}
+//                         </Col>
+//                         <Col md={3} className="mt-2">
+//                           <strong>School:</strong> {currentStudent.school}
+//                         </Col>
+//                         <Col md={3} className="mt-2">
+//                           <strong>District:</strong> {currentStudent.schoolDistrict}
+//                         </Col>
+//                         <Col md={3} className="mt-2">
+//                           <strong>Block:</strong> {currentStudent.schoolBlock}
+//                         </Col>
+//                         <Col md={3} className="mt-2">
+//                           <strong>Selection Status:</strong> {getStatusBadge(currentStudent.selectionStatusForL3)}
+//                         </Col>
+//                         <Col md={3} className="mt-2">
+//                           <strong>Admission Status:</strong> {getAdmissionStatusBadge(currentStudent.finalAdmissionStatus)}
+//                         </Col>
+//                       </Row>
 //                     </div>
 //                   </Col>
 //                 </Row>
                 
-//                 <hr className="my-4" />
-                
+//                 {/* Status Information Display */}
 //                 <Row>
 //                   <Col md={12}>
-//                     <div className="attendance-toggle-section text-center p-4">
-//                       <h6 className="mb-4">
-//                         <i className="bi bi-calendar-check me-2"></i>
-//                         Attendance Status
-//                       </h6>
-                      
-//                       <div className="toggle-switch-container">
-//                         <div className="status-badge mb-3">
-//                           <Badge 
-//                             bg={attendanceToggle ? "success" : "secondary"}
-//                             className="p-3 px-4 fs-6"
-//                             style={{ fontSize: '1.2rem', borderRadius: '50px' }}
-//                           >
-//                             <i className={`bi bi-${attendanceToggle ? 'check-circle-fill' : 'x-circle-fill'} me-2`}></i>
-//                             Currently: {attendanceToggle ? "Present" : "Absent"}
-//                           </Badge>
-//                         </div>
-                        
-//                         <div className="d-flex justify-content-center gap-3 flex-wrap">
-//                           <Button
-//                             variant={attendanceToggle ? "outline-danger" : "success"}
-//                             size="lg"
-//                             onClick={handleAttendanceToggle}
-//                             disabled={markingAttendance}
-//                             className="px-5 py-3 toggle-btn"
-//                             style={{ borderRadius: '50px', fontWeight: 'bold' }}
-//                           >
-//                             {markingAttendance ? (
-//                               <>
-//                                 <Spinner as="span" animation="border" size="sm" className="me-2" />
-//                                 Processing...
-//                               </>
-//                             ) : attendanceToggle ? (
-//                               <>
-//                                 <i className="bi bi-x-lg me-2"></i>
-//                                 Mark as Absent
-//                               </>
-//                             ) : (
-//                               <>
-//                                 <i className="bi bi-check-lg me-2"></i>
-//                                 Mark as Present
-//                               </>
-//                             )}
-//                           </Button>
-//                         </div>
+//                     <div className="mt-3 p-3" style={{ background: '#e7f3ff', borderRadius: '10px', borderLeft: '4px solid #2196f3' }}>
+//                       <h6 className="mb-2">Student Admission Information:</h6>
+//                       <div className="mb-2">
+//                         <Badge bg="success" className="me-2">Admission Done</Badge>
+//                         <span>Student has completed all formalities and SLC verification</span>
 //                       </div>
-                      
-//                       {currentStudent.counsellingTokenNumber && currentStudent.counsellingTokenNumber !== "0" && (
-//                         <div className="mt-4 token-card">
-//                           <div className="token-badge">
-//                             <i className="bi bi-ticket-perforated me-2"></i>
-//                             Token Number: {currentStudent.counsellingTokenNumber}
-//                           </div>
-//                         </div>
-//                       )}
+//                       <div className="mb-2">
+//                         <Badge bg="warning" text="dark" className="me-2">Provisional</Badge>
+//                         <span>Student is selected but SLC verification pending</span>
+//                       </div>
+//                       <div>
+//                         <Badge bg="secondary" className="me-2">Waiting</Badge>
+//                         <span>Student is in waiting list</span>
+//                       </div>
+//                       <div className="mt-3 pt-2 border-top">
+//                         <strong>Current Status:</strong> {getAdmissionStatusBadge(currentStudent.finalAdmissionStatus)}
+//                       </div>
 //                     </div>
 //                   </Col>
 //                 </Row>
 //               </Card.Body>
-//               <Card.Footer className="bg-light text-center">
-//                 <Button 
-//                   variant="primary" 
-//                   onClick={handleNextStudent}
-//                   className="px-5 py-2 next-btn"
-//                   style={{ borderRadius: '50px', fontWeight: 'bold' }}
-//                 >
-//                   <i className="bi bi-arrow-right-circle me-2"></i>
-//                   Next Student
-//                 </Button>
+//               <Card.Footer className="bg-light">
+//                 <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+//                   <Button 
+//                     variant="danger" 
+//                     onClick={handleReset}
+//                     className="px-4"
+//                   >
+//                     <i className="bi bi-x-circle me-2"></i>
+//                     Reset All
+//                   </Button>
+//                   <div className="d-flex gap-2">
+//                     <Button 
+//                       variant="primary" 
+//                       onClick={handleNextStudent}
+//                       className="px-4"
+//                     >
+//                       <i className="bi bi-arrow-right-circle me-2"></i>
+//                       Next Student
+//                     </Button>
+//                   </div>
+//                 </div>
 //               </Card.Footer>
 //             </Card>
 //           </Col>
@@ -739,71 +849,6 @@
 //       <style jsx>{`
 //         .bg-gradient-search {
 //           background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-//         }
-        
-//         .avatar-circle {
-//           width: 80px;
-//           height: 80px;
-//           background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-//           border-radius: 50%;
-//           display: flex;
-//           align-items: center;
-//           justify-content: center;
-//           margin: 0 auto;
-//           box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-//         }
-        
-//         .info-card {
-//           background: #f8f9fa;
-//           border-radius: 15px;
-//           padding: 20px;
-//           height: 100%;
-//           box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-//         }
-        
-//         .info-item {
-//           padding: 10px;
-//           margin-bottom: 8px;
-//           background: white;
-//           border-radius: 10px;
-//           border-left: 3px solid #667eea;
-//         }
-        
-//         .attendance-toggle-section {
-//           background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
-//           border-radius: 20px;
-//         }
-        
-//         .token-card {
-//           text-align: center;
-//         }
-        
-//         .token-badge {
-//           background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-//           padding: 15px 30px;
-//           border-radius: 50px;
-//           display: inline-block;
-//           font-weight: bold;
-//           font-size: 1.2rem;
-//           color: #fff;
-//           box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-//         }
-        
-//         .toggle-btn {
-//           transition: all 0.3s ease;
-//         }
-        
-//         .toggle-btn:hover {
-//           transform: translateY(-2px);
-//           box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-//         }
-        
-//         .next-btn {
-//           transition: all 0.3s ease;
-//         }
-        
-//         .next-btn:hover {
-//           transform: translateX(5px);
 //         }
         
 //         .student-profile-card {
@@ -822,17 +867,17 @@
 //         }
         
 //         @media (max-width: 768px) {
-//           .info-item {
+//           .student-info {
 //             font-size: 0.9rem;
 //           }
           
-//           .toggle-btn {
+//           .btn {
 //             width: 100%;
+//             margin-bottom: 10px;
 //           }
           
-//           .token-badge {
-//             font-size: 0.9rem;
-//             padding: 10px 20px;
+//           .d-flex.justify-content-between {
+//             flex-direction: column;
 //           }
 //         }
 //       `}</style>
@@ -846,22 +891,12 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Form, Button, Card, Spinner, Alert, Badge, InputGroup, Accordion } from "react-bootstrap";
+import { Container, Row, Col, Form, Button, Card, Spinner, Alert, Badge, InputGroup, Accordion, Modal } from "react-bootstrap";
 import { GetCentersDataByExaminationAndExamTypeCounselling } from "../../services/ExaminationVenue/ExaminationVenueServices";
-import { GetAttendanceSheetDataCounselling, MarkCounsellingAttendance } from "../../services/StudentRegistrationServices/StudentRegistrationService";
+import { GetAttendanceSheetDataCounselling, updateDocumentVerification } from "../../services/StudentRegistrationServices/StudentRegistrationService";
 
-export const MBCounsellingAttendance = () => {
+export const MBProvisionalSelectedCounselling = () => {
   const [centersData, setCentersData] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [selectedDistrict, setSelectedDistrict] = useState("");
@@ -878,11 +913,15 @@ export const MBCounsellingAttendance = () => {
   const [searchingStudent, setSearchingStudent] = useState(false);
   const [studentNotFound, setStudentNotFound] = useState(false);
   const [showSRNSearch, setShowSRNSearch] = useState(false);
+  const [showDocVerificationAlert, setShowDocVerificationAlert] = useState(false);
+  const [showCenterPreferenceAlert, setShowCenterPreferenceAlert] = useState(false);
+  const [dateOfAdmission, setDateOfAdmission] = useState("");
+  const [updatingAdmission, setUpdatingAdmission] = useState(false);
   
   // Accordion state - main form expanded by default
   const [mainAccordionOpen, setMainAccordionOpen] = useState(["0"]);
   
-  // Pre-defined access codes for districts based on your data
+  // Pre-defined access codes for districts
   const districtAccessCodes = [
     { districtId: "10", districtName: "KAITHAL", accessCode: "KTH7823" },
     { districtId: "3", districtName: "CHARKHI DADRI", accessCode: "CHD5641" },
@@ -907,45 +946,6 @@ export const MBCounsellingAttendance = () => {
     { districtId: "20", districtName: "SIRSA", accessCode: "SIR4257" },
     { districtId: "13", districtName: "MAHENDRAGARH", accessCode: "MAH8639" }
   ];
-  
-  // Loading state for individual student attendance marking
-  const [markingAttendance, setMarkingAttendance] = useState(false);
-  
-  // Attendance toggle state
-  const [attendanceToggle, setAttendanceToggle] = useState(false);
-
-  // Verify access code
-  const verifyAccessCode = () => {
-    if (!selectedDistrict) {
-      setError("Please select a district first");
-      return false;
-    }
-
-    const selectedDistrictObj = districts.find(d => d.id === selectedDistrict);
-    if (!selectedDistrictObj) {
-      setError("District not found");
-      return false;
-    }
-
-    const districtCode = districtAccessCodes.find(
-      dc => dc.districtId === selectedDistrict
-    );
-
-    if (!districtCode) {
-      setError("Access code not configured for this district. Please contact administrator.");
-      return false;
-    }
-
-    if (districtCode.accessCode === accessCode) {
-      setAccessCodeVerified(true);
-      setError("");
-      return true;
-    } else {
-      setError(`Invalid access code for ${selectedDistrictObj.name}. Please enter the correct access code.`);
-      setAccessCodeVerified(false);
-      return false;
-    }
-  };
 
   // Fetch all counseling centers
   const fetchCounsellingCenters = async () => {
@@ -1033,7 +1033,40 @@ export const MBCounsellingAttendance = () => {
     return "Contact administrator for access code";
   };
 
-  // Handle form submission - Just verify access code and venue
+  // Verify access code
+  const verifyAccessCode = () => {
+    if (!selectedDistrict) {
+      setError("Please select a district first");
+      return false;
+    }
+
+    const selectedDistrictObj = districts.find(d => d.id === selectedDistrict);
+    if (!selectedDistrictObj) {
+      setError("District not found");
+      return false;
+    }
+
+    const districtCode = districtAccessCodes.find(
+      dc => dc.districtId === selectedDistrict
+    );
+
+    if (!districtCode) {
+      setError("Access code not configured for this district. Please contact administrator.");
+      return false;
+    }
+
+    if (districtCode.accessCode === accessCode) {
+      setAccessCodeVerified(true);
+      setError("");
+      return true;
+    } else {
+      setError(`Invalid access code for ${selectedDistrictObj.name}. Please enter the correct access code.`);
+      setAccessCodeVerified(false);
+      return false;
+    }
+  };
+
+  // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
     
@@ -1047,28 +1080,34 @@ export const MBCounsellingAttendance = () => {
       return;
     }
 
-    // Verify access code before proceeding
     if (!verifyAccessCode()) {
       return;
     }
     
-    // Clear any previous data
     setError("");
     setSuccessMessage("");
     setCurrentStudent(null);
     setStudentNotFound(false);
-    
-    // Show SRN search card
     setShowSRNSearch(true);
-    
-    // Auto collapse the main accordion
     setMainAccordionOpen([]);
+    setDateOfAdmission("");
     
     setSuccessMessage("Access code verified! Please enter SRN to fetch student details.");
     setTimeout(() => setSuccessMessage(""), 5000);
   };
 
-  // Handle SRN search and fetch student data - Auto mark present on search
+  // Check if student has completed document verification
+  const hasCompletedDocVerification = (student) => {
+    const validStatuses = ["Admission Done", "Provisional", "Waiting"];
+    return student.finalAdmissionStatus && validStatuses.includes(student.finalAdmissionStatus);
+  };
+
+  // Check if student has completed center preference
+  const hasCompletedCenterPreference = (student) => {
+    return student.centerPreference1 && student.centerPreference1 !== null && student.centerPreference1 !== "";
+  };
+
+  // Handle SRN search and fetch student data
   const handleSRNSearch = async () => {
     if (!srnInput.trim()) {
       setError("Please enter SRN");
@@ -1079,6 +1118,9 @@ export const MBCounsellingAttendance = () => {
     setError("");
     setStudentNotFound(false);
     setCurrentStudent(null);
+    setShowDocVerificationAlert(false);
+    setShowCenterPreferenceAlert(false);
+    setDateOfAdmission("");
     
     try {
       const requestBody = {
@@ -1091,114 +1133,113 @@ export const MBCounsellingAttendance = () => {
       console.log("Fetching student with SRN:", requestBody);
       
       const response = await GetAttendanceSheetDataCounselling(requestBody);
-      console.log("Student data response:", response);
+      console.log("Full response:", response);
       
-      if (response.ok && response.data && response.data.length > 0) {
-        const student = response.data[0];
-        
-        // Auto mark attendance as Present when student is found
-        setMarkingAttendance(true);
-        
-        try {
-          const attendanceRequestBody = {
-            studentId: student._id,
-            counsellingVenue: selectedVenue,
-            attendanceStatus: true
-          };
-          
-          console.log("Auto marking attendance as Present:", attendanceRequestBody);
-          
-          const attendanceResponse = await MarkCounsellingAttendance(attendanceRequestBody);
-          console.log("Attendance marking response:", attendanceResponse);
-          
-          if (attendanceResponse.ok) {
-            setAttendanceToggle(true);
-            setCurrentStudent({
-              ...student,
-              counsellingAttendance: true,
-              counsellingTokenNumber: attendanceResponse.data?.student?.counsellingTokenNumber || attendanceResponse.tokenNumber
-            });
-            setSuccessMessage(`${student.name} marked as Present with Token ${attendanceResponse.tokenNumber || attendanceResponse.data?.student?.counsellingTokenNumber || 'N/A'}`);
-            setTimeout(() => setSuccessMessage(""), 3000);
-          } else {
-            setCurrentStudent(student);
-            setAttendanceToggle(student.counsellingAttendance || false);
-            setError(attendanceResponse.message || `Failed to mark attendance automatically`);
-          }
-        } catch (attError) {
-          console.error("Error auto marking attendance:", attError);
-          setCurrentStudent(student);
-          setAttendanceToggle(student.counsellingAttendance || false);
-          setError("Student found but failed to mark attendance automatically");
-        } finally {
-          setMarkingAttendance(false);
+      let student = null;
+      
+      if (response && response.data) {
+        if (Array.isArray(response.data) && response.data.length > 0) {
+          student = response.data[0];
+        } else if (response.data.data && Array.isArray(response.data.data) && response.data.data.length > 0) {
+          student = response.data.data[0];
+        } else if (typeof response.data === 'object' && response.data._id) {
+          student = response.data;
+        }
+      } else if (Array.isArray(response) && response.length > 0) {
+        student = response[0];
+      } else if (response && response._id) {
+        student = response;
+      }
+      
+      console.log("Extracted student:", student);
+      
+      if (student) {
+        // Check if student has completed document verification
+        if (!hasCompletedDocVerification(student)) {
+          console.log("Student has not completed document verification");
+          setShowDocVerificationAlert(true);
+          setSearchingStudent(false);
+          return;
         }
         
+        // Check if student has completed center preference
+        if (!hasCompletedCenterPreference(student)) {
+          console.log("Student has not completed center preference");
+          setShowCenterPreferenceAlert(true);
+          setSearchingStudent(false);
+          return;
+        }
+        
+        setCurrentStudent(student);
+        setDateOfAdmission(student.dateOfAdmission || "");
         setStudentNotFound(false);
         setShowSRNSearch(false);
+        setSuccessMessage(`✓ Student found: ${student.name}`);
+        setTimeout(() => setSuccessMessage(""), 3000);
         
       } else {
         setStudentNotFound(true);
         setCurrentStudent(null);
-        setError(`No student found with SRN: ${srnInput}`);
+        setError(`No student found with SRN: ${srnInput} at venue: ${selectedVenue}`);
       }
     } catch (error) {
       console.error("Error fetching student data", error);
-      setError("An error occurred while fetching student data");
+      setError("An error occurred while fetching student data: " + (error.message || "Unknown error"));
       setStudentNotFound(true);
     } finally {
       setSearchingStudent(false);
     }
   };
 
-  // Handle Enter key press in SRN input
+  // Handle Enter key press
   const handleSRNKeyPress = (e) => {
     if (e.key === 'Enter') {
       handleSRNSearch();
     }
   };
 
-  // Handle attendance toggle (for toggling between Present and Absent)
-  const handleAttendanceToggle = async () => {
-    if (!currentStudent) return;
+  // Update date of admission
+  const updateDateOfAdmission = async () => {
+    if (!currentStudent) {
+      setError("No student selected");
+      return;
+    }
     
-    const newStatus = !attendanceToggle;
+    if (!dateOfAdmission) {
+      setError("Please select a date");
+      return;
+    }
     
-    setMarkingAttendance(true);
+    setUpdatingAdmission(true);
+    setError("");
+    setSuccessMessage("");
     
     try {
       const requestBody = {
-        studentId: currentStudent._id,
-        counsellingVenue: selectedVenue,
-        attendanceStatus: newStatus
+        _id: currentStudent._id,
+        dateOfAdmission: dateOfAdmission
       };
       
-      console.log("Marking attendance request:", requestBody);
+      console.log("Updating date of admission:", requestBody);
       
-      const response = await MarkCounsellingAttendance(requestBody);
-      console.log("Attendance marking response:", response);
+      const response = await updateDocumentVerification(requestBody);
+      console.log("Update response:", response);
       
-      if (response.ok) {
-        setAttendanceToggle(newStatus);
-        
-        // Update current student
+      if (response && response.success) {
+        setSuccessMessage("Date of admission updated successfully!");
         setCurrentStudent(prev => ({
           ...prev,
-          counsellingAttendance: newStatus,
-          counsellingTokenNumber: response.data?.student?.counsellingTokenNumber || prev.counsellingTokenNumber
+          dateOfAdmission: dateOfAdmission
         }));
-        
-        setSuccessMessage(`${currentStudent.name} marked as ${newStatus ? 'Present' : 'Absent'}${newStatus ? ` with Token ${response.tokenNumber || response.data?.student?.counsellingTokenNumber || 'N/A'}` : ''}`);
         setTimeout(() => setSuccessMessage(""), 3000);
-        
       } else {
-        setError(response.message || `Failed to mark attendance`);
+        setError(response?.message || "Failed to update date of admission");
       }
     } catch (error) {
-      console.error("Error marking attendance:", error);
-      setError(error.response?.data?.message || `An error occurred while marking attendance`);
+      console.error("Error updating date of admission:", error);
+      setError(error.response?.data?.message || "An error occurred while updating date of admission");
     } finally {
-      setMarkingAttendance(false);
+      setUpdatingAdmission(false);
     }
   };
 
@@ -1209,7 +1250,7 @@ export const MBCounsellingAttendance = () => {
     setShowSRNSearch(true);
     setStudentNotFound(false);
     setError("");
-    setAttendanceToggle(false);
+    setDateOfAdmission("");
   };
 
   // Reset everything
@@ -1225,10 +1266,16 @@ export const MBCounsellingAttendance = () => {
     setStudentNotFound(false);
     setShowSRNSearch(false);
     setMainAccordionOpen(["0"]);
-    setAttendanceToggle(false);
+    setDateOfAdmission("");
   };
 
-  // Get badge color based on selection status
+  // Get center name by ID
+  const getCenterName = (centerId) => {
+    if (!centerId) return "Not Assigned";
+    return centerId;
+  };
+
+  // Get status badge
   const getStatusBadge = (status) => {
     switch(status) {
       case "Selected":
@@ -1240,8 +1287,98 @@ export const MBCounsellingAttendance = () => {
     }
   };
 
+  // Get admission status badge
+  const getAdmissionStatusBadge = (status) => {
+    switch(status) {
+      case "Admission Done":
+        return <Badge bg="success">Admission Done</Badge>;
+      case "Provisional":
+        return <Badge bg="warning" text="dark">Provisional</Badge>;
+      case "Waiting":
+        return <Badge bg="secondary">Waiting</Badge>;
+      default:
+        return <Badge bg="info">{status || "Not Set"}</Badge>;
+    }
+  };
+
+  // Close document verification alert and reset to SRN search
+  const closeDocVerificationAlert = () => {
+    setShowDocVerificationAlert(false);
+    setSrnInput("");
+    setShowSRNSearch(true);
+  };
+
+  // Close center preference alert and reset to SRN search
+  const closeCenterPreferenceAlert = () => {
+    setShowCenterPreferenceAlert(false);
+    setSrnInput("");
+    setShowSRNSearch(true);
+  };
+
   return (
     <Container fluid className="mt-4">
+      {/* Modal for Document Verification Alert */}
+      <Modal show={showDocVerificationAlert} onHide={closeDocVerificationAlert} centered>
+        <Modal.Header closeButton style={{ background: '#dc3545', color: 'white' }}>
+          <Modal.Title>
+            <i className="bi bi-exclamation-triangle-fill me-2"></i>
+            Document Verification Required
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center py-4">
+          <i className="bi bi-file-earmark-x" style={{ fontSize: '4rem', color: '#dc3545' }}></i>
+          <h5 className="mt-3">Please Complete Document Verification First</h5>
+          <p className="text-muted mt-2">
+            This student has not completed the document verification process.
+            <br />
+            Please go to <strong>Document Verification</strong> section and verify all documents first.
+          </p>
+          <div className="mt-3 p-3 bg-light rounded">
+            <small className="text-muted">
+              <i className="bi bi-info-circle me-1"></i>
+              Student must have one of these statuses: <strong>Admission Done</strong>, <strong>Provisional</strong>, or <strong>Waiting</strong>
+            </small>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="danger" onClick={closeDocVerificationAlert}>
+            <i className="bi bi-check-circle me-2"></i>
+            OK, Go Back
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal for Center Preference Alert */}
+      <Modal show={showCenterPreferenceAlert} onHide={closeCenterPreferenceAlert} centered>
+        <Modal.Header closeButton style={{ background: '#ffc107', color: '#000' }}>
+          <Modal.Title>
+            <i className="bi bi-exclamation-triangle-fill me-2"></i>
+            Center Preference Required
+          </Modal.Title>
+        </Modal.Header>
+        <Modal.Body className="text-center py-4">
+          <i className="bi bi-building-x" style={{ fontSize: '4rem', color: '#ffc107' }}></i>
+          <h5 className="mt-3">Please Complete Center Preference First</h5>
+          <p className="text-muted mt-2">
+            This student has not selected their center preferences yet.
+            <br />
+            Please go to <strong>Center Preference</strong> section and select preferred centers first.
+          </p>
+          <div className="mt-3 p-3 bg-light rounded">
+            <small className="text-muted">
+              <i className="bi bi-info-circle me-1"></i>
+              Student must select at least one center preference (CP1)
+            </small>
+          </div>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="warning" onClick={closeCenterPreferenceAlert}>
+            <i className="bi bi-check-circle me-2"></i>
+            OK, Go Back
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <Row>
         <Col md={12}>
           {/* Main Form Accordion */}
@@ -1250,8 +1387,8 @@ export const MBCounsellingAttendance = () => {
               <Accordion.Header>
                 <div className="d-flex justify-content-between align-items-center w-100 me-3">
                   <span>
-                    <i className="bi bi-person-check me-2"></i>
-                    MB Counselling Attendance
+                    <i className="bi bi-file-check me-2"></i>
+                    MB Counselling - Admission Status
                   </span>
                   {selectedVenue && accessCodeVerified && (
                     <Badge bg="success" className="ms-2">
@@ -1374,7 +1511,6 @@ export const MBCounsellingAttendance = () => {
                     </Col>
                   </Row>
                   
-                  {/* Display verification status */}
                   {accessCodeVerified && selectedVenue && (
                     <Alert variant="success" className="mt-3">
                       ✓ Access code verified successfully! Click on "Verify & Proceed" to search for students.
@@ -1391,14 +1527,14 @@ export const MBCounsellingAttendance = () => {
       {showSRNSearch && accessCodeVerified && (
         <Row className="mt-4">
           <Col md={12}>
-            <Card className="shadow-lg border-0 bg-gradient-search" style={{ background: 'linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)' }}>
+            <Card className="shadow-lg border-0 bg-gradient-search">
               <Card.Body className="p-5">
                 <div className="text-center mb-4">
                   <div className="search-icon mb-3">
                     <i className="bi bi-search-heart" style={{ fontSize: '4rem', color: '#667eea' }}></i>
                   </div>
-                  <h3 className="mb-2">Counselling Attendance</h3>
-                  <p className="text-muted">Enter SRN And Mark Student Attendance</p>
+                  <h3 className="mb-2">Student Admission Status</h3>
+                  <p className="text-muted">Enter SRN To Check Admission Status</p>
                   <Badge bg="info" className="mb-3">
                     <i className="bi bi-building me-1"></i>
                     Venue: {selectedVenue}
@@ -1433,14 +1569,14 @@ export const MBCounsellingAttendance = () => {
                           ) : (
                             <>
                               <i className="bi bi-search me-2"></i>
-                              Search & Mark Present
+                              Search
                             </>
                           )}
                         </Button>
                       </InputGroup>
                       <Form.Text className="text-muted d-block text-center mt-3">
                         <i className="bi bi-info-circle me-1"></i>
-                       
+                    
                       </Form.Text>
                     </Form.Group>
                   </Col>
@@ -1448,10 +1584,7 @@ export const MBCounsellingAttendance = () => {
                 
                 <Row className="mt-4">
                   <Col md={12} className="text-center">
-                    <Button 
-                      variant="outline-secondary" 
-                      onClick={handleReset}
-                    >
+                    <Button variant="outline-secondary" onClick={handleReset}>
                       <i className="bi bi-arrow-repeat me-2"></i>
                       Start Over
                     </Button>
@@ -1479,138 +1612,187 @@ export const MBCounsellingAttendance = () => {
         </Row>
       )}
       
-      {/* Student Details Card */}
+      {/* Student Dashboard */}
       {currentStudent && !showSRNSearch && (
         <Row className="mt-4">
           <Col md={12}>
-            <Card className="shadow-lg border-0 student-profile-card">
-              <Card.Header className="bg-gradient-success text-white" style={{ background: 'linear-gradient(135deg, #11998e 0%, #38ef7d 100%)' }}>
+            <Card className="shadow-lg border-0 student-dashboard-card">
+              <Card.Header className="bg-gradient-primary text-white" style={{ background: 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)' }}>
                 <div className="d-flex justify-content-between align-items-center">
                   <h5 className="mb-0">
-                    <i className="bi bi-person-circle me-2"></i>
-                    Student Profile
+                    <i className="bi bi-person-badge me-2"></i>
+                    Student Admission Dashboard
                   </h5>
-                  {getStatusBadge(currentStudent.selectionStatusForL3)}
+                  <div className="d-flex gap-2">
+                    {getStatusBadge(currentStudent.selectionStatusForL3)}
+                    {getAdmissionStatusBadge(currentStudent.finalAdmissionStatus)}
+                  </div>
                 </div>
               </Card.Header>
               <Card.Body className="p-4">
-                <Row>
-                  <Col md={12} className="text-center mb-4">
-                    <div className="avatar-circle mb-3">
-                      <i className="bi bi-person-fill" style={{ fontSize: '3rem', color: '#fff' }}></i>
-                    </div>
-                    <h3 className="mb-1">{currentStudent.name || "N/A"}</h3>
-                    <p className="text-muted">
-                      <i className="bi bi-hash me-1"></i>
-                      SRN: {currentStudent.srn || "N/A"}
-                    </p>
-                  </Col>
-                </Row>
-                
-                <Row>
-                  <Col md={6}>
-                    <div className="info-card mb-3">
-                      <h6 className="text-muted mb-3">
-                        <i className="bi bi-person me-2"></i>
-                        Personal Information
-                      </h6>
-                      <div className="info-item">
-                        <i className="bi bi-person-badge me-2 text-primary"></i>
-                        <strong>Father's Name:</strong> {currentStudent.father || "N/A"}
-                      </div>
-                      <div className="info-item">
-                        <i className="bi bi-book me-2 text-primary"></i>
-                        <strong>School:</strong> {currentStudent.school || "N/A"}
-                      </div>
-                    </div>
-                  </Col>
-                  
-                  <Col md={6}>
-                    <div className="info-card mb-3">
-                      <h6 className="text-muted mb-3">
-                        <i className="bi bi-geo me-2"></i>
-                        Address Information
-                      </h6>
-                      <div className="info-item">
-                        <i className="bi bi-building me-2 text-primary"></i>
-                        <strong>District:</strong> {currentStudent.addressDistrict || currentStudent.L3ExaminationDistrict || "N/A"}
-                      </div>
-                      <div className="info-item">
-                        <i className="bi bi-grid me-2 text-primary"></i>
-                        <strong>Block:</strong> {currentStudent.addressBlock || currentStudent.L3ExaminationBlock || "N/A"}
-                      </div>
-                      <div className="info-item">
-                        <i className="bi bi-door-closed me-2 text-primary"></i>
-                        <strong>Room No:</strong> {currentStudent.counsellingRoomNumber || currentStudent.orientationRoomNumber || "N/A"}
-                      </div>
-                      <div className="info-item">
-                        <i className="bi bi-geo-alt me-2 text-primary"></i>
-                        <strong>Venue:</strong> {selectedVenue}
-                      </div>
-                    </div>
-                  </Col>
-                </Row>
-                
-                <hr className="my-4" />
-                
+                {/* Student Details Grid */}
                 <Row>
                   <Col md={12}>
-                    <div className="attendance-toggle-section text-center p-4">
-                      <h6 className="mb-4">
-                        <i className="bi bi-calendar-check me-2"></i>
-                        Attendance Status
-                      </h6>
-                      
-                      <div className="d-flex justify-content-center gap-3 flex-wrap">
-                        <Button
-                          variant={attendanceToggle ? "danger" : "success"}
-                          size="lg"
-                          onClick={handleAttendanceToggle}
-                          disabled={markingAttendance}
-                          className="px-5 py-3 toggle-btn"
-                          style={{ borderRadius: '50px', fontWeight: 'bold' }}
-                        >
-                          {markingAttendance ? (
-                            <>
-                              <Spinner as="span" animation="border" size="sm" className="me-2" />
-                              Processing...
-                            </>
-                          ) : attendanceToggle ? (
-                            <>
-                              <i className="bi bi-x-lg me-2"></i>
-                              Mark as Absent
-                            </>
-                          ) : (
-                            <>
-                              <i className="bi bi-check-lg me-2"></i>
-                              Mark as Present
-                            </>
-                          )}
-                        </Button>
-                      </div>
-                      
-                      {currentStudent.counsellingTokenNumber && currentStudent.counsellingTokenNumber !== "0" && (
-                        <div className="mt-4 token-card">
-                          <div className="token-badge">
-                            <i className="bi bi-ticket-perforated me-2"></i>
-                            Token Number: {currentStudent.counsellingTokenNumber}
+                    <div className="student-details-wrapper">
+                      <Row className="g-4">
+                        {/* Student Name */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-person-circle"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">Student Name</label>
+                              <div className="detail-value">{currentStudent.name || "N/A"}</div>
+                            </div>
                           </div>
-                        </div>
-                      )}
+                        </Col>
+                        
+                        {/* SRN */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-hash"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">SRN</label>
+                              <div className="detail-value">{currentStudent.srn || "N/A"}</div>
+                            </div>
+                          </div>
+                        </Col>
+                        
+                        {/* Father's Name */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-person"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">Father's Name</label>
+                              <div className="detail-value">{currentStudent.father || "N/A"}</div>
+                            </div>
+                          </div>
+                        </Col>
+                        
+                        {/* Mother's Name */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-person"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">Mother's Name</label>
+                              <div className="detail-value">{currentStudent.mother || "N/A"}</div>
+                            </div>
+                          </div>
+                        </Col>
+                        
+                        {/* Mission Buniyaad Centre */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-building"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">Mission Buniyaad Centre</label>
+                              <div className="detail-value">
+                                {currentStudent.centerPreference1 || "Not Assigned"}
+                                {currentStudent.centerPreference2 && ` / ${currentStudent.centerPreference2}`}
+                              </div>
+                            </div>
+                          </div>
+                        </Col>
+                        
+                        {/* District */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-geo-alt"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">District</label>
+                              <div className="detail-value">{currentStudent.schoolDistrict || "N/A"}</div>
+                            </div>
+                          </div>
+                        </Col>
+                        
+                        {/* Date of Admission */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-calendar-date"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">Date of Admission</label>
+                              <Form.Control
+                                type="date"
+                                value={dateOfAdmission}
+                                onChange={(e) => setDateOfAdmission(e.target.value)}
+                                className="date-input"
+                                disabled={updatingAdmission}
+                              />
+                            </div>
+                          </div>
+                        </Col>
+                        
+                        {/* Final Admission Status */}
+                        <Col md={6} lg={4}>
+                          <div className="detail-card">
+                            <div className="detail-icon">
+                              <i className="bi bi-check-circle"></i>
+                            </div>
+                            <div className="detail-content">
+                              <label className="detail-label">Final Admission Status</label>
+                              <div className="detail-value">
+                                {getAdmissionStatusBadge(currentStudent.finalAdmissionStatus)}
+                              </div>
+                            </div>
+                          </div>
+                        </Col>
+                      </Row>
                     </div>
                   </Col>
                 </Row>
               </Card.Body>
-              <Card.Footer className="bg-light text-center">
-                <Button 
-                  variant="primary" 
-                  onClick={handleNextStudent}
-                  className="px-5 py-2 next-btn"
-                  style={{ borderRadius: '50px', fontWeight: 'bold' }}
-                >
-                  <i className="bi bi-arrow-right-circle me-2"></i>
-                  Next Student
-                </Button>
+              <Card.Footer className="bg-light">
+                <div className="d-flex justify-content-between align-items-center flex-wrap gap-2">
+                  <Button 
+                    variant="danger" 
+                    onClick={handleReset}
+                    className="px-4"
+                  >
+                    <i className="bi bi-x-circle me-2"></i>
+                    Reset All
+                  </Button>
+                  <div className="d-flex gap-2">
+                    <Button 
+                      variant="success" 
+                      onClick={updateDateOfAdmission}
+                      disabled={updatingAdmission || !dateOfAdmission}
+                      className="px-4"
+                    >
+                      {updatingAdmission ? (
+                        <>
+                          <Spinner as="span" animation="border" size="sm" className="me-2" />
+                          Updating...
+                        </>
+                      ) : (
+                        <>
+                          <i className="bi bi-save me-2"></i>
+                          Update Date
+                        </>
+                      )}
+                    </Button>
+                    <Button 
+                      variant="primary" 
+                      onClick={handleNextStudent}
+                      className="px-4"
+                    >
+                      <i className="bi bi-arrow-right-circle me-2"></i>
+                      Next Student
+                    </Button>
+                  </div>
+                </div>
               </Card.Footer>
             </Card>
           </Col>
@@ -1622,72 +1804,7 @@ export const MBCounsellingAttendance = () => {
           background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
         }
         
-        .avatar-circle {
-          width: 80px;
-          height: 80px;
-          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-          border-radius: 50%;
-          display: flex;
-          align-items: center;
-          justify-content: center;
-          margin: 0 auto;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .info-card {
-          background: #f8f9fa;
-          border-radius: 15px;
-          padding: 20px;
-          height: 100%;
-          box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-        
-        .info-item {
-          padding: 8px 12px;
-          margin-bottom: 8px;
-          background: white;
-          border-radius: 8px;
-          border-left: 3px solid #667eea;
-        }
-        
-        .attendance-toggle-section {
-          background: linear-gradient(135deg, #f5f7fa 0%, #e9ecef 100%);
-          border-radius: 20px;
-        }
-        
-        .token-card {
-          text-align: center;
-        }
-        
-        .token-badge {
-          background: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
-          padding: 15px 30px;
-          border-radius: 50px;
-          display: inline-block;
-          font-weight: bold;
-          font-size: 1.2rem;
-          color: #fff;
-          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .toggle-btn {
-          transition: all 0.3s ease;
-        }
-        
-        .toggle-btn:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-        }
-        
-        .next-btn {
-          transition: all 0.3s ease;
-        }
-        
-        .next-btn:hover {
-          transform: translateX(5px);
-        }
-        
-        .student-profile-card {
+        .student-dashboard-card {
           animation: slideIn 0.5s ease;
         }
         
@@ -1702,18 +1819,86 @@ export const MBCounsellingAttendance = () => {
           }
         }
         
+        .student-details-wrapper {
+          padding: 10px;
+        }
+        
+        .detail-card {
+          display: flex;
+          align-items: center;
+          gap: 15px;
+          padding: 15px;
+          background: #f8f9fa;
+          border-radius: 12px;
+          transition: all 0.3s ease;
+          border: 1px solid #e9ecef;
+        }
+        
+        .detail-card:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+          background: #fff;
+        }
+        
+        .detail-icon {
+          width: 45px;
+          height: 45px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+          border-radius: 10px;
+          color: white;
+          font-size: 1.5rem;
+        }
+        
+        .detail-content {
+          flex: 1;
+        }
+        
+        .detail-label {
+          display: block;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.5px;
+          color: #6c757d;
+          margin-bottom: 5px;
+          font-weight: 600;
+        }
+        
+        .detail-value {
+          font-size: 1rem;
+          font-weight: 500;
+          color: #2c3e50;
+        }
+        
+        .date-input {
+          max-width: 200px;
+          padding: 5px 10px;
+          font-size: 0.9rem;
+        }
+        
         @media (max-width: 768px) {
-          .info-item {
-            font-size: 0.9rem;
+          .detail-card {
+            flex-direction: column;
+            text-align: center;
           }
           
-          .toggle-btn {
+          .detail-icon {
+            margin-bottom: 10px;
+          }
+          
+          .date-input {
+            max-width: 100%;
+          }
+          
+          .btn {
             width: 100%;
+            margin-bottom: 10px;
           }
           
-          .token-badge {
-            font-size: 0.9rem;
-            padding: 10px 20px;
+          .d-flex.justify-content-between {
+            flex-direction: column;
           }
         }
       `}</style>

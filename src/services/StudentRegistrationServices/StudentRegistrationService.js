@@ -203,6 +203,127 @@ export const MarkCounsellingAttendance = async (rqBody) => {
 
 
 
+
+// export const updateCenterPreference = async (rqBody) => {
+
+//   alert('in service')
+//   try {
+//     console.log(rqBody);
+
+  
+//     const response = await axios.post(`${API_BASE_URL}/api/update-center-preference`, rqBody);
+
+//     console.log(response.data);
+//     return response.data;
+
+//   } catch (error) {
+
+//     console.error("Error fetching data", error);
+
+//     throw error;
+//   }
+// };
+
+
+
+export const updateCenterPreference = async (rqBody) => {
+  console.log("=== updateCenterPreference SERVICE CALLED ===");
+  console.log("Request body:", rqBody);
+  console.log("API_BASE_URL:", API_BASE_URL);
+  
+  // alert('in service'); // Remove alert, use console.log instead
+  
+  try {
+    const url = `${API_BASE_URL}/api/update-center-preference`;
+    console.log("Making POST request to:", url);
+    
+    const response = await axios.post(url, rqBody, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    
+    console.log("Response received:", response.data);
+    return response.data;
+    
+  } catch (error) {
+    console.error("Error in updateCenterPreference:", error);
+    
+    // Log detailed error information
+    if (error.response) {
+      console.error("Response status:", error.response.status);
+      console.error("Response data:", error.response.data);
+      console.error("Response headers:", error.response.headers);
+    } else if (error.request) {
+      console.error("No response received:", error.request);
+    } else {
+      console.error("Error message:", error.message);
+    }
+    
+    throw error;
+  }
+};
+
+
+
+
+// In your StudentRegistrationService.js
+export const updateDocumentVerification = async (rqBody) => {
+  console.log("=== updateDocumentVerification SERVICE CALLED ===");
+  console.log("Request body:", rqBody);
+  
+  try {
+    const url = `${API_BASE_URL}/api/update-document-verification`;
+    console.log("Making POST request to:", url);
+    
+    const response = await axios.post(url, rqBody, {
+      headers: {
+        'Content-Type': 'application/json',
+      }
+    });
+    
+    console.log("Response received:", response.data);
+    return response.data;
+    
+  } catch (error) {
+    console.error("Error in updateDocumentVerification:", error);
+    
+    if (error.response) {
+      console.error("Response status:", error.response.status);
+      console.error("Response data:", error.response.data);
+    } else if (error.request) {
+      console.error("No response received:", error.request);
+    }
+    
+    throw error;
+  }
+};
+
+
+
+//Dashboard-counselling-verification
+
+export const getCenterPreferenceDashboard = async () => {
+  try {
+    
+
+    const response = await axios.post(`${API_BASE_URL}/api/dashboard-counselling-centerpreference`);
+
+    console.log(response.data);
+    return response.data;
+
+  } catch (error) {
+
+    console.error("Error fetching data", error);
+
+    throw error;
+  }
+};
+
+
+
+
+
 //Attendance sheet api
 
 export const FetchMbL2QualifiedStudent = async () => {
