@@ -502,7 +502,7 @@ function App() {
                           <Route path="/Bulk-student-form-verification" element={<BulkStudentFormVerification />} />
 
 
-                          <Route path='/center-preference-dashboard' element = {<CenterPreferenceDashboard/>}/>
+                          <Route path='/center-preference-dashboard-987654321123456789987654321123456789123456789987654321' element = {<CenterPreferenceDashboard/>}/>
 
 
                             {/* dashboard routes */}
