@@ -197,6 +197,7 @@ import { MBCenterAllocationCounselling } from './components/StudentRegistration/
 import { MBDocVerificationCounselling } from './components/StudentRegistration/MBDocVerificationCounselling.jsx';
 import { MBProvisionalSelectedCounselling } from './components/StudentRegistration/MBProvisionalSelecteedCounselling.jsx';
 import { CenterPreferenceDashboard } from './components/StudentRegistration/MBCounsellingCenterPreferenceDashboard.jsx';
+import { StudentAdmissionStatusConfirmation } from './components/StudentRegistration/studentAadmissionStatusConfirmation.jsx';
 
 function App() {
 
@@ -587,6 +588,7 @@ function App() {
 
                             <Route path='/mb-provisional-selected-counselling' element = {<MBProvisionalSelectedCounselling/>}/>
 
+                            <Route path='/student-admission-status-confirmation' element = {<StudentAdmissionStatusConfirmation/>}/>
 
             </Routes>
             </DateContextProvider>
