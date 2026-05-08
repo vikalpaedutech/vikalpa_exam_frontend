@@ -21,9 +21,9 @@ import { rgb } from "pdf-lib";
 
 const logo = "/haryana.png";
 const logo2 = "/admitBuniyaLogo.png";
-const level1admitinstructions = "/s100admitinstructionsLevel2Using.png";
+const level1admitinstructions = "/s100admitinstructionsLevel3Using.png";
 
-const certificate = "/L1HSQualificationCertificateblank.png"
+const certificate = "/L2HSQualificationCertificateblank.png"
 
 const arrayBufferToBase64 = (buffer) => {
     let binary = "";
@@ -62,146 +62,145 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
 
     
         // Build single PDF blob (used by both single and bulk)
-        const buildPdfBlob = async (student) => {
-            // try load Devanagari font (optional)
-            try {
-                const fontUrl = "/fonts/NotoSansDevanagari-Regular.ttf";
-                const fResp = await fetch(fontUrl);
-                if (fResp.ok) {
-                    const buf = await fResp.arrayBuffer();
-                    const base64 = arrayBufferToBase64(buf);
-                    if (jsPDF.API && jsPDF.API.addFileToVFS) {
-                        jsPDF.API.addFileToVFS("NotoSansDevanagari-Regular.ttf", base64);
-                        jsPDF.API.addFont("NotoSansDevanagari-Regular.ttf", "NotoDeva", "normal");
-                    }
-                }
-            } catch (e) {
-                // font optional — continue
-                console.warn("Devanagari font load failed:", e);
-            }
-    
-            const doc = new jsPDF();
-            doc.setFont("helvetica", "normal");
-            doc.setFontSize(9); // Further reduced from 10
-    
-            // border
-            doc.rect(5, 5, 200, 285);
-    
-            // logos - best effort
-            try { 
-                doc.addImage(logo, "PNG", 10, 8, 18, 18); 
-            } catch (e) { }
-            try { 
-                doc.addImage(logo2, "PNG", 182, 8, 18, 18); 
-            } catch (e) { }
-    
-            const pageWidth = doc.internal.pageSize.getWidth();
-    
-            doc.setFontSize(10); // Reduced from 11
-            doc.text("Directorate of School Education (DSE) Shiksha Sadan, Haryana", pageWidth / 2, 10, { align: "center" });
-            doc.setFontSize(11); // Reduced from 12
-            const examLevel = student.classOfStudent === "8" ? "Mission Buniyaad" : "Haryana Super 100";
-            doc.text(`${examLevel} Level 2 Exam (2026-28)`, pageWidth / 2, 15, { align: "center" });
-            doc.setFontSize(10); // Reduced from 11
-            doc.text("E – Admit Card", pageWidth / 2, 21, { align: "center" });
-    
-            doc.setFont("helvetica", "bold");
-            doc.setFontSize(8); // Reduced from 9
-            // doc.text("Examination Date: 30th January, Friday", pageWidth / 2, 26, { align: "center" });
-    
-            doc.setFontSize(8); // Reduced from 9
-            doc.text(`Reporting Date: ${student.L2ExaminationDate}, Reporting Time: 09:00 AM.`, pageWidth / 2, 26, { align: "center" });
-    
-            const dataForPdf = [
-                ["Student Name", student.name ?? "-"],
-                ["Father Name", student.father ?? "-"],
-                ["Date of Birth", student.dob ? formatDateToDDMMYYYY(student.dob) : "-"],
-                ["Category", student.category ?? "-"],
-                ["SRN Number", student.srn ?? "-"],
-                ["Exam Roll Number", student.rollNumber ?? "-"],
-                ["Aadhar Number", student.aadhar ?? "-"],
-                ["Mobile Number", student.mobile ?? "-"],
-                ["District", (student.L2ExaminationDistrict)],
-                ["Block", (student.L2ExaminationBlock)],
-                ["School", student.school ?? "-"],
-                ["Examination Center", student.L2ExaminationCenter ?? "-"],
-                ["Batch", student.batchDivisionForL2Examination ?? "-"] // Added new field
-            ];
-    
-            // Calculate available space for table - made even smaller
-            const startY = 32;
-            const maxTableHeight = 70; // Reduced from 85 to leave more space
-            
-            doc.autoTable({
-                startY: startY,
-                body: dataForPdf,
-                theme: "grid",
-                styles: { 
-                    lineWidth: 0.1,
-                    lineColor: [0, 0, 0], 
-                    fillColor: false, 
-                    textColor: [0, 0, 0], 
-                    fontSize: 7, // Reduced from 8 to 7
-                    cellPadding: 1.5, // Reduced from 2 to 1.5
-                    overflow: 'linebreak'
-                },
-                columnStyles: { 
-                    0: { cellWidth: 32 }, // Reduced from 35
-                    1: { cellWidth: 100, cellPadding: 1.5, overflow: 'linebreak' } // Reduced from 85
-                },
-                tableWidth: "auto",
-                margin: { left: 10, right: 10 }
-            });
-    
-            // Get the final Y position after table
-            const finalY = doc.lastAutoTable.finalY + 3;
-    
-            // photo area (adjusted position and size)
-            if (student.imageUrl) {
-                try {
-                    doc.addImage(student.imageUrl, "PNG", 152, 35, 45, 45); // Slightly smaller and repositioned
-                } catch (e) {
-                    doc.rect(152, 35, 45, 45);
-                    doc.setFontSize(6); // Smaller font
-                    doc.text("Paste your", 158, 50);
-                    doc.text("passport-size", 158, 55);
-                    doc.text("photograph", 158, 60);
-                    doc.text("duly attested", 158, 65);
-                }
-            } else {
-                doc.rect(152, 35, 45, 45);
-                doc.setFontSize(6);
-                doc.text("Paste your", 158, 50);
-                doc.text("passport-size", 158, 55);
-                doc.text("photograph", 158, 60);
-                doc.text("duly attested", 158, 65);
-            }
-    
-            // dividing line and instructions
-            doc.setLineWidth(0.5);
-            doc.line(10, finalY, pageWidth - 10, finalY);
-            
-            try {
-                // Adjust instruction image position and size based on available space
-                const instructionsY = finalY + 2;
-                const availableHeight = 285 - instructionsY ; // Leave bottom margin
-                const imageHeight = Math.min(availableHeight, 165); // Reduced from 145
-                doc.addImage(level1admitinstructions, "PNG", 15, instructionsY, 168, imageHeight);
-            } catch (e) {
-                doc.setFontSize(6.5); // Even smaller font for instructions
-                const instructionsY = finalY + 5;
-                doc.text("General Instructions:", 15, instructionsY);
-                doc.text("1. Reach examination center 30 minutes before the scheduled time.", 15, instructionsY + 4, { maxWidth: pageWidth - 30 });
-                doc.text("2. Carry this admit card along with valid ID proof (Aadhar Card).", 15, instructionsY + 8, { maxWidth: pageWidth - 30 });
-                doc.text("3. Do not carry mobile phones, calculators, or any electronic devices.", 15, instructionsY + 12, { maxWidth: pageWidth - 30 });
-                doc.text("4. Use black/blue ballpoint pen only.", 15, instructionsY + 16, { maxWidth: pageWidth - 30 });
-                doc.text("5. No candidate will be allowed after the reporting time.", 15, instructionsY + 20, { maxWidth: pageWidth - 30 });
-                doc.text("6. Carry your own stationery items.", 15, instructionsY + 24, { maxWidth: pageWidth - 30 });
-                doc.text("7. Follow all COVID-19 protocols if applicable.", 15, instructionsY + 28, { maxWidth: pageWidth - 30 });
-            }
-    
-            return doc.output("blob");
-        };
+      const buildPdfBlob = async (student) => {
+              // try load Devanagari font (optional)
+              try {
+                  const fontUrl = "/fonts/NotoSansDevanagari-Regular.ttf";
+                  const fResp = await fetch(fontUrl);
+                  if (fResp.ok) {
+                      const buf = await fResp.arrayBuffer();
+                      const base64 = arrayBufferToBase64(buf);
+                      if (jsPDF.API && jsPDF.API.addFileToVFS) {
+                          jsPDF.API.addFileToVFS("NotoSansDevanagari-Regular.ttf", base64);
+                          jsPDF.API.addFont("NotoSansDevanagari-Regular.ttf", "NotoDeva", "normal");
+                      }
+                  }
+              } catch (e) {
+                  // font optional — continue
+                  console.warn("Devanagari font load failed:", e);
+              }
+      
+              const doc = new jsPDF();
+              doc.setFont("helvetica", "normal");
+              doc.setFontSize(9); // Further reduced from 10
+      
+              // border
+              doc.rect(5, 5, 200, 285);
+      
+              // logos - best effort
+              try { 
+                  doc.addImage(logo, "PNG", 10, 8, 18, 18); 
+              } catch (e) { }
+              try { 
+                  doc.addImage(logo2, "PNG", 182, 8, 18, 18); 
+              } catch (e) { }
+      
+              const pageWidth = doc.internal.pageSize.getWidth();
+      
+              doc.setFontSize(10); // Reduced from 11
+              doc.text("Directorate of School Education (DSE) Shiksha Sadan, Haryana", pageWidth / 2, 10, { align: "center" });
+              doc.setFontSize(11); // Reduced from 12
+              const examLevel = student.classOfStudent === "8" ? "Mission Buniyaad" : "Haryana Super 100";
+              doc.text(`Haryana Super 100 Admission Process and Guidelines`, pageWidth / 2, 15, { align: "center" });
+              doc.setFontSize(10); // Reduced from 11
+              doc.text(`Status: Waiting`, pageWidth / 2, 21, { align: "center" });
+      
+              doc.setFont("helvetica", "bold");
+              doc.setFontSize(8); // Reduced from 9
+              // doc.text("Examination Date: 30th January, Friday", pageWidth / 2, 26, { align: "center" });
+      
+              doc.setFontSize(8); // Reduced from 9
+              doc.text(`Admission Date: 13-May-2026, Wednesday, Reporting Time: 12:00 PM.`, pageWidth / 2, 26, { align: "center" });
+      
+              const dataForPdf = [
+                  ["Student Name", student.name ?? "-"],
+                  ["Father Name", student.father ?? "-"],
+                  ["Date of Birth", student.dob ? formatDateToDDMMYYYY(student.dob) : "-"],
+                  ["Category", student.category ?? "-"],
+                  ["SRN Number", student.srn ?? "-"],
+                  ["Exam Roll Number", student.rollNumber ?? "-"],
+                  ["Aadhar Number", student.aadhar ?? "-"],
+                  ["Mobile Number", student.mobile ?? "-"],
+                  ["District", (student.L2ExaminationDistrict)],
+                  ["Block", (student.L2ExaminationBlock)],
+                  ["School", student.school ?? "-"],
+                  ["Admission Center", student.L2ExaminationCenter ?? "-"]
+              ];
+      
+              // Calculate available space for table - made even smaller
+              const startY = 32;
+              const maxTableHeight = 70; // Reduced from 85 to leave more space
+              
+              doc.autoTable({
+                  startY: startY,
+                  body: dataForPdf,
+                  theme: "grid",
+                  styles: { 
+                      lineWidth: 0.1,
+                      lineColor: [0, 0, 0], 
+                      fillColor: false, 
+                      textColor: [0, 0, 0], 
+                      fontSize: 7, // Reduced from 8 to 7
+                      cellPadding: 1.5, // Reduced from 2 to 1.5
+                      overflow: 'linebreak'
+                  },
+                  columnStyles: { 
+                      0: { cellWidth: 32 }, // Reduced from 35
+                      1: { cellWidth: 100, cellPadding: 1.5, overflow: 'linebreak' } // Reduced from 85
+                  },
+                  tableWidth: "auto",
+                  margin: { left: 10, right: 10 }
+              });
+      
+              // Get the final Y position after table
+              const finalY = doc.lastAutoTable.finalY + 3;
+      
+              // photo area (adjusted position and size)
+              if (student.imageUrl) {
+                  try {
+                      doc.addImage(student.imageUrl, "PNG", 152, 35, 45, 45); // Slightly smaller and repositioned
+                  } catch (e) {
+                      doc.rect(152, 35, 45, 45);
+                      doc.setFontSize(6); // Smaller font
+                      doc.text("Paste your", 158, 50);
+                      doc.text("passport-size", 158, 55);
+                      doc.text("photograph", 158, 60);
+                      doc.text("duly attested", 158, 65);
+                  }
+              } else {
+                  doc.rect(152, 35, 45, 45);
+                  doc.setFontSize(6);
+                  doc.text("Paste your", 158, 50);
+                  doc.text("passport-size", 158, 55);
+                  doc.text("photograph", 158, 60);
+                  doc.text("duly attested", 158, 65);
+              }
+      
+              // dividing line and instructions
+              doc.setLineWidth(0.5);
+              doc.line(10, finalY, pageWidth - 10, finalY);
+              
+              try {
+                  // Adjust instruction image position and size based on available space
+                  const instructionsY = finalY + 2;
+                  const availableHeight = 285 - instructionsY ; // Leave bottom margin
+                  const imageHeight = Math.min(availableHeight, 165); // Reduced from 145
+                  doc.addImage(level1admitinstructions, "PNG", 15, instructionsY, 168, imageHeight);
+              } catch (e) {
+                  doc.setFontSize(6.5); // Even smaller font for instructions
+                  const instructionsY = finalY + 5;
+                  doc.text("General Instructions:", 15, instructionsY);
+                  doc.text("1. Reach examination center 30 minutes before the scheduled time.", 15, instructionsY + 4, { maxWidth: pageWidth - 30 });
+                  doc.text("2. Carry this admit card along with valid ID proof (Aadhar Card).", 15, instructionsY + 8, { maxWidth: pageWidth - 30 });
+                  doc.text("3. Do not carry mobile phones, calculators, or any electronic devices.", 15, instructionsY + 12, { maxWidth: pageWidth - 30 });
+                  doc.text("4. Use black/blue ballpoint pen only.", 15, instructionsY + 16, { maxWidth: pageWidth - 30 });
+                  doc.text("5. No candidate will be allowed after the reporting time.", 15, instructionsY + 20, { maxWidth: pageWidth - 30 });
+                  doc.text("6. Carry your own stationery items.", 15, instructionsY + 24, { maxWidth: pageWidth - 30 });
+                  doc.text("7. Follow all COVID-19 protocols if applicable.", 15, instructionsY + 28, { maxWidth: pageWidth - 30 });
+              }
+      
+              return doc.output("blob");
+          };
     
         // Download single PDF directly
         const downloadSinglePdf = async (student) => {
@@ -211,13 +210,13 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
             try {
                 const blob = await buildPdfBlob(student);
                 const safeName = (student.srn || student.name || "admit").toString().replace(/\s+/g, "_");
-                saveAs(blob, `${safeName}_admit_card.pdf`);
+                saveAs(blob, `${safeName}__AdmissionProcess&GuidelineSlip.pdf`);
     
                 // notify backend (best-effort)
                 try {
                     await IsAdmitCardDownloaded({
                         _id: student._id,
-                        admitCardDownloadStatus: { isL2AdmitCardDownloaded: true }
+                        admitCardDownloadStatus: { isL3AdmitCardDownloaded: true }
                     });
                 } catch (e) {
                     console.warn("Notify failed:", e);
@@ -262,7 +261,7 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
                     try {
                         await IsAdmitCardDownloaded({
                             _id: st._id,
-                            admitCardDownloadStatus: { isL2AdmitCardDownloaded: true }
+                            admitCardDownloadStatus: { isL3AdmitCardDownloaded: true }
                         });
                     } catch (e) {
                         console.warn("Notify failed for", st._id, e);
@@ -369,13 +368,12 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
             //certificate
     
     
-    
             const downloadCertificate = async (student) => {
                 try {
                     const doc = new jsPDF("landscape", "mm", "a4");
     
                     // Template
-                    const templatePath = "/L1HSQualificationCertificateblank.png";
+                    const templatePath = "/L2HSQualificationCertificateblank.png";
                     const response = await fetch(templatePath);
                     const blob = await response.blob();
     
@@ -506,23 +504,23 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
     
                     doc.setFont("times", "bold");
                     doc.text(
-                        "Haryana Super 100 Entrance Examination Level 1 for the batch 2026–28.",
+                        "Haryana Super 100 Entrance Examination Level 2 for the batch 2026–28.",
                         startX + 39,
                         y,
                         { maxWidth: 220 }
                     );
     
                     // ---------- RANKS ----------
-                    y += 18;
+                    y += 23;
                     doc.setFont("times", "normal");
                     doc.setFontSize(14);
     
-                    // doc.text(`State Rank : ${stateRank}`, startX, y);
+                    doc.text(`Status : Waiting`, startX, y);
                     // doc.text(`District Rank : ${districtRank}`, startX, y + 10);
                     // doc.text(`Block Rank : ${blockRank}`, startX, y + 20);
     
                     // Save
-                    doc.save(`${name || "Student"}_HS100_Level1_Qualification_Certificate.pdf`);
+                    doc.save(`${name || "Student"}_HS100_Level2_Qualification_Certificate.pdf`);
     
     
     
@@ -530,7 +528,7 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
                 try {
                     await IsAdmitCardDownloaded({
                         _id: student._id,
-                        admitCardDownloadStatus: { L1ResultDownloaded: true }
+                        admitCardDownloadStatus: { L2ResultDownloaded: true }
                     });
                 } catch (e) {
                     console.warn("Notify failed:", e);
@@ -549,7 +547,7 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
                  try {
                     await IsAdmitCardDownloaded({
                         _id: student._id,
-                        admitCardDownloadStatus: { L1ResultDownloaded: true }
+                        admitCardDownloadStatus: { L2ResultDownloaded: true }
                     });
                 } catch (e) {
                     console.warn("Notify failed:", e);
@@ -577,7 +575,7 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
                     <Card.Body style={{ padding: "14px" }}>
 
 
-                        <p
+                    <p
                             style={{
                                 color: "#000000ff",
                                 fontWeight: "bold",
@@ -587,18 +585,20 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
                         >
                             Dear {student.name},
                             <br /><br />
-                            We are pleased to inform you that you have successfully Qualified the {" "}
-                            <strong>Haryana Super 100 Entrance Examination Level 1 for the 2026–28 batch.</strong>{""}
-                             Currently, you are placed on the waiting list. You will be notified accordingly for the Haryana Super 100 Level-2 Examination.
+                            We are pleased to inform you that you are placed on the{" "}
+                            <strong>"Waiting List". </strong>{""}
+                            You may now download your Haryana Super 100 Admission Process and Guidline Slip.
+                           
                             <br /><br />
                         
                             {/* <strong>You may now download your Haryana Super 100 Entrance Examination Level 1 Qualifying Certificate using the link provided below.</strong>
                              */}
                             <br /><br />
                             <span style={{ fontWeight: "normal" }}>
-                                (प्प्रिय {student.name}, हमें आपको यह सूचित करते हुए प्रसन्नता हो रही है कि आपने 2026–28 बैच के लिए हरियाणा सुपर 100 प्रवेश परीक्षा (लेवल 1) सफलतापूर्वक उत्तीर्ण कर ली है। वर्तमान में आपका नाम प्रतीक्षा सूची (Waiting List) में रखा गया है। हरियाणा सुपर 100 लेवल-2 परीक्षा के संबंध में आपको समयानुसार सूचित किया जाएगा।)
+                                (प्प्रिय {student.name}, हमें आपको यह सूचित करते हुए अत्यंत प्रसन्नता हो रही है कि आपने सत्र 2026–28 के लिए हरियाणा सुपर 100 प्रवेश परीक्षा लेवल 2 सफलतापूर्वक उत्तीर्ण कर ली है। अब आप नीचे दिए गए लिंक का उपयोग करके अपनी हरियाणा सुपर 100 प्रवेश प्रक्रिया एवं दिशा-निर्देश पर्ची डाउनलोड कर सकते हैं।)
                             </span>
                         </p>
+
 
 
 
@@ -612,28 +612,28 @@ export const WaitingListSuper100 = ({ singleStudent = null, bulkDownload = null,
                                      style={{ cursor: "pointer", fontWeight: "bold", fontSize: "22px", animation: "blink 1s infinite", alignItems: "center" }}
                                      className="blinking-link"
                                  >
-                                     Download Haryana Super 100 Level-2 Admit Card. <br />
-                                     (अपना लेवल-2 प्रवेश पत्र डाउनलोड करें)
+                                      Download Haryana Super 100 Admission Process & Guideline Slip. <br />
+                                    (हरियाणा सुपर 100 प्रवेश प्रक्रिया एवं दिशा-निर्देश पर्ची डाउनलोड करें।)
                                  </a>
                                  <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                              </div>
                          </div>
 
 
-
-                        {/* <div className="d-flex align-items-center justify-content-center mb-3">
+      <div className="d-flex align-items-center justify-content-center mb-3">
                             <div style={{ textAlign: "center" }}>
                                 <a
                                     onClick={() => downloadCertificate(student)}
                                     style={{ cursor: "pointer", fontWeight: "bold", fontSize: "22px", animation: "blink 1s infinite", alignItems: "center" }}
                                     className="blinking-link"
                                 >
-                                    Download Haryana Super 100 Level-1 Qualification Certificate. <br />
-                                    (हरियाणा सुपर 100 लेवल-1 प्रमाण पत्र डाउनलोड करें)
+                                    Download Haryana Super 100 Level-2 Qualification Certificate. <br />
+                                    (हरियाणा सुपर 100 लेवल-2 प्रमाण पत्र डाउनलोड करें)
                                 </a>
                                 <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                             </div>
-                        </div> */}
+                        </div>
+
 
 
 

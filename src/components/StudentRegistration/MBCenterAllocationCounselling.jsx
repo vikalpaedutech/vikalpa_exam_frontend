@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Form, Button, Card, Spinner, Alert, Badge, InputGroup, Accordion, Table, Modal } from "react-bootstrap";
 import { GetCentersDataByExaminationAndExamTypeCounselling } from "../../services/ExaminationVenue/ExaminationVenueServices";
-import { GetAttendanceSheetDataCounselling, updateCenterPreference, getCenterPreferenceDashboard } from "../../services/StudentRegistrationServices/StudentRegistrationService";
+import { GetAttendanceSheetDataCounselling, updateCenterPreference, getCenterPreferenceDashboard,
+  updateCounsellingFields
+ } from "../../services/StudentRegistrationServices/StudentRegistrationService";
 import MBCenters from "../StudentRegistration/MBCenters.json";
 
 
