@@ -154,7 +154,7 @@ export const StudentAdmissionStatusConfirmation = () => {
   };
 
   const hasCompletedDocVerification = (student) => {
-    const validStatuses = ["Admission Done", "Provisional", "Waiting"];
+    const validStatuses = ["Admission Done", "Provisional", "Waiting", "Selected-absent",  "Waiting-absent" ];
     return student.finalAdmissionStatus && validStatuses.includes(student.finalAdmissionStatus);
   };
 
