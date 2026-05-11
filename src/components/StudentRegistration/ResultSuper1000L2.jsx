@@ -109,7 +109,7 @@ export const ResultSuper100L2 = ({ singleStudent = null, bulkDownload = null, on
         // doc.text("Examination Date: 30th January, Friday", pageWidth / 2, 26, { align: "center" });
 
         doc.setFontSize(8); // Reduced from 9
-        doc.text(`Admission Date: 13-May-2026, Wednesday, Reporting Time: 12:00 PM.`, pageWidth / 2, 26, { align: "center" });
+        doc.text(`Admission Date: 13-May-2026, Wednesday, Reporting Time: 09:00 AM.`, pageWidth / 2, 26, { align: "center" });
 
         const dataForPdf = [
             ["Student Name", student.name ?? "-"],
