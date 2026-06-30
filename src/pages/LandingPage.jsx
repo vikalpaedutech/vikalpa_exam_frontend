@@ -136,7 +136,7 @@ const {studentData, setStudentData} = useContext(StudentContext);
 
 
 
-                   <Link  to="result-login-s100-l2" style={{textDecoration:'none', fontSize:'35px', color:'red'}}>
+                   {/* <Link  to="result-login-s100-l2" style={{textDecoration:'none', fontSize:'35px', color:'red'}}>
            <p>
   <BsArrowRight className="blinking-link" />
   Class 10th Result - Haryana Super 100 Level-2. <br/>
@@ -144,7 +144,7 @@ const {studentData, setStudentData} = useContext(StudentContext);
 </p>
             </Link>
             <br /> 
-            <hr></hr>
+            <hr></hr> */}
 
             {/* <MBL3OrientationDates/> */}
 
@@ -162,12 +162,19 @@ const {studentData, setStudentData} = useContext(StudentContext);
             </Link>
             <br /> */}
 
-
-              {/* <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
+{/* 
+              <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
             <p><BsArrowRight className="blinking-link" />Class 10th Registration - Haryana Super 100 Level-1 <br/>(
                  कक्षा 10वीं पंजीकरण - हरियाणा सुपर 100 स्तर-1।)</p> 
             </Link>
-            <br /> */}
+            <br />  */}
+
+ <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
+            <p><BsArrowRight className="blinking-link" />Class 10th Registration - Haryana Super 100 Extended 100 Seats <br/>(
+                 कक्षा 10वीं के लिए पंजीकरण - हरियाणा सुपर 100 योजना (100 अतिरिक्त सीटें)|)</p> 
+            </Link>
+            <br /> 
+
 
              {/* <Link  to="" style={{textDecoration:'none', fontSize:'25px', color:'red', fontWeight:'bold'}}>
             <p><BsArrowRight className="blinking-link" />Mission Buniyaad Entrance Examination Level-2 Result Coming Soon.<br/>(मिशन बुनियाद प्रवेश परीक्षा लेवल-2 परिणाम जल्द आ रहा है।)</p> 

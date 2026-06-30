@@ -1678,7 +1678,9 @@ export const AcknowledgementSlipComponent = ({ singleStudent = null, bulkDownloa
 
   const logo = "/haryana.png";
   const acknowledgementInstructionsMB = "/geninstructions-new.png";
-  const acknowledgementInstructionsSH = "/geninstructions-new-sh.png";
+  // const acknowledgementInstructionsSH = "/geninstructions-new-sh.png";
+
+    const acknowledgementInstructionsSH = "/s100extendedgeneralinstructions.png";
 
   // Fetch image and return data URL (or null on failure)
   const fetchImageDataUrl = async (path) => {

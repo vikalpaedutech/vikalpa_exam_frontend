@@ -1664,7 +1664,7 @@ const registrationDate =  new Date();
       )}
 
       <h1 style={{textAlign:'center', color:'red', fontWeight:'bold'}}>{location.pathname === "/exam-registration-form-mb" ||
-      location.pathname === "/user-registration-form-mb" ? ("Class 8 - Mission Buinyaad Registration Form"):("Class 10 - Haryana Super 100 Registration Form") }</h1>
+      location.pathname === "/user-registration-form-mb" ? ("Class 8 - Mission Buinyaad Registration Form"):("Class 10 - Haryana Super 100 Registration Form Extended 100 Seats") }</h1>
       <hr></hr>
       <Form onSubmit={handleSubmit} noValidate>
         <Card className="mb-3">

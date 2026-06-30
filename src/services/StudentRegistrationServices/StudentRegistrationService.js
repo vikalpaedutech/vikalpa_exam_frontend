@@ -15,7 +15,7 @@ export const createStudent = async (rqBody) => {
   try {
     console.log("📤 Sending Student Data to API:", rqBody);
 
-    const response = await axios.post(`${API_BASE_URL}/api/student---deactivated`, rqBody, {
+    const response = await axios.post(`${API_BASE_URL}/api/student`, rqBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
