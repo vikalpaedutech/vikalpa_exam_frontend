@@ -1883,7 +1883,7 @@ const registrationDate =  new Date();
                   <Col md={12} className="mb-3">
                     <Form.Group controlId="formPrevClassPercent">
                       <Form.Label>{location.pathname === "/exam-registration-form-mb" ||
-                        location.pathname === "/user-registration-form-mb" ? ("Class 7th Annual Examination Percentage (कक्षा 7वीं वार्षिक परीक्षा प्रतिशत)"):("Class 9th Annual Examination Percentage (कक्षा 9वीं वार्षिक परीक्षा प्रतिशत)")
+                        location.pathname === "/user-registration-form-mb" ? ("Class 7th Annual Examination Percentage (कक्षा 7वीं वार्षिक परीक्षा प्रतिशत)"):("Class 10th Board Examination Percentage (कक्षा 10वीं बोर्ड परीक्षा का प्रतिशत)")
                         }</Form.Label>
                       <Form.Control type="text" placeholder="Enter Percentage" value={previousClassAnnualExamPercentage} onChange={handlePrevPercentChange} isInvalid={!!errors.previousClassAnnualExamPercentage} />
                       <Form.Control.Feedback type="invalid">{errors.previousClassAnnualExamPercentage}</Form.Control.Feedback>
@@ -1891,7 +1891,7 @@ const registrationDate =  new Date();
                   </Col>
 
                   <Col md={12} className="mb-3">
-                    <Form.Group controlId="formClassSelect">
+                    {/* <Form.Group controlId="formClassSelect">
                       <Form.Label>Class of Student :</Form.Label>
                       <Select
                         value={mapToOption(classOfStudent, classOptions)}
@@ -1899,7 +1899,7 @@ const registrationDate =  new Date();
                         onChange={(opt) => { setClassOfStudent(opt ? opt.value : ""); setErrors((p) => ({ ...p, classOfStudent: null })); }}
                       />
                       {errors.classOfStudent && <div className="text-danger small mt-1">{errors.classOfStudent}</div>}
-                    </Form.Group>
+                    </Form.Group> */}
                   </Col>
                 </Row>
               </Card.Body>

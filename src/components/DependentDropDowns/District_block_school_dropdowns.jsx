@@ -1328,7 +1328,7 @@ const {studentData, setStudentData} = useContext(StudentContext);
       {/* Show Select only when manualSchoolChecked is false */}
       {!manualSchoolChecked && (
         <div style={{ marginBottom: 16 }}>
-          <label style={{ display: "block", marginBottom: 6 }}>School</label>
+          <label style={{ display: "block", marginBottom: 6 }}>Current School</label>
           <Select
             options={schoolOptions}
             value={selectedSchool}
