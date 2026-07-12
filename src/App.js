@@ -492,7 +492,7 @@ function App() {
                           <Route path='/MB-level3-waitinglist' element = {<WaitingListMBL3/>}/>
 
                           
-                        <Route path='/s100-l1-admit-card--deactivated' element = {<AdmitCardStudentSignin/>}/>
+                        <Route path='/s100-l1-admit-card' element = {<AdmitCardStudentSignin/>}/>
 
                           <Route path='/s100-level1-admit-card' element={<Level1AdmitCardS100/>}/>
 
@@ -556,10 +556,10 @@ function App() {
 
 
 
-                          <Route path='/mb-l3-attendance-pdf' element = {<AttendanceSheet/>}/>
+                          {/* <Route path='/mb-l3-attendance-pdf' element = {<AttendanceSheet/>}/> */}
 
 
-                              {/* <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/> */}
+                              <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/>
 
                                <Route path='/s100-l2-attendance' element = {<S100AttendanceSheet/>}/>
 

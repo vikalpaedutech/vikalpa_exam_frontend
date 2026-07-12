@@ -176,6 +176,15 @@ const {studentData, setStudentData} = useContext(StudentContext);
             <br /> 
 
 
+
+
+                 <Link  to="/s100-l1-admit-card" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
+            <p><BsArrowRight className="blinking-link" />Class 11th Admit Card -  Haryana Super 100 Level-1 (Extended 100 Seats). <br/>(कक्षा 11वीं का प्रवेश पत्र – हरियाणा सुपर 100 स्तर-1 (100 अतिरिक्त सीटें))</p> 
+            </Link>
+            <br />
+
+
+
              {/* <Link  to="" style={{textDecoration:'none', fontSize:'25px', color:'red', fontWeight:'bold'}}>
             <p><BsArrowRight className="blinking-link" />Mission Buniyaad Entrance Examination Level-2 Result Coming Soon.<br/>(मिशन बुनियाद प्रवेश परीक्षा लेवल-2 परिणाम जल्द आ रहा है।)</p> 
             </Link>

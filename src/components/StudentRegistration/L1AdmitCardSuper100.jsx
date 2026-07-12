@@ -1,12 +1,19 @@
 import React, { useContext, useEffect, useState } from "react";
+
 import { Container, Card, Button, Row, Col, Modal, Spinner } from "react-bootstrap";
+
 import jsPDF from "jspdf";
+
 import "jspdf-autotable";
+
 import JSZip from "jszip";
+
 import { saveAs } from "file-saver";
 
 import { StudentContext } from "../NewContextApis/StudentContextApi.js";
+
 import { UserContext } from "../NewContextApis/UserContext.js";
+
 import { BulkDownloadContext } from "../ContextApi/BulkDownloadAPI/BulkAdmitCardDownloadContextApi";
 
 import { IsAdmitCardDownloaded } from "../../services/StudentRegistrationServices/StudentRegistrationService.js";
@@ -16,9 +23,14 @@ import { useNavigate } from "react-router-dom";
 
 
 const logo = "/haryana.png";
+
 const logo2 = "/vikalpalogonotitle.png";
+
 const logo3 = "/admitBuniyaLogo.png";
-const level1admitinstructions = "/level1adimitcardinstructions.png";
+
+//const level1admitinstructions = "/level1adimitcardinstructions.png";
+
+const level1admitinstructions = "/s100extendedgenistructions.png";
 
 const arrayBufferToBase64 = (buffer) => {
   let binary = "";
@@ -30,14 +42,17 @@ const arrayBufferToBase64 = (buffer) => {
 export const Level1AdmitCardS100 = ({ singleStudent = null, bulkDownload = null, onDone = () => {} }) => {
   // contexts
   const { studentData } = useContext(StudentContext);
+  
   const { userData } = useContext(UserContext);
+  
   const { bulkDownload: contextBulkDownload, setBulkDownload } = useContext(BulkDownloadContext);
 
   // local state
   const [busy, setBusy] = useState(false);
+  
   const [showModal, setShowModal] = useState(false);
+  
   const [error, setError] = useState(null);
-
 
   const navigate = useNavigate();
 
@@ -91,7 +106,7 @@ export const Level1AdmitCardS100 = ({ singleStudent = null, bulkDownload = null,
     doc.text("Directorate of School Education (DSE) Shiksha Sadan, Haryana", pageWidth / 2, 10, { align: "center" });
     doc.setFontSize(13);
     const examLevel = student.classOfStudent === "8" ? "Mission Buniyaad" : "Haryana Super 100";
-    doc.text(`${examLevel} Level 1 Exam (2026-28)`, pageWidth / 2, 15, { align: "center" });
+    doc.text(`${examLevel} Level 1 Exam -Extended 100 Seats (2026-28)`, pageWidth / 2, 15, { align: "center" });
     doc.setFontSize(12);
     doc.text("E – Admit Card", pageWidth / 2, 22, { align: "center" });
     // doc.setFontSize(10);
@@ -100,10 +115,13 @@ export const Level1AdmitCardS100 = ({ singleStudent = null, bulkDownload = null,
 
     doc.setFont("helvetica", "bold");
 doc.setFontSize(10);
-doc.text("Examination Date: 11th February, Wednesday", pageWidth / 2, 27, { align: "center" });
+// doc.text("Examination Date: 11th February, Wednesday", pageWidth / 2, 27, { align: "center" });
+doc.text("Examination Date: 14th July, Tuesday", pageWidth / 2, 27, { align: "center" });
 
 doc.setFontSize(10);
-    doc.text("Reporting Time: 11:30 AM, Exam Time: 12:30 PM to 2:30 PM", pageWidth / 2, 32, { align: "center" });
+    // doc.text("Reporting Time: 11:30 AM, Exam Time: 12:30 PM to 2:30 PM", pageWidth / 2, 32, { align: "center" });
+
+     doc.text("Reporting Time: 11:30 AM, Exam Time: 12:00 PM to 01:30 PM", pageWidth / 2, 32, { align: "center" });
 
     const dataForPdf = [
       ["Student Name", student.name ?? "-"],
@@ -365,7 +383,7 @@ doc.setFontSize(10);
 
           <hr></hr>
 
-<br></br>
+          <br></br>
              <div className="d-flex align-items-center justify-content-center mb-3">
           <div style={{ textAlign: "center" }}>
             <a
@@ -401,14 +419,14 @@ doc.setFontSize(10);
 
 
 
-             <Button
-  variant="secondary"
-  onClick={() => navigate("/")}
-  disabled={busy}
->
+      <Button
+      variant="secondary"
+      onClick={() => navigate("/")}
+      disabled={busy}
+      >
   Close
 </Button>
-          </Modal.Footer>
+        </Modal.Footer>
         </Modal>
       </Container>
     );
