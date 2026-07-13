@@ -15,7 +15,7 @@ export const createStudent = async (rqBody) => {
   try {
     console.log("📤 Sending Student Data to API:", rqBody);
 
-    const response = await axios.post(`${API_BASE_URL}/api/student`, rqBody, {
+    const response = await axios.post(`${API_BASE_URL}/api/student-deactivated`, rqBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
@@ -40,7 +40,7 @@ export const updateStudent = async (rqBody) => {
   try {
     console.log("Updating Student Data to API:", rqBody);
 
-    const response = await axios.patch(`${API_BASE_URL}/api/update-student`, rqBody, {
+    const response = await axios.patch(`${API_BASE_URL}/api/update-student-deactivated`, rqBody, {
       headers: {
         "Content-Type": "multipart/form-data",
       },
