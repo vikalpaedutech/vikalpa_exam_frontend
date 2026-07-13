@@ -169,11 +169,11 @@ const {studentData, setStudentData} = useContext(StudentContext);
             </Link>
             <br />  */}
 
- <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
+ {/* <Link  to="/exam-student-signin-sh" style={{textDecoration:'none', fontSize:'25px'}}>
             <p><BsArrowRight className="blinking-link" />Class 11th Registration - Haryana Super 100 (Extended 100 Seats) <br/>(
                  कक्षा 11वीं के लिए पंजीकरण - हरियाणा सुपर 100 योजना (100 अतिरिक्त सीटें)|)</p> 
             </Link>
-            <br /> 
+            <br />  */}
 
 
 

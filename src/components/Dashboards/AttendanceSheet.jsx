@@ -2925,7 +2925,10 @@ export const AttendanceSheet = () => {
           // Add header text
           pdf.setFontSize(16);
           pdf.setFont("helvetica", "bold");
-          pdf.text("MISSION BUNIYAAD ENTRANCE EXAMINATION LEVEL-3 (2026-28)", w / 2, 18, { align: "center" });
+          // pdf.text("MISSION BUNIYAAD ENTRANCE EXAMINATION LEVEL-3 (2026-28)", w / 2, 18, { align: "center" });
+
+
+           pdf.text("HARYANA SUPER 100 LEVEL 1 (EXTENDED 100 SEATS) (2026-28)", w / 2, 18, { align: "center" });
           
           pdf.setFontSize(16);
           pdf.setFont("helvetica", "bold");
