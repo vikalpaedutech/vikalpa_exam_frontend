@@ -2580,7 +2580,7 @@ export const AttendanceSheet = () => {
     const grouped = {};
     
     students.forEach(student => {
-      const roomNumber = student.orientationRoomNumber || "Unassigned";
+      const roomNumber = student.roomNo || "Unassigned";
       if (!grouped[roomNumber]) {
         grouped[roomNumber] = [];
       }
@@ -2617,8 +2617,11 @@ export const AttendanceSheet = () => {
     setError(null);
     try {
       const res = await GetAttendanceSheetData({
-        L3ExaminationCenter: selectedCenter.label,
+        L1ExaminationCenter: selectedCenter.label,
       });
+
+
+      console.log(res.data)
 
       // First sort all data by roll number
       const sortedByRoll = (res.data || []).sort((a, b) =>
