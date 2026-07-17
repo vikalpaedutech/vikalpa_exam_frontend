@@ -478,13 +478,16 @@ function App() {
 
                          {/* <Route path='/hs100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/> */}
 
-                           <Route path='/s100-l2-admit-card' element = {<AdmitCardStudentSigninSuper100Level2/>}/>
+                           {/* <Route path='/s100-l2-admit-card' element = {<AdmitCardStudentSigninSuper100Level2/>}/> */}
+
+                             <Route path='/hs100-extended-100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/>
+                             
                              <Route path='/result-login-s100-l2' element = {<ResultLoginSuper100L2/>}/>
                        
 
-                         {/* <Route path='/hs100-level1-result' element = {<ResultSuper100L1/>}/> */}
+                         <Route path='/hs100-level1-result' element = {<ResultSuper100L1/>}/>
 
-                           <Route path='/hs100-level2-result' element = {<ResultSuper100L2/>}/>
+                           {/* <Route path='/hs100-level2-result' element = {<ResultSuper100L2/>}/> */}
 
                          <Route path='/s100-l2-admit-card' element = {<ResultSuper100L1/>}/>
                           <Route path='/hs100-level2-waitinglist' element = {<WaitingListSuper100/>}/>
@@ -580,7 +583,10 @@ function App() {
 
                              <Route path='/mb-l3-result-notqualifed' element = {<StudentNotFoundMB/>}/>
 
-                            <Route path='/sh100-l2-result-notqualifed' element = {<StudentNotFound/>}/>
+                            {/* <Route path='/sh100-l2-result-notqualifed' element = {<StudentNotFound/>}/> */}
+
+
+                              <Route path='/sh100-l1-result-notqualifed' element = {<StudentNotFound/>}/>
 
 
 

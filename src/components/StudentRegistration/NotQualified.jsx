@@ -38,7 +38,7 @@ export const StudentNotFound = ({ studentName = "Student" }) => {
           }}>
             Dear {studentName},<br /><br />
             
-            You have Not Qualified the Haryana Super 100 Entrance Examination Level-2. 
+            You have Not Qualified the Haryana Super 100 Entrance Examination Level-1 (Extended 100 Seats). 
             We encourage you to continue your academic efforts and wish you success in your future endeavors.
             <br /><br />
             
@@ -48,7 +48,7 @@ export const StudentNotFound = ({ studentName = "Student" }) => {
               display: "block",
               marginTop: "15px"
             }}>
-              (आप हरियाणा सुपर 100 प्रवेश परीक्षा स्तर-2 उत्तीर्ण नहीं कर पाए हैं। 
+              (आप हरियाणा सुपर 100 प्रवेश परीक्षा स्तर-2 (100 अतिरिक्त सीटें) उत्तीर्ण नहीं कर पाए हैं। 
               हम आपको आपके शैक्षणिक प्रयास जारी रखने के लिए प्रोत्साहित करते हैं और 
               आपके भविष्य के प्रयासों में आपकी सफलता की कामना करते हैं।)
             </span>

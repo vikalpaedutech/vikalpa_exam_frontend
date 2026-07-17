@@ -20,7 +20,8 @@ import { rgb } from "pdf-lib";
 
 const logo = "/haryana.png";
 const logo2 = "/vikalpalogonotitle.png";
-const level1admitinstructions = "/s100admitinstructionsLevel2Using.png";
+// const level1admitinstructions = "/s100admitinstructionsLevel2Using.png";
+const level1admitinstructions = "/S100extgenl2guidelines.png";
 
 const certificate = "/L1HSQualificationCertificateblank.png"
 
@@ -99,7 +100,7 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
         doc.text("Directorate of School Education (DSE) Shiksha Sadan, Haryana", pageWidth / 2, 10, { align: "center" });
         doc.setFontSize(11); // Reduced from 12
         const examLevel = student.classOfStudent === "8" ? "Mission Buniyaad" : "Haryana Super 100";
-        doc.text(`${examLevel} Level 2 Exam (2026-28)`, pageWidth / 2, 15, { align: "center" });
+        doc.text(`${examLevel} Level 2 Exam (Extended 100 Seats) - 2026`, pageWidth / 2, 15, { align: "center" });
         doc.setFontSize(10); // Reduced from 11
         doc.text("E – Admit Card", pageWidth / 2, 21, { align: "center" });
 
@@ -108,49 +109,93 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
         // doc.text("Examination Date: 30th January, Friday", pageWidth / 2, 26, { align: "center" });
 
         doc.setFontSize(8); // Reduced from 9
-        doc.text(`Reporting Date: ${student.L2ExaminationDate}, Reporting Time: 09:00 AM.`, pageWidth / 2, 26, { align: "center" });
+        // doc.text(`Reporting Date: ${student.L2ExaminationDate}, Reporting Time: 09:00 AM.`, pageWidth / 2, 26, { align: "center" });
+         doc.text(`Reporting Date: 19th-July, 2026, Reporting Time: 10:00 AM.`, pageWidth / 2, 26, { align: "center" });
 
-        const dataForPdf = [
-            ["Student Name", student.name ?? "-"],
-            ["Father Name", student.father ?? "-"],
-            ["Date of Birth", student.dob ? formatDateToDDMMYYYY(student.dob) : "-"],
-            ["Category", student.category ?? "-"],
-            ["SRN Number", student.srn ?? "-"],
-            ["Exam Roll Number", student.rollNumber ?? "-"],
-            ["Aadhar Number", student.aadhar ?? "-"],
-            ["Mobile Number", student.mobile ?? "-"],
-            ["District", (student.L2ExaminationDistrict)],
-            ["Block", (student.L2ExaminationBlock)],
-            ["School", student.school ?? "-"],
-            ["Examination Center", student.L2ExaminationCenter ?? "-"],
-            ["Batch", student.batchDivisionForL2Examination ?? "-"] // Added new field
-        ];
+        // const dataForPdf = [
+        //     ["Student Name", student.name ?? "-"],
+        //     ["Father Name", student.father ?? "-"],
+        //     ["Date of Birth", student.dob ? formatDateToDDMMYYYY(student.dob) : "-"],
+        //     ["Category", student.category ?? "-"],
+        //     ["SRN Number", student.srn ?? "-"],
+        //     ["Exam Roll Number", student.rollNumber ?? "-"],
+        //     ["Aadhar Number", student.aadhar ?? "-"],
+        //     ["Mobile Number", student.mobile ?? "-"],
+        //     ["District", (student.L1ExaminationDistrict)], //Level 1 examination district and block
+        //     ["Block", (student.L1ExaminationBlock)],
+        //     ["School", student.school ?? "-"],
+        //     ["Examination Venue", student.L2ExaminationCenter ?? "HARYANA SUPER 100 CAMPUS, VILLAGE BARNA, DHAND ROAD, KURUKSHETRA"],
+        //     // ["Batch", student.batchDivisionForL2Examination ?? "-"] // Added new field
+        // ];
 
         // Calculate available space for table - made even smaller
         const startY = 32;
         const maxTableHeight = 70; // Reduced from 85 to leave more space
         
-        doc.autoTable({
-            startY: startY,
-            body: dataForPdf,
-            theme: "grid",
-            styles: { 
-                lineWidth: 0.1,
-                lineColor: [0, 0, 0], 
-                fillColor: false, 
-                textColor: [0, 0, 0], 
-                fontSize: 7, // Reduced from 8 to 7
-                cellPadding: 1.5, // Reduced from 2 to 1.5
-                overflow: 'linebreak'
-            },
-            columnStyles: { 
-                0: { cellWidth: 32 }, // Reduced from 35
-                1: { cellWidth: 100, cellPadding: 1.5, overflow: 'linebreak' } // Reduced from 85
-            },
-            tableWidth: "auto",
-            margin: { left: 10, right: 10 }
-        });
+        // doc.autoTable({
+        //     startY: startY,
+        //     body: dataForPdf,
+        //     theme: "grid",
+        //     styles: { 
+        //         lineWidth: 0.1,
+        //         lineColor: [0, 0, 0], 
+        //         fillColor: false, 
+        //         textColor: [0, 0, 0], 
+        //         fontSize: 7, // Reduced from 8 to 7
+        //         cellPadding: 1.5, // Reduced from 2 to 1.5
+        //         overflow: 'linebreak'
+        //     },
+        //     columnStyles: { 
+        //         0: { cellWidth: 32 }, // Reduced from 35
+        //         1: { cellWidth: 100, cellPadding: 1.5, overflow: 'linebreak' } // Reduced from 85
+        //     },
+        //     tableWidth: "auto",
+        //     margin: { left: 10, right: 10 }
+        // });
+const dataForPdf = [
+    ["Student Name", student.name ?? "-"],
+    ["Father Name", student.father ?? "-"],
+    ["Date of Birth", student.dob ? formatDateToDDMMYYYY(student.dob) : "-"],
+    ["Category", student.category ?? "-"],
+    ["SRN Number", student.srn ?? "-"],
+    ["Exam Roll Number", student.rollNumber ?? "-"],
+    ["Aadhar Number", student.aadhar ?? "-"],
+    ["Mobile Number", student.mobile ?? "-"],
+    ["District", (student.L1ExaminationDistrict)],
+    ["Block", (student.L1ExaminationBlock)],
+    ["School", student.school ?? "-"],
+    // For Examination Venue - only value will be bold
+    [
+        "Examination Venue", 
+        {
+            content: student.L2ExaminationCenter ?? "HARYANA SUPER 100 CAMPUS, VILLAGE BARNA, DHAND ROAD, KURUKSHETRA",
+            styles: { fontStyle: 'bold', fontSize: 8 }
+        }
+    ],
+];
 
+doc.autoTable({
+    startY: startY,
+    body: dataForPdf,
+    theme: "grid",
+    styles: { 
+        lineWidth: 0.1,
+        lineColor: [0, 0, 0], 
+        fillColor: false, 
+        textColor: [0, 0, 0], 
+        fontSize: 7,
+        cellPadding: 1.5,
+        overflow: 'linebreak'
+    },
+    columnStyles: { 
+        0: { cellWidth: 32 },
+        1: { cellWidth: 100, cellPadding: 1.5, overflow: 'linebreak' }
+    },
+    tableWidth: "auto",
+    margin: { left: 10, right: 10 }
+});
+
+       
         // Get the final Y position after table
         const finalY = doc.lastAutoTable.finalY + 3;
 
@@ -183,8 +228,8 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
             // Adjust instruction image position and size based on available space
             const instructionsY = finalY + 2;
             const availableHeight = 285 - instructionsY ; // Leave bottom margin
-            const imageHeight = Math.min(availableHeight, 165); // Reduced from 145
-            doc.addImage(level1admitinstructions, "PNG", 15, instructionsY, 168, imageHeight);
+            const imageHeight = Math.min(availableHeight, 250); // Reduced from 145
+            doc.addImage(level1admitinstructions, "PNG", 15, instructionsY, 160, imageHeight);
         } catch (e) {
             doc.setFontSize(6.5); // Even smaller font for instructions
             const instructionsY = finalY + 5;
@@ -355,7 +400,7 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
             { field: "Mobile Number", value: student.mobile || "-" },
             { field: "District", value: (student.schoolDistrict ? student.schoolDistrict : "-") + (student.schoolDistrictCode ? " (" + student.schoolDistrictCode + ")" : "") },
             { field: "Block", value: (student.schoolBlock ? student.schoolBlock : "-") + (student.schoolBlockCode ? " (" + student.schoolBlockCode + ")" : "") },
-            { field: "Examination Center", value: student.L1ExaminationCenter || "-" },
+            { field: "Examination Venue", value: student.L2ExaminationCenter || "HARYANA SUPER 100 CAPUS, VILLAGE BARNA, DHAND ROAD, KURUKSHETRA" },
         ];
 
         // NEW: Show only the basic details table and a download blinking hyperlink/button below it.
@@ -504,7 +549,7 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
 
                 doc.setFont("times", "bold");
                 doc.text(
-                    "Haryana Super 100 Entrance Examination Level 1 for the batch 2026–28.",
+                    "Haryana Super 100 Entrance Examination Level 1 (Extended 100 Seats) for the batch 2026–28.",
                     startX + 39,
                     y,
                     { maxWidth: 220 }
@@ -586,14 +631,14 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
                             Dear {student.name},
                             <br /><br />
                             We are pleased to inform you that you have successfully Qualified the {" "}
-                            <strong>Haryana Super 100 Entrance Examination Level 1 for the 2026–28 batch.</strong>.
+                            <strong>Haryana Super 100 Entrance Examination Level 1 (Extended 100 Seats) for the 2026–28 batchs.</strong>
                             <br /><br />
                         
-                            <strong>You may now download your Haryana Super 100 Entrance Examination Level 1 Qualifying Certificate using the link provided below.</strong>
+                            <strong>You may now download your Haryana Super 100 Entrance Examination Level 2 (Extended 100 Seats) Admit Card  using the link provided below.</strong>
                             
                             <br /><br />
                             <span style={{ fontWeight: "normal" }}>
-                                (प्प्रिय {student.name}, हमें आपको यह सूचित करते हुए अत्यंत प्रसन्नता हो रही है कि आपने सत्र 2026–28 के लिए हरियाणा सुपर 100 प्रवेश परीक्षा लेवल 1 सफलतापूर्वक उत्तीर्ण कर ली है। आप नीचे दिए गए लिंक के माध्यम से हरियाणा सुपर 100 परीक्षा लेवल 1 का उत्तीर्णता प्रमाण पत्र डाउनलोड कर सकते हैं।)
+                                (प्प्रिय {student.name}, हमें आपको यह सूचित करते हुए अत्यंत प्रसन्नता हो रही है कि आपने सत्र 2026–28 के लिए हरियाणा सुपर 100 प्रवेश परीक्षा लेवल 1 सफलतापूर्वक उत्तीर्ण कर ली है। अब आप नीचे दिए गए लिंक का उपयोग करके हरियाणा सुपर 100 प्रवेश परीक्षा लेवल-2 (100 अतिरिक्त सीटें) का अपना प्रवेश पत्र डाउनलोड कर सकते हैं।)
                             </span>
                         </p>
 
@@ -617,8 +662,8 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
                                     style={{ cursor: "pointer", fontWeight: "bold", fontSize: "22px", animation: "blink 1s infinite", alignItems: "center" }}
                                     className="blinking-link"
                                 >
-                                    Download Haryana Super 100 Level-2 Admit Card. <br />
-                                    (अपना लेवल-2 प्रवेश पत्र डाउनलोड करें)
+                                    Download Haryana Super 100 Level-2 Admit Card (Extended 100 Seats). <br />
+                                    (अपना लेवल-2 प्रवेश पत्र डाउनलोड करें (100 अतिरिक्त सीटें))
                                 </a>
                                 <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                             </div>
@@ -626,7 +671,7 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
 
 
 
-                        <div className="d-flex align-items-center justify-content-center mb-3">
+                        {/* <div className="d-flex align-items-center justify-content-center mb-3">
                             <div style={{ textAlign: "center" }}>
                                 <a
                                     onClick={() => downloadCertificate(student)}
@@ -638,7 +683,7 @@ export const ResultSuper100L1 = ({ singleStudent = null, bulkDownload = null, on
                                 </a>
                                 <style>{`@keyframes blink { 0% { color: #d33; } 50% { color: #0b5fff; } 100% { color: #d33; } } .blinking-link { text-decoration: underline; }`}</style>
                             </div>
-                        </div>
+                        </div> */}
 
 
 

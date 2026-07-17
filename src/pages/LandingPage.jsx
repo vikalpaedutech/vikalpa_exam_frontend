@@ -176,10 +176,17 @@ const {studentData, setStudentData} = useContext(StudentContext);
             <br />  */}
 
 
-
+{/* 
 
                  <Link  to="/s100-l1-admit-card" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
             <p><BsArrowRight className="blinking-link" />Class 11th Admit Card -  Haryana Super 100 Level-1 (Extended 100 Seats). <br/>(कक्षा 11वीं का प्रवेश पत्र – हरियाणा सुपर 100 स्तर-1 (100 अतिरिक्त सीटें))</p> 
+            </Link>
+            <br /> */}
+
+
+
+     <Link  to="/hs100-extended-100-result-l1" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
+            <p><BsArrowRight className="blinking-link" />Class 11th Result/Level 2 Admit Card -  Haryana Super 100 Level-1 Result & Level 2 Admit Card (Extended 100 Seats). <br/>(कक्षा 11वीं का परिणाम / लेवल-2 प्रवेश पत्र – हरियाणा सुपर 100 लेवल-1 परिणाम एवं लेवल-2 प्रवेश पत्र (100 अतिरिक्त सीटें))</p> 
             </Link>
             <br />
 
