@@ -144,7 +144,23 @@ const {studentData, setStudentData} = useContext(StudentContext);
 </p>
             </Link>
             <br /> 
-            <hr></hr> */}
+            <hr></hr>  */}
+
+
+
+
+
+             <Link  to="hs100-extended-100-result-l1" style={{textDecoration:'none', fontSize:'35px', color:'red'}}>
+           <p>
+  <BsArrowRight className="blinking-link" />
+  Class 11th Result - Haryana Super 100 Level-2 Result (Extended 100 Seats). <br/>
+  (कक्षा 11वीं का परिणाम – हरियाणा सुपर 100 लेवल-2 परिणाम (100 अतिरिक्त सीटें)।)
+</p>
+            </Link>
+            <br /> 
+            <hr></hr> 
+
+
 
             {/* <MBL3OrientationDates/> */}
 
@@ -184,11 +200,11 @@ const {studentData, setStudentData} = useContext(StudentContext);
             <br /> */}
 
 
-
+{/* 
      <Link  to="/hs100-extended-100-result-l1" style={{textDecoration:'none', fontSize:'25px', color:'red'}}>
             <p><BsArrowRight className="blinking-link" />Class 11th Result/Level 2 Admit Card -  Haryana Super 100 Level-1 Result & Level 2 Admit Card (Extended 100 Seats). <br/>(कक्षा 11वीं का परिणाम / लेवल-2 प्रवेश पत्र – हरियाणा सुपर 100 लेवल-1 परिणाम एवं लेवल-2 प्रवेश पत्र (100 अतिरिक्त सीटें))</p> 
             </Link>
-            <br />
+            <br /> */}
 
 
 

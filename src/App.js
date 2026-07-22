@@ -480,14 +480,16 @@ function App() {
 
                            {/* <Route path='/s100-l2-admit-card' element = {<AdmitCardStudentSigninSuper100Level2/>}/> */}
 
-                             <Route path='/hs100-extended-100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/>
+                             {/* <Route path='/hs100-extended-100-result-l1' element = {<AdmitCardStudentSigninSuper100Level2/>}/> */}
                              
-                             <Route path='/result-login-s100-l2' element = {<ResultLoginSuper100L2/>}/>
+                             {/* <Route path='/result-login-s100-l2' element = {<ResultLoginSuper100L2/>}/> */}
+
+                                <Route path='/hs100-extended-100-result-l1' element = {<ResultLoginSuper100L2/>}/>
                        
 
                          <Route path='/hs100-level1-result' element = {<ResultSuper100L1/>}/>
 
-                           {/* <Route path='/hs100-level2-result' element = {<ResultSuper100L2/>}/> */}
+                           <Route path='/hs100-level2-result' element = {<ResultSuper100L2/>}/>
 
                          <Route path='/s100-l2-admit-card' element = {<ResultSuper100L1/>}/>
                           <Route path='/hs100-level2-waitinglist' element = {<WaitingListSuper100/>}/>
@@ -562,13 +564,13 @@ function App() {
                           {/* <Route path='/mb-l3-attendance-pdf' element = {<AttendanceSheet/>}/> */}
 
 
-                              <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/>
+                            <Route path='/s100-l1-attendance' element = {<AttendanceSheet/>}/>
 
-                               <Route path='/s100-l2-attendance' element = {<S100AttendanceSheet/>}/>
+                            <Route path='/s100-l2-attendance' element = {<S100AttendanceSheet/>}/>
 
-                                <Route path='/s100-l2-ppt' element = {<PptS100L2Students/>}/>
+                            <Route path='/s100-l2-ppt' element = {<PptS100L2Students/>}/>
 
-                                 <Route path='/id-card-s100-l2' element = {<IDCardSuper100L2/>}/>
+                            <Route path='/id-card-s100-l2' element = {<IDCardSuper100L2/>}/>
                                  
 
                             <Route path='/update-examination-center-and-capacities' element = {<UpdateCenterAttendanceCount/>}/>
@@ -581,12 +583,12 @@ function App() {
 
                             {/* <Route path='/mb-l2-result-notqualifed' element = {<StudentNotFound/>}/> */}
 
-                             <Route path='/mb-l3-result-notqualifed' element = {<StudentNotFoundMB/>}/>
+                            <Route path='/mb-l3-result-notqualifed' element = {<StudentNotFoundMB/>}/>
 
-                            {/* <Route path='/sh100-l2-result-notqualifed' element = {<StudentNotFound/>}/> */}
+                            <Route path='/sh100-l2-result-notqualifed' element = {<StudentNotFound/>}/>
 
 
-                              <Route path='/sh100-l1-result-notqualifed' element = {<StudentNotFound/>}/>
+                            <Route path='/sh100-l1-result-notqualifed' element = {<StudentNotFound/>}/>
 
 
 
